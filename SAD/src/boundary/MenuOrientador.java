@@ -75,7 +75,7 @@ public class MenuOrientador extends javax.swing.JFrame implements ActionListener
         btnSairMenuOrientador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 2));
         btnSairMenuOrientador.setFocusPainted(false);
         btnSairMenuOrientador.setFocusable(false);
-        btnSairMenuOrientador.setLabel("Sair");
+        btnSairMenuOrientador.setText("Sair");
         btnSairMenuOrientador.addActionListener(this);
 
         javax.swing.GroupLayout painelOrientadorMenuLayout = new javax.swing.GroupLayout(painelOrientadorMenu);
