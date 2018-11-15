@@ -6,7 +6,7 @@
 
     <build>
         <sourceDirectory>
-            ${project.basedir}/src
+            ${project.basedir}/src/main
         </sourceDirectory>
         <resources>
             <resource>
@@ -16,7 +16,13 @@
             </resource>
         </resources>
 
-        <plugins>
+    <testResources>
+        <testResource>
+            <directory>${project.basedir}/src/test</directory>
+        </testResource>
+    </testResources>
+
+    <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -29,4 +35,16 @@
       </plugin>
     </plugins>
     </build>
+
+    <dependencies>
+    
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
 </project>
