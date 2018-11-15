@@ -74,7 +74,7 @@ public class MenuAluno extends javax.swing.JFrame implements ActionListener {
         btnSairMenuAluno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 2));
         btnSairMenuAluno.setFocusPainted(false);
         btnSairMenuAluno.setFocusable(false);
-        btnSairMenuAluno.setLabel("Sair");
+        btnSairMenuAluno.setText("Sair");;
         btnSairMenuAluno.addActionListener(this);
 
         javax.swing.GroupLayout painelAlunoMenuLayout = new javax.swing.GroupLayout(painelAlunoMenu);
