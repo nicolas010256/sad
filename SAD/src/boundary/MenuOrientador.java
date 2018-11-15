@@ -32,7 +32,7 @@ public class MenuOrientador extends javax.swing.JFrame implements ActionListener
 
         painelOrientadorMenu.setBackground(new java.awt.Color(102, 102, 102));
 
-        lblFotoOrientadorMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("../fotoOrientador.png")));
+        lblFotoOrientadorMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("../images/fotoOrientador.png")));
 
         lblPerfilOrientadorMenu.setFont(new java.awt.Font("Arial Black", 0, 14)); 
         lblPerfilOrientadorMenu.setForeground(new java.awt.Color(255, 255, 255));
