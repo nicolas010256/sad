@@ -52,7 +52,7 @@ public class Login extends javax.swing.JFrame implements ActionListener {
         txtSenha.setText("************");
 
         jcmbTipoUsuarioLogin.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jcmbTipoUsuarioLogin.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Tipo de Usu·rio", "Aluno", "Orientador" }));
+        jcmbTipoUsuarioLogin.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Tipo de Usu√°rio", "Aluno", "Orientador" }));
 
         bntEntrar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         bntEntrar.setText("Entrar");

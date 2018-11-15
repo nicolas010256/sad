@@ -54,7 +54,7 @@ public class MenuOrientador extends javax.swing.JFrame implements ActionListener
         btnNotificacoesMenuOrientador.setBackground(new java.awt.Color(102, 102, 102));
         btnNotificacoesMenuOrientador.setFont(new java.awt.Font("Arial", 0, 14)); 
         btnNotificacoesMenuOrientador.setForeground(new java.awt.Color(255, 255, 255));
-        btnNotificacoesMenuOrientador.setText("Notificações");
+        btnNotificacoesMenuOrientador.setText("Notifica��es");
         btnNotificacoesMenuOrientador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 2));
         btnNotificacoesMenuOrientador.setFocusPainted(false);
         btnNotificacoesMenuOrientador.setFocusable(false);
@@ -63,7 +63,7 @@ public class MenuOrientador extends javax.swing.JFrame implements ActionListener
         btnTGMenuOrientador.setBackground(new java.awt.Color(102, 102, 102));
         btnTGMenuOrientador.setFont(new java.awt.Font("Arial", 0, 14)); 
         btnTGMenuOrientador.setForeground(new java.awt.Color(255, 255, 255));
-        btnTGMenuOrientador.setText("Trabalho de Graduação");
+        btnTGMenuOrientador.setText("Trabalho de Gradua��o");
         btnTGMenuOrientador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 2));
         btnTGMenuOrientador.setFocusPainted(false);
         btnTGMenuOrientador.setFocusable(false);
