@@ -17,6 +17,12 @@ public class Orientador {
 	
 	private List<AreaAtuacao> areasAtuacao =  new ArrayList<AreaAtuacao>();
 
+	public Orientador(String email, String senha, String nome) {
+		this.email = email;
+		this.senha = senha;
+		this.nome = nome;
+	}
+
 	public long getId() {
 		return id;
 	}
