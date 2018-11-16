@@ -18,6 +18,12 @@ public class Aluno {
 
 	private Curso curso;
 
+	public Aluno(String email, String senha, String nome) {
+		this.email = email;
+		this.senha = senha;
+		this.nome = nome;
+	}
+
 	public long getId() {
 		return id;
 	}
