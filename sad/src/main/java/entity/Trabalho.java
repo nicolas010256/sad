@@ -25,6 +25,13 @@ public class Trabalho {
 
 	private List<Atividade> atividades = new ArrayList<Atividade>();
 
+	public Trabalho(String tema, String titulo, String metodologia, String relevancia) {
+		this.tema = tema;
+		this.titulo = titulo;
+		this.metodologia = metodologia;
+		this.relevancia = relevancia;
+	}
+
 	public long getId() {
 		return id;
 	}
