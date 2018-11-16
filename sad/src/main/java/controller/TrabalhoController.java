@@ -33,12 +33,19 @@ public class TrabalhoController implements Controller<Trabalho> {
 
     @Override
     public void update(Trabalho trabalho) {
-
+        Trabalho t = get(trabalho.getId());
+        t.setTema(trabalho.getTema());
+        t.setTitulo(trabalho.getTitulo());
+        t.setMetodologia(trabalho.getMetodologia());
+        t.setRelevancia(trabalho.getRelevancia());
+        t.setOrientador(trabalho.getOrientador()); 
+        t.setTipoTrabalho(trabalho.getTipoTrabalho());
     }
 
     @Override
     public void remove(Trabalho trabalho) {
-
+        Trabalho t = get(trabalho.getId());
+        trabalhos.remove(t);
     }
 
 
