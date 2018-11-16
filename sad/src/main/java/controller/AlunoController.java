@@ -5,16 +5,18 @@ import java.util.List;
 
 import entity.Aluno;
 
-public class AlunoController {
+public class AlunoController implements Controller<Aluno>{
     private List<Aluno> alunos = new ArrayList<Aluno>();
     private static long count = 1;
 
+    @Override
     public void add(Aluno aluno) {
         aluno.setId(count);
         alunos.add(aluno);
         count++;
     }
 
+    @Override
     public Aluno get(long id) {
         for (Aluno aluno : alunos) {
             if (aluno.getId() == id) {
@@ -33,10 +35,12 @@ public class AlunoController {
         return null;
     }
 
+    @Override
     public List<Aluno> getAll() {
         return alunos;
     }
 
+    @Override
     public void update(Aluno aluno) {
         Aluno a = get(aluno.getId());
         if (a != null) {
@@ -50,6 +54,7 @@ public class AlunoController {
         }
     }
 
+    @Override
     public void remove(Aluno aluno) {
         alunos.remove(aluno);
     }
