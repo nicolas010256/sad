@@ -3,6 +3,8 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import entity.Aluno;
+import entity.Orientador;
 import entity.Trabalho;
 
 public class TrabalhoController implements Controller<Trabalho> {
@@ -29,6 +31,28 @@ public class TrabalhoController implements Controller<Trabalho> {
     @Override
     public List<Trabalho> getAll() {
         return trabalhos;
+    }
+
+    public Trabalho getByAluno(Aluno aluno) {
+        for (Trabalho trabalho : trabalhos) {
+            List<Aluno> alunos = trabalho.getAlunos();
+            for (Aluno a : alunos) {
+                if (a.getId() == aluno.getId()) {
+                    return trabalho;
+                }
+            }
+        }
+        return null;
+    }
+
+    public List<Trabalho> getByOrientador(Orientador orientador) {
+        List<Trabalho> t = new ArrayList<Trabalho>();
+        for (Trabalho trabalho : trabalhos) {
+            if (trabalho.getOrientador().getId() == orientador.getId()) {
+                t.add(trabalho);
+            }
+        }
+        return t;
     }
 
     @Override
