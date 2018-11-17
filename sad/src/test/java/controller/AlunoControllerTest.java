@@ -96,6 +96,11 @@ public class AlunoControllerTest {
     }
 
     @Test
+    public void testGetByTrabalho() {
+        // TO DO
+    }
+
+    @Test
     public void testUpdate() {
         //Cria controller
         AlunoController aController = new AlunoController();

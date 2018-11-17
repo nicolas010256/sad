@@ -6,7 +6,7 @@ import java.util.List;
 import entity.Trabalho;
 
 public class TrabalhoController implements Controller<Trabalho> {
-    public List<Trabalho> trabalhos = new ArrayList<Trabalho>();
+    private List<Trabalho> trabalhos = new ArrayList<Trabalho>();
     private static long count = 1;
 
     @Override

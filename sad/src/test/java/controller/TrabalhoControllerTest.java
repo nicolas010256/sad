@@ -50,15 +50,20 @@ public class TrabalhoControllerTest {
         // Cria classe de controle
         TrabalhoController tController = new TrabalhoController();
 
+        // Cria Trabalhos
+        Trabalho t1 = new Trabalho("A", "A", "A", "A");
+        Trabalho t2 = new Trabalho("B", "B", "B", "B");
+        Trabalho t3 = new Trabalho("C", "C", "C", "C");
+
         // Adiciona trabalhos
-        tController.add(new Trabalho("A", "A", "A", "A"));
-        tController.add(new Trabalho("B", "B", "B", "B"));
-        tController.add(new Trabalho("C", "C", "C", "C"));
+        tController.add(t1);
+        tController.add(t2);
+        tController.add(t3);
 
         // Recupera trabalhos
-        Trabalho t1 = tController.get(1);
-        Trabalho t2 = tController.get(2);
-        Trabalho t3 = tController.get(3);
+        Trabalho t01 = tController.get(t1.getId());
+        Trabalho t02 = tController.get(t2.getId());
+        Trabalho t03 = tController.get(t3.getId());
 
         // Altera titulos
         t1.setTitulo("Z");
@@ -66,14 +71,14 @@ public class TrabalhoControllerTest {
         t3.setTitulo("X");
 
         // Update
-        tController.update(t1);
-        tController.update(t2);
-        tController.update(t3);
+        tController.update(t01);
+        tController.update(t02);
+        tController.update(t03);
 
         // Teste
-        assertEquals("Z", tController.get(1).getTitulo());
-        assertEquals("Y", tController.get(2).getTitulo());
-        assertEquals("X", tController.get(3).getTitulo());
+        assertEquals("Z", tController.get(t1.getId()).getTitulo());
+        assertEquals("Y", tController.get(t2.getId()).getTitulo());
+        assertEquals("X", tController.get(t3.getId()).getTitulo());
     }
 
     @Test
@@ -81,25 +86,30 @@ public class TrabalhoControllerTest {
         // Cria classe de controle
         TrabalhoController tController = new TrabalhoController();
 
+        // Cria Trabalhos
+        Trabalho t1 = new Trabalho("A", "A", "A", "A");
+        Trabalho t2 = new Trabalho("B", "B", "B", "B");
+        Trabalho t3 = new Trabalho("C", "C", "C", "C");
+
         // Adiciona trabalhos
-        tController.add(new Trabalho("A", "A", "A", "A"));
-        tController.add(new Trabalho("B", "B", "B", "B"));
-        tController.add(new Trabalho("C", "C", "C", "C"));
+        tController.add(t1);
+        tController.add(t2);
+        tController.add(t3);
 
         // Recupera trabalhos
-        Trabalho t1 = tController.get(1);
-        Trabalho t2 = tController.get(2);
-        Trabalho t3 = tController.get(3);
+        Trabalho t01 = tController.get(t1.getId());
+        Trabalho t02 = tController.get(t2.getId());
+        Trabalho t03 = tController.get(t3.getId());
 
         // Remove
-        tController.remove(t1);
-        tController.remove(t2);
-        tController.remove(t3);
+        tController.remove(t01);
+        tController.remove(t02);
+        tController.remove(t03);
 
         // Teste
-        assertNull(tController.get(1));
-        assertNull(tController.get(2));
-        assertNull(tController.get(3));
+        assertNull(tController.get(t1.getId()));
+        assertNull(tController.get(t2.getId()));
+        assertNull(tController.get(t3.getId()));
     }
 
 }

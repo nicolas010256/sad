@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Test;
 
 import entity.Orientador;
+import entity.Trabalho;
 
 public class OrientadorControllerTest {
     
@@ -61,6 +62,55 @@ public class OrientadorControllerTest {
         assertEquals("Manuel", oController.getByEmailAndSenha("manuel@gmail.com", "123456").getNome());
         assertEquals("Sylvio", oController.getByEmailAndSenha("sylvio@gmail.com", "123456").getNome());
         assertEquals("Cleiton", oController.getByEmailAndSenha("cleiton@gmail.com", "123456").getNome());
+    }
+
+    @Test
+    public void testGetByTrabalho() {
+        // Cria classe de controle
+        OrientadorController oController = new OrientadorController();
+        TrabalhoController tController = new TrabalhoController();
+
+        // Cria Orientadores
+        Orientador o1 = new Orientador("manuel@gmail.com", "123456", "Manuel");
+        Orientador o2 = new Orientador("cleiton@gmail.com", "123456", "Cleiton");
+        Orientador o3 = new Orientador("sylvio@gmail.com", "123456", "Sylvio");
+
+        // Cria trabalhos
+        Trabalho t1 = new Trabalho("A", "A", "A", "A");
+        Trabalho t2 = new Trabalho("B", "B", "B", "B");
+        Trabalho t3 = new Trabalho("C", "C", "C", "C");
+
+        // Vincula Trabalho ao Orientador
+        t1.setOrientador(o1);
+        t2.setOrientador(o2);
+        t3.setOrientador(o3);
+
+        o1.getTrabalhos().add(t1);
+        o1.getTrabalhos().add(t2);
+        o2.getTrabalhos().add(t3);
+
+        // Adiciona Trabalhos
+        tController.add(t1);
+        tController.add(t2);
+        tController.add(t3);
+
+
+        // Adiciona Orientadores
+        oController.add(o1);
+        oController.add(o2);
+        oController.add(o3);
+
+        // Recupera Trabalhos
+        Trabalho t01 = tController.get(t1.getId());
+        Trabalho t02 = tController.get(t2.getId());
+        Trabalho t03 = tController.get(t3.getId());
+
+
+        // Testa
+        assertEquals("Manuel", oController.getByTrabalho(t01).getNome());
+        assertEquals("Manuel", oController.getByTrabalho(t02).getNome());
+        assertEquals("Cleiton", oController.getByTrabalho(t03).getNome());
+    
     }
 
     @Test

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entity.Aluno;
+import entity.Trabalho;
 
 public class AlunoController implements Controller<Aluno>{
     private List<Aluno> alunos = new ArrayList<Aluno>();
@@ -33,6 +34,16 @@ public class AlunoController implements Controller<Aluno>{
             }
         }
         return null;
+    }
+
+    public List<Aluno> getByTrabalho(Trabalho trabalho) {
+        List<Aluno> a = new ArrayList<Aluno>();
+        for (Aluno aluno : alunos) {
+            if (aluno.getTrabalho().getId() == trabalho.getId()) {
+                a.add(aluno);
+            }
+        }
+        return a;
     }
 
     @Override

@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entity.Orientador;
+import entity.Trabalho;
 
 public class OrientadorController implements Controller<Orientador> {
-    public List<Orientador> orientadores = new ArrayList<Orientador>();
+    private List<Orientador> orientadores = new ArrayList<Orientador>();
     private static long count = 1;
 
     @Override
@@ -35,6 +36,18 @@ public class OrientadorController implements Controller<Orientador> {
         for (Orientador orientador : orientadores) {
             if (orientador.getEmail().equals(email) && orientador.getSenha().equals(senha)) {
                 return orientador;
+            }
+        }
+        return null;
+    }
+
+    public Orientador getByTrabalho(Trabalho trabalho) {
+        for (Orientador orientador : orientadores) {
+            List<Trabalho> trabalhos = orientador.getTrabalhos();
+            for (Trabalho t : trabalhos) {
+                if (t.getId() == trabalho.getId()) {
+                    return orientador;
+                }
             }
         }
         return null;
