@@ -7,7 +7,6 @@ import boundary.Login;
 public class App {
     
     public static void main(String[] args) {
-        System.out.println("1");
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

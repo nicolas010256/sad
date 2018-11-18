@@ -10,6 +10,8 @@ public class Aluno {
 
 	private String senha;
 
+	private byte[] foto;
+
 	private float notaTG1;
 
 	private float notaTG2;
@@ -24,12 +26,15 @@ public class Aluno {
 		this.nome = nome;
 	}
 
-	public long getId() {
-		return id;
+	public Aluno(long id, String email, String senha, String nome) {
+		this.id = id;
+		this.email = email;
+		this.senha = senha;
+		this.nome = nome;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public long getId() {
+		return id;
 	}
 
 	public String getNome() {
@@ -54,6 +59,14 @@ public class Aluno {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
 	}
 
 	public float getNotaTG1() {

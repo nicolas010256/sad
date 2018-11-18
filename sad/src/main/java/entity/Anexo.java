@@ -8,12 +8,19 @@ public class Anexo {
 
 	private String tipo;
 
-	public long getId() {
-		return id;
+	public Anexo(long id, String local, String tipo) {
+		this.id = id;
+		this.local = local;
+		this.tipo = tipo;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public Anexo(String local, String tipo) {
+		this.local = local;
+		this.tipo = tipo;
+	} 
+
+	public long getId() {
+		return id;
 	}
 
 	public String getLocal() {
@@ -31,5 +38,4 @@ public class Anexo {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-
 }

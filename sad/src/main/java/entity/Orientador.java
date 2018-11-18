@@ -13,9 +13,18 @@ public class Orientador {
 
 	private String senha;
 
+	private byte[] foto;
+
 	private List<Trabalho> trabalhos = new ArrayList<Trabalho>();
 	
 	private List<AreaAtuacao> areasAtuacao =  new ArrayList<AreaAtuacao>();
+
+	public Orientador(long id, String email, String senha, String nome) {
+		this.id = id;
+		this.email = email;
+		this.senha = senha;
+		this.nome = nome;
+	}
 
 	public Orientador(String email, String senha, String nome) {
 		this.email = email;
@@ -25,10 +34,6 @@ public class Orientador {
 
 	public long getId() {
 		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public String getNome() {
@@ -55,12 +60,28 @@ public class Orientador {
 		this.senha = senha;
 	}
 
+	public byte[] foto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+
 	public List<AreaAtuacao> getAreasAtuacao() {
 		return areasAtuacao;
 	}
 
+	public void setAreasAtuacao(List<AreaAtuacao> areaAtuacaos) {
+		this.areasAtuacao = areaAtuacaos;
+	}
+
 	public List<Trabalho> getTrabalhos() {
 		return trabalhos;
+	}
+
+	public void setTrabalhos(List<Trabalho> trabalhos) {
+		this.trabalhos = trabalhos;
 	}
 
 }

@@ -6,12 +6,17 @@ public class Area {
 
 	private String nome;
 
-	public long getId() {
-		return id;
+	public Area (long id, String nome) {
+		this.id = id;
+		this.nome = nome;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public Area(String nome) {
+		this.nome = nome;
+	}
+
+	public long getId() {
+		return id;
 	}
 
 	public String getNome() {
