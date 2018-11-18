@@ -3,13 +3,13 @@ package controller;
 import java.util.List;
 
 import dao.AlunoDAO;
-import dao.AlunoDAOException;
-import dao.AlunoDAOimpl;
+import dao.exceptions.AlunoDAOException;
+import dao.AlunoDAOImpl;
 import entity.Aluno;
 import entity.Trabalho;
 
 public class AlunoController {
-    private AlunoDAO dao = new AlunoDAOimpl();
+    private AlunoDAO dao = new AlunoDAOImpl();
 
     public void add(Aluno aluno) {
         try {
