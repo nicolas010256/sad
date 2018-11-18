@@ -14,7 +14,7 @@ import dao.exceptions.AlunoDAOException;
 import entity.Aluno;
 import entity.Trabalho;
 
-public class AlunoDAOimpl implements AlunoDAO {
+public class AlunoDAOImpl implements AlunoDAO {
 
     @Override
     public void add(Aluno aluno) throws AlunoDAOException {
