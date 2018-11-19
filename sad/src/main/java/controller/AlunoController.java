@@ -59,4 +59,44 @@ public class AlunoController {
         return alunos;
     }
 
+    public void getFoto(Aluno aluno) {
+        try {
+            dao.getFoto(aluno);
+        } catch (AlunoDAOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateFoto(Aluno aluno) {
+        try {
+            dao.updateFoto(aluno);
+        } catch (AlunoDAOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateCurso(Aluno aluno) {
+        try {
+            dao.updateCurso(aluno);
+        } catch (AlunoDAOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateTrabalho(Aluno aluno) {
+        try {
+            dao.update(aluno);
+        } catch (AlunoDAOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void remove(Aluno aluno) {
+        try {
+            dao.remove(aluno);
+        } catch (AlunoDAOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
