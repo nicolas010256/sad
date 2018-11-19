@@ -210,6 +210,7 @@ public class AlunoDAOImpl implements AlunoDAO {
                 Blob blob = rs.getBlob("Foto");
                 byte[] foto = blob.getBytes(1, (int) blob.length());
                 aluno.setFoto(foto);
+                blob.free();
             } else {
                 aluno.setFoto(null);
             }
