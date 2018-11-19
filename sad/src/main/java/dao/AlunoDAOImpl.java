@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -192,7 +193,32 @@ public class AlunoDAOImpl implements AlunoDAO {
 
     @Override
     public void getFoto(Aluno aluno) throws AlunoDAOException {
+        Connection con = null;
 
+        try {
+            con = JDBCUtil.getConnection();
+
+            String sql = "SELECT Foto FROM Aluno WHERE idAluno = ?";
+
+            PreparedStatement st = con.prepareStatement(sql);
+
+            st.setLong(1, aluno.getId());
+
+            ResultSet rs = st.executeQuery();
+
+            if (rs.first()) {
+                Blob blob = rs.getBlob("Foto");
+                byte[] foto = blob.getBytes(1, (int) blob.length());
+                aluno.setFoto(foto);
+            } else {
+                aluno.setFoto(null);
+            }
+
+        } catch (SQLException e) {
+            throw new AlunoDAOException("Erro ao recuperar foto do aluno");
+        } finally {
+            JDBCUtil.close(con);
+        }
     }
 
     @Override
