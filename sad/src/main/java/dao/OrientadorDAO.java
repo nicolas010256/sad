@@ -17,7 +17,7 @@ public interface OrientadorDAO {
 
     List<Orientador> getByArea(Area area) throws OrientadorDAOException;
 
-    void getFoto() throws OrientadorDAOException;
+    void getFoto(Orientador orientador) throws OrientadorDAOException;
 
     void update(Orientador orientador) throws OrientadorDAOException;
 

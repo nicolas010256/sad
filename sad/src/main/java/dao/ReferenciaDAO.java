@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import dao.exceptions.ReferenciaDAOException;
 import entity.Referencia;
 import entity.Trabalho;
@@ -10,7 +12,7 @@ public interface ReferenciaDAO {
 
     Referencia get(long id) throws ReferenciaDAOException;
 
-    Referencia getByTrabalho(Trabalho trabalho) throws ReferenciaDAOException;
+    List<Referencia> getByTrabalho(Trabalho trabalho) throws ReferenciaDAOException;
 
     void update(Referencia referencia) throws ReferenciaDAOException;
 
