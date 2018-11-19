@@ -248,20 +248,78 @@ public class AlunoDAOImpl implements AlunoDAO {
     }
 
     @Override
-    public void updateFoto(Aluno aluno) {
+    public void updateFoto(Aluno aluno) throws AlunoDAOException {
+        Connection con = null;
 
+        try {
+            con = JDBCUtil.getConnection();
+
+            String sql = "UPDATE Aluno SET Foto=? WHERE idAluno=?";
+
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setBlob(1, aluno.getFoto() != null ? new SerialBlob(aluno.getFoto()) : null);
+            st.setLong(2, aluno.getId());
+
+            st.executeUpdate();
+
+            st.close();
+
+        } catch (SQLException e) {
+            throw new AlunoDAOException("Erro ao alterar foto do aluno");
+        } finally {
+            JDBCUtil.close(con);
+        }
     }
 
     @Override
-    public void updateCurso(Aluno aluno) {
+    public void updateCurso(Aluno aluno) throws AlunoDAOException {
+        Connection con = null;
 
+        try {
+            con = JDBCUtil.getConnection();
+
+            String sql = "UPDATE Aluno SET idCurso=? WHERER idAluno=?";
+
+            PreparedStatement st = con.prepareStatement(sql);
+            if (aluno.getCurso() != null)
+                st.setLong(1, aluno.getCurso().getId());
+            else
+                st.setNull(1, Types.INTEGER);
+            st.setLong(2, aluno.getId());
+
+            st.executeUpdate();
+
+            st.close();
+
+        } catch (SQLException e) {
+            throw new AlunoDAOException("Erro ao alterar curso do aluno");
+        } finally {
+            JDBCUtil.close(con);
+        }
     }
 
     @Override
-    public void updateTrabalho(Aluno aluno) {
+    public void updateTrabalho(Aluno aluno) throws AlunoDAOException {
+        Connection con = null;
 
-    }
+        try {
+            con = JDBCUtil.getConnection();
 
+            String sql = "UPDATE Aluno SET idTrabalho=? WHERE idAluno=?";
 
-   
+            PreparedStatement st = con.prepareStatement(sql);
+            if (aluno.getCurso() != null)
+                st.setLong(1, aluno.getCurso().getId());
+            else
+                st.setNull(1, Types.INTEGER);
+            st.setLong(1, aluno.getId());
+
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException e) {
+            throw new AlunoDAOException("Erro ao alterar o trabalho do aluno");
+        } finally {
+            JDBCUtil.close(con);
+        }
+    }   
 }
