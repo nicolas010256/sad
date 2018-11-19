@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import dao.exceptions.TipoTrabalhoDAOException;
 import entity.TipoTrabalho;
 import entity.Trabalho;
@@ -10,7 +12,7 @@ public interface TipoTrabalhoDAO {
 
     TipoTrabalho get(long id) throws TipoTrabalhoDAOException;
 
-    TipoTrabalho getAll() throws TipoTrabalhoDAOException;
+    List<TipoTrabalho> getAll() throws TipoTrabalhoDAOException;
 
     TipoTrabalho getByTrabalho(Trabalho trabalho) throws TipoTrabalhoDAOException;
 
