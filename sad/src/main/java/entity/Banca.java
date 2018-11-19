@@ -12,9 +12,17 @@ public class Banca {
 
 	private float nota;
 
-	public Banca(Date dataHorario, String local) {
+	public Banca(long id, Date dataHorario, String local, float nota) {
+		this.id = id;
 		this.dataHorario = dataHorario;
 		this.local = local;
+		this.nota = nota;
+	}
+
+	public Banca(Date dataHorario, String local, float nota) {
+		this.dataHorario = dataHorario;
+		this.local = local;
+		this.nota = nota;
 	}
 
 	public long getId() {
