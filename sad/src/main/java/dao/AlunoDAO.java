@@ -22,11 +22,11 @@ public interface AlunoDAO {
 
     void update(Aluno aluno) throws AlunoDAOException;
 
-    void updateFoto(Aluno aluno);
+    void updateFoto(Aluno aluno) throws AlunoDAOException;
 
-    void updateCurso(Aluno aluno);
+    void updateCurso(Aluno aluno) throws AlunoDAOException;
 
-    void updateTrabalho(Aluno aluno);
+    void updateTrabalho(Aluno aluno) throws AlunoDAOException;
 
     void remove(Aluno aluno) throws AlunoDAOException;
 }
