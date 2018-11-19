@@ -49,12 +49,12 @@ public class BancaDAOImpl implements BancaDAO{
 			statement.setLong(1,id);
 			ResultSet rs = statement.executeQuery();
 			if(rs.first()){
-				//long idBanca = rs.getLong("idBanca");
+				long idBanca = rs.getLong("idBanca");
 				Date data_hora = rs.getDate("Data-Hora");
 				String local = rs.getString("Local");
 				float nota = rs.getFloat("Nota");
 				
-				banca = new Banca(data_hora,local,nota);
+				banca = new Banca(idBanca,data_hora,local,nota);
 			}
 		} catch (SQLException e) {
 			throw new BancaDAOException("Erro ao buscar banca");
@@ -73,10 +73,7 @@ public class BancaDAOImpl implements BancaDAO{
 		
 		try {
 			con = JDBCUtil.getConnection();
-			String sql = "SELECT idBanca, Data_Hora, Local, Nota FROM Banca b,  "
-					+ "INNER JOIN Trabalho t "
-					+ "ON t.idBanca=b.idBanca "
-					+ "WHERE idTrabalho=?";
+			String sql = "SELECT idBanca, Data_Hora, Local, Nota FROM Banca b INNER JOIN Trabalho b ON (b.idBanca = t.idBanca) WHERE idTrabalho = ?";
 			PreparedStatement statement = con.prepareStatement(sql);
 			statement.setLong(1,trabalho.getId());
 			ResultSet rs = statement.executeQuery();
@@ -131,7 +128,20 @@ public class BancaDAOImpl implements BancaDAO{
 	@Override
 	public void remove(Banca banca) throws BancaDAOException {
 		
-		
+		Connection con = null;
+
+		try {
+            con = JDBCUtil.getConnection();
+			String sql = "DELETE FROM Banca WHERE idBanca = ?";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.executeUpdate();
+			st.close();
+
+        } catch (Exception e) {
+            throw new BancaDAOException("Erro ao excluir banca");
+        } finally {
+            JDBCUtil.close(con);
+        }
 		
 	}
 
