@@ -39,7 +39,11 @@ public class AnexoController {
     }
 
     public void remove(Anexo anexo) {
-        
+        try {
+            dao.remove(anexo);
+        } catch (AnexoDAOException e) {
+            e.printStackTrace();
+        }
     }
 
 
