@@ -60,7 +60,7 @@ public class Orientador {
 		this.senha = senha;
 	}
 
-	public byte[] foto() {
+	public byte[] getFoto() {
 		return foto;
 	}
 
