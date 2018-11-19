@@ -73,7 +73,7 @@ public class BancaDAOImpl implements BancaDAO{
 		
 		try {
 			con = JDBCUtil.getConnection();
-			String sql = "SELECT idBanca, Data_Hora, Local, Nota FROM Banca b INNER JOIN Trabalho b ON (b.idBanca = t.idBanca) WHERE idTrabalho = ?";
+			String sql = "SELECT b.idBanca, Data_Hora, Local, Nota FROM Banca b INNER JOIN Trabalho t ON (b.idBanca = t.idBanca) WHERE idTrabalho = ?";
 			PreparedStatement statement = con.prepareStatement(sql);
 			statement.setLong(1,trabalho.getId());
 			ResultSet rs = statement.executeQuery();
