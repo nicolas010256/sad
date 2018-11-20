@@ -8,7 +8,6 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.cj.PreparedQuery;
 
 import dao.exceptions.AnexoDAOException;
 import entity.Anexo;
