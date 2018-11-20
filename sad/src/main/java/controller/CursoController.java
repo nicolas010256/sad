@@ -46,6 +46,7 @@ public class CursoController {
         } catch (CursoDAOException e) {
             e.printStackTrace();
         }
+        return curso;
     }
 
     public void update(Curso curso) {

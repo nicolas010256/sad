@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import dao.AreaDAO;
@@ -31,12 +30,13 @@ public class AreaController {
     }
 
     public List<Area> getByOrientador(Orientador orientador) {
-        List<Area> areas;
+        List<Area> areas = null;
         try {
             areas = dao.getByOrientador(orientador);
         } catch (AreaDAOException e) {
             e.printStackTrace();
         }
+        return areas;
     }
 
     public void update(Area area) {

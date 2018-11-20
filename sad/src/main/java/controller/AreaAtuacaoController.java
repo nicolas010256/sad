@@ -1,6 +1,7 @@
 package controller;
 
 import dao.AreaAtuacaoDAO;
+import dao.AreaAtuacaoDAOImpl;
 import dao.exceptions.AreaAtuacaoDAOException;
 import entity.AreaAtuacao;
 

@@ -4,7 +4,6 @@ import java.util.List;
 
 import dao.OrientadorDAO;
 import dao.OrientadorDAOImpl;
-import dao.exceptions.MensagemDAOException;
 import dao.exceptions.OrientadorDAOException;
 import entity.Area;
 import entity.Orientador;
@@ -28,6 +27,7 @@ public class OrientadorController {
         } catch (OrientadorDAOException e) {
             e.printStackTrace();
         }
+        return orientador;
     }
 
     public Orientador getByTrabalho(Trabalho trabalho) {
@@ -37,6 +37,7 @@ public class OrientadorController {
         } catch (OrientadorDAOException e) {
             e.printStackTrace();
         }
+        return orientador;
     }
 
     public List<Orientador> getByArea(Area area) {
@@ -46,6 +47,7 @@ public class OrientadorController {
         } catch (OrientadorDAOException e) {
             e.printStackTrace();
         }
+        return orientadores;
     }
 
     public void getFoto(Orientador orientador) {
@@ -67,7 +69,7 @@ public class OrientadorController {
     public void updateFoto(Orientador orientador) {
         try {
             dao.updateFoto(orientador);
-        } catch (MensagemDAOException e) {
+        } catch (OrientadorDAOException e) {
             e.printStackTrace();
         }
     }
@@ -75,7 +77,7 @@ public class OrientadorController {
     public void remove(Orientador orientador) {
         try {
             dao.remove(orientador);
-        } catch (MensagemDAOException e) {
+        } catch (OrientadorDAOException e) {
             e.printStackTrace();
         }
     }
