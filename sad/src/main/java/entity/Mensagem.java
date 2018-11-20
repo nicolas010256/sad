@@ -11,8 +11,27 @@ public class Mensagem {
 
 	private List<Anexo> anexos = new ArrayList<Anexo>();
 
+	private Atividade atividade;
+
+	public Mensagem (long id, String conteudo){
+		this.id = id;
+		this.conteudo = conteudo;
+	}
+
+	public Mensagem (String conteudo){
+		this.conteudo = conteudo;
+	}
+
 	public long getId() {
 		return id;
+	}
+
+	public Atividade getAtividade() {
+		return atividade;
+	}
+
+	public void setAtividade(Atividade atividade) {
+		this.atividade = atividade;
 	}
 
 	public void setId(long id) {
