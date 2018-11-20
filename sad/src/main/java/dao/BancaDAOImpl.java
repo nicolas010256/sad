@@ -49,12 +49,11 @@ public class BancaDAOImpl implements BancaDAO{
 			statement.setLong(1,id);
 			ResultSet rs = statement.executeQuery();
 			if(rs.first()){
-				long idBanca = rs.getLong("idBanca");
 				Date data_hora = rs.getDate("Data-Hora");
 				String local = rs.getString("Local");
 				float nota = rs.getFloat("Nota");
 				
-				banca = new Banca(idBanca,data_hora,local,nota);
+				banca = new Banca(id,data_hora,local,nota);
 			}
 		} catch (SQLException e) {
 			throw new BancaDAOException("Erro ao buscar banca");

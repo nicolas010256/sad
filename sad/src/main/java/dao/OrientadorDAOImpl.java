@@ -73,7 +73,7 @@ public class OrientadorDAOImpl implements OrientadorDAO {
 
         try {
             con = JDBCUtil.getConnection();
-            String sql = "SELECT o.idOrientador, Nome, Email, Senha FROM Orientador o INNER JOIN Trabalho t ON (o.idOrientador = t.idOrientador) WHERE idOrientador = ?";
+            String sql = "SELECT o.idOrientador, Nome, Email, Senha FROM Orientador o INNER JOIN Trabalho t ON (o.idOrientador = t.idOrientador) WHERE idTrabalho = ?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setLong(1, trabalho.getId());
             ResultSet rs = st.executeQuery();
