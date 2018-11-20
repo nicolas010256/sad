@@ -7,9 +7,6 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.mysql.cj.PreparedQuery;
-
 import dao.exceptions.AnexoDAOException;
 import entity.Anexo;
 import entity.Mensagem;
@@ -113,6 +110,8 @@ public class AnexoDAOImpl implements AnexoDAO {
             String sql = "DELETE FROM Anexo WHERE idAnexo = ?";
 
             PreparedStatement st = con.prepareStatement(sql);
+
+            st.setLong(1, anexo.getId());
 
             st.executeUpdate();
 

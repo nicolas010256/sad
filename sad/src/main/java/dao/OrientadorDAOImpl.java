@@ -220,6 +220,8 @@ public class OrientadorDAOImpl implements OrientadorDAO {
 
             PreparedStatement st = con.prepareStatement(sql);
 
+            st.setLong(1, orientador.getId());
+
             st.executeUpdate();
 
             st.close();

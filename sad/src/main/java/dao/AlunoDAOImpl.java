@@ -8,9 +8,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.sql.rowset.serial.SerialBlob;
-
 import dao.exceptions.AlunoDAOException;
 import entity.Aluno;
 import entity.Trabalho;
@@ -262,6 +260,8 @@ public class AlunoDAOImpl implements AlunoDAO {
             String sql = "DELETE FROM Aluno WHERE idAluno=?";
 
             PreparedStatement st = con.prepareStatement(sql);
+
+            st.setLong(1, aluno.getId());
 
             st.executeUpdate();
 

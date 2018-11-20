@@ -133,6 +133,7 @@ public class BancaDAOImpl implements BancaDAO{
             con = JDBCUtil.getConnection();
 			String sql = "DELETE FROM Banca WHERE idBanca = ?";
 			PreparedStatement st = con.prepareStatement(sql);
+			st.setLong(1, banca.getId());
 			st.executeUpdate();
 			st.close();
 
