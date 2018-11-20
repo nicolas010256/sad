@@ -228,7 +228,7 @@ public class AlunoDAOImpl implements AlunoDAO {
             con = JDBCUtil.getConnection();
 
             String sql =    "UPDATE Aluno " +
-                            "WHERE Email=?, Senha=?, Nome=?, NotaTG1=?, NotaTG2=? " +
+                            "SET Email=?, Senha=?, Nome=?, NotaTG1=?, NotaTG2=? " +
                             "WHERE idAluno=?";
             
             PreparedStatement st = con.prepareStatement(sql);
