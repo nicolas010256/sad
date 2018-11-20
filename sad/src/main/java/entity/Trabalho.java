@@ -1,5 +1,6 @@
 package entity;
 
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,10 @@ public class Trabalho {
 
 	private String relevancia;
 
+	private byte[] arquivo;
+
+	private Date data_criacao;
+
 	private List<Aluno> alunos = new ArrayList<Aluno>();
 
 	private TipoTrabalho tipoTrabalho;
@@ -25,11 +30,23 @@ public class Trabalho {
 
 	private List<Atividade> atividades = new ArrayList<Atividade>();
 
-	public Trabalho(String tema, String titulo, String metodologia, String relevancia) {
+	private Banca banca;
+
+	public Trabalho(String tema, String titulo, String metodologia, String relevancia, Date data_criacao) {
 		this.tema = tema;
 		this.titulo = titulo;
 		this.metodologia = metodologia;
 		this.relevancia = relevancia;
+		this.data_criacao = data_criacao;
+	}
+
+	public Trabalho(long id, String tema, String titulo, String metodologia, String relevancia, Date data_criacao) {
+		this.id = id;
+		this.tema = tema;
+		this.titulo = titulo;
+		this.metodologia = metodologia;
+		this.relevancia = relevancia;
+		this.data_criacao = data_criacao;
 	}
 
 	public long getId() {
@@ -72,6 +89,22 @@ public class Trabalho {
 		this.relevancia = relevancia;
 	}
 
+	public void setArquivo(byte[] arquivo){
+		this.arquivo = arquivo;
+	}
+
+	public byte[] getArquivo(){
+		return arquivo;
+	}
+
+	public Date getData_criacao() {
+		return data_criacao;
+	}
+
+	public void setData_criacao(Date data_criacao) {
+		this.data_criacao = data_criacao;
+	}
+
 	public List<Aluno> getAlunos() {
 		return alunos;
 	}
@@ -98,6 +131,14 @@ public class Trabalho {
 	
 	public List<Atividade> getAtividades() {
 		return atividades;
+	}
+
+	public void setBanca(Banca banca){
+		this.banca = banca;
+	}
+
+	public Banca getBanca(){
+		return banca;
 	}
 
 }

@@ -19,6 +19,8 @@ public interface TrabalhoDAO {
 
     List<Trabalho> getByOrientador(Orientador orientador) throws TrabalhoDAOException;
     
+    void getArquivo(Trabalho trabalho) throws TrabalhoDAOException;
+
     void update(Trabalho trabalho) throws TrabalhoDAOException;
 
     void updateOrientador(Trabalho trabalho) throws TrabalhoDAOException;

@@ -13,10 +13,33 @@ public class Atividade {
 
 	private String status;
 
+	private Trabalho trabalho;
+
 	private List<Mensagem> mensagens = new ArrayList<Mensagem>();
+
+	public Atividade(long id, String titulo, String descricao, String status) {
+		this.id = id;
+		this.titulo = titulo;
+		this.descricao = descricao;
+		this.status = status;
+	}
+
+	public Atividade(String titulo, String descricao, String status) {
+		this.titulo = titulo;
+		this.descricao = descricao;
+		this.status = status;
+	}
 
 	public long getId() {
 		return id;
+	}
+
+	public Trabalho getTrabalho() {
+		return trabalho;
+	}
+
+	public void setTrabalho(Trabalho trabalho) {
+		this.trabalho = trabalho;
 	}
 
 	public void setId(long id) {
