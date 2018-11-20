@@ -14,5 +14,5 @@ public interface AnexoDAO {
 
     List<Anexo> getByMensagem(Mensagem mensagem) throws AnexoDAOException;
 
-    void remove(Anexo anexo);
+    void remove(Anexo anexo) throws AnexoDAOException;
 }
