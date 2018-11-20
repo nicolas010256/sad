@@ -22,7 +22,7 @@ public class AnexoController {
     public Anexo get(long id) {
         Anexo anexo = null;
         try {
-            anexo = get(id);
+            anexo = dao.get(id);
         } catch (AnexoDAOException e) {
             e.printStackTrace();
         }
@@ -36,6 +36,7 @@ public class AnexoController {
         } catch (AnexoDAOException e) {
             e.printStackTrace();
         }
+        return anexos;
     }
 
     public void remove(Anexo anexo) {

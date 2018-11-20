@@ -7,6 +7,11 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> b26c0d6ae8abae6fad525733c788d09468a0b8f2
 import dao.exceptions.AnexoDAOException;
 import entity.Anexo;
 import entity.Mensagem;
