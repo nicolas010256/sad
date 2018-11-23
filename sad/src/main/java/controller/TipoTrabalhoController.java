@@ -26,6 +26,7 @@ public class TipoTrabalhoController {
         } catch (TipoTrabalhoDAOException e) {
             e.printStackTrace();
         }
+        return tipoTrabalho;
     }
 
     public List<TipoTrabalho> getAll() {
@@ -35,6 +36,7 @@ public class TipoTrabalhoController {
         } catch (TipoTrabalhoDAOException e) {
             e.printStackTrace();
         }
+        return tiposTrabalho;
     }
 
     public TipoTrabalho getByTrabalho(Trabalho trabalho) {
@@ -44,6 +46,7 @@ public class TipoTrabalhoController {
         } catch (TipoTrabalhoDAOException e) {
             e.printStackTrace();
         }
+        return tipoTrabalho;
     }
 
     public void update(TipoTrabalho tipoTrabalho) {
