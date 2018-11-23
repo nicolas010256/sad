@@ -2,13 +2,54 @@ package boundary;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+import controller.TipoTrabalhoController;
+import entity.TipoTrabalho;
 
 public class painelCriarTGAluno implements ActionListener{
+    private javax.swing.JButton btnAdicionarOrientador;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnConfirmar;
+    private javax.swing.JButton btnConvidarAluno;
+    private JTextField txtTema;
+    private javax.swing.JComboBox<String> cbTipo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel painelFormCriarTGAluno;
+    public javax.swing.JPanel painelCriarTGAluno;
+    private javax.swing.JScrollPane scrollObjetivoTG_TelaCriarTG;
+    private javax.swing.JScrollPane scrollReferenciasTG_TelaCriarTG;
+    private javax.swing.JScrollPane scrollTbIntegranteTG_TelaCriarTG;
+    private javax.swing.JScrollPane scrollTbOrientadorTG_TelaCriarTG;
+    private javax.swing.JTable tbIntegranteTG_TelaCriarTG;
+    private javax.swing.JTable tbOrientadorTG_TelaCriarTG;
+    private javax.swing.JTextArea txtObjetivoTG_TelaCriarTG;
+    private javax.swing.JTextArea txtReferenciasTG_TelaCriarTG;
+    private javax.swing.JTextField txtTituloTG_TelaCriarTG;
 
     public painelCriarTGAluno() {
         initComponents();
+
+        TipoTrabalhoController ttController = new TipoTrabalhoController();
+        List<TipoTrabalho> tipos = ttController.getAll();
+        DefaultComboBoxModel model = new DefaultComboBoxModel<String>();
+        for (TipoTrabalho tipo : tipos) {
+            model.addElement(tipo.getNome());
+        }
+        cbTipo.setModel(model);
     }
                          
     public void initComponents() {
@@ -16,9 +57,9 @@ public class painelCriarTGAluno implements ActionListener{
         jLabel1 = new javax.swing.JLabel();
         painelFormCriarTGAluno = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        cmbTipoTG_TelaCriarTG = new javax.swing.JComboBox<>();
+        cbTipo = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        cmbTemaTG_TelaCriarTG = new javax.swing.JComboBox<>();
+        txtTema = new JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtTituloTG_TelaCriarTG = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -31,13 +72,13 @@ public class painelCriarTGAluno implements ActionListener{
         scrollTbIntegranteTG_TelaCriarTG = new javax.swing.JScrollPane();
         tbIntegranteTG_TelaCriarTG = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        btnConvidarAluno_TelaCriarTG = new javax.swing.JButton();
+        btnConvidarAluno = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         scrollTbOrientadorTG_TelaCriarTG = new javax.swing.JScrollPane();
         tbOrientadorTG_TelaCriarTG = new javax.swing.JTable();
-        btnAdicionarOrientador_TelaCriarTG = new javax.swing.JButton();
-        btnConfirmarTG_TelaCriarTG = new javax.swing.JButton();
-        btnCancelarTG_TelaCriarTG = new javax.swing.JButton();
+        btnAdicionarOrientador = new javax.swing.JButton();
+        btnConfirmar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         painelCriarTGAluno.setBackground(new java.awt.Color(255, 255, 255));
         painelCriarTGAluno.setMinimumSize(new java.awt.Dimension(100, 100));
@@ -51,12 +92,8 @@ public class painelCriarTGAluno implements ActionListener{
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14));
         jLabel2.setText("Tipo do Trabalho de Graduação:");
 
-        cmbTipoTG_TelaCriarTG.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14));
         jLabel3.setText("Tema:");
-
-        cmbTemaTG_TelaCriarTG.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14));
         jLabel4.setText("Título:");
@@ -85,17 +122,17 @@ public class painelCriarTGAluno implements ActionListener{
         jLabel7.setText("Adicione integrantes:");
 
         tbIntegranteTG_TelaCriarTG.setFont(new java.awt.Font("Arial", 0, 12));
-        tbIntegranteTG_TelaCriarTG.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Nome do Integrante 01", "Excluir"},
-                {"Nome do Integrante 02", "Excluir"},
-                {"Nome do Integrante 03", "Excluir"},
-                {"Nome do Integrante 04", "Excluir"}
-            },
-            new String [] {
-                "Integrantes", ""
-            }
-        ));
+        // tbIntegranteTG_TelaCriarTG.setModel(new javax.swing.table.DefaultTableModel(
+        //     new Object [][] {
+        //         {"Nome do Integrante 01", "Excluir"},
+        //         {"Nome do Integrante 02", "Excluir"},
+        //         {"Nome do Integrante 03", "Excluir"},
+        //         {"Nome do Integrante 04", "Excluir"}
+        //     },
+        //     new String [] {
+        //         "Integrantes", ""
+        //     }
+        // ));
         tbIntegranteTG_TelaCriarTG.setFont(new java.awt.Font("Arial", 0, 14));
         tbIntegranteTG_TelaCriarTG.setRowHeight(20);
         scrollTbIntegranteTG_TelaCriarTG.setViewportView(tbIntegranteTG_TelaCriarTG);
@@ -113,45 +150,45 @@ public class painelCriarTGAluno implements ActionListener{
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        btnConvidarAluno_TelaCriarTG.setBackground(new java.awt.Color(102, 102, 102));
-        btnConvidarAluno_TelaCriarTG.setFont(new java.awt.Font("Arial", 0, 14));
-        btnConvidarAluno_TelaCriarTG.setForeground(new java.awt.Color(255, 255, 255));
-        btnConvidarAluno_TelaCriarTG.setText("Convidar Aluno");
-        btnConvidarAluno_TelaCriarTG.addActionListener(this);
+        btnConvidarAluno.setBackground(new java.awt.Color(102, 102, 102));
+        btnConvidarAluno.setFont(new java.awt.Font("Arial", 0, 14));
+        btnConvidarAluno.setForeground(new java.awt.Color(255, 255, 255));
+        btnConvidarAluno.setText("Convidar Aluno");
+        btnConvidarAluno.addActionListener(this);
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14));
         jLabel8.setText("Adicione opções para orientadores:");
 
         tbOrientadorTG_TelaCriarTG.setFont(new java.awt.Font("Arial", 0, 12));
-        tbOrientadorTG_TelaCriarTG.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Nome do Orientador 01", "Excluir"},
-                {"Nome do Orientador 02", "Excluir"},
-                {"Nome do Orientador 03", "Excluir"}
-            },
-            new String [] {
-                "Orientadores", ""
-            }
-        ));
+        // tbOrientadorTG_TelaCriarTG.setModel(new javax.swing.table.DefaultTableModel(
+        //     new Object [][] {
+        //         {"Nome do Orientador 01", "Excluir"},
+        //         {"Nome do Orientador 02", "Excluir"},
+        //         {"Nome do Orientador 03", "Excluir"}
+        //     },
+        //     new String [] {
+        //         "Orientadores", ""
+        //     }
+        // ));
         tbOrientadorTG_TelaCriarTG.setFont(new java.awt.Font("Arial", 0, 14));
         tbOrientadorTG_TelaCriarTG.setRowHeight(20);
         scrollTbOrientadorTG_TelaCriarTG.setViewportView(tbOrientadorTG_TelaCriarTG);
 
-        btnAdicionarOrientador_TelaCriarTG.setBackground(new java.awt.Color(102, 102, 102));
-        btnAdicionarOrientador_TelaCriarTG.setFont(new java.awt.Font("Arial", 0, 14));
-        btnAdicionarOrientador_TelaCriarTG.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdicionarOrientador_TelaCriarTG.setText("Adicionar Orientador");
-        btnAdicionarOrientador_TelaCriarTG.addActionListener(this);
+        btnAdicionarOrientador.setBackground(new java.awt.Color(102, 102, 102));
+        btnAdicionarOrientador.setFont(new java.awt.Font("Arial", 0, 14));
+        btnAdicionarOrientador.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdicionarOrientador.setText("Adicionar Orientador");
+        btnAdicionarOrientador.addActionListener(this);
 
-        btnConfirmarTG_TelaCriarTG.setBackground(new java.awt.Color(102, 102, 102));
-        btnConfirmarTG_TelaCriarTG.setFont(new java.awt.Font("Arial", 0, 14));
-        btnConfirmarTG_TelaCriarTG.setForeground(new java.awt.Color(255, 255, 255));
-        btnConfirmarTG_TelaCriarTG.setText("Confirmar");
+        btnConfirmar.setBackground(new java.awt.Color(102, 102, 102));
+        btnConfirmar.setFont(new java.awt.Font("Arial", 0, 14));
+        btnConfirmar.setForeground(new java.awt.Color(255, 255, 255));
+        btnConfirmar.setText("Confirmar");
 
-        btnCancelarTG_TelaCriarTG.setBackground(new java.awt.Color(102, 102, 102));
-        btnCancelarTG_TelaCriarTG.setFont(new java.awt.Font("Arial", 0, 14));
-        btnCancelarTG_TelaCriarTG.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelarTG_TelaCriarTG.setText("Cancelar");
+        btnCancelar.setBackground(new java.awt.Color(102, 102, 102));
+        btnCancelar.setFont(new java.awt.Font("Arial", 0, 14));
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout painelFormCriarTGAlunoLayout = new javax.swing.GroupLayout(painelFormCriarTGAluno);
         painelFormCriarTGAluno.setLayout(painelFormCriarTGAlunoLayout);
@@ -163,7 +200,7 @@ public class painelCriarTGAluno implements ActionListener{
                     .addGroup(painelFormCriarTGAlunoLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmbTipoTG_TelaCriarTG, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(painelFormCriarTGAlunoLayout.createSequentialGroup()
                         .addGroup(painelFormCriarTGAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -171,7 +208,7 @@ public class painelCriarTGAluno implements ActionListener{
                         .addGap(10, 10, 10)
                         .addGroup(painelFormCriarTGAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtTituloTG_TelaCriarTG, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
-                            .addComponent(cmbTemaTG_TelaCriarTG, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txtTema, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jLabel5)
                     .addComponent(scrollObjetivoTG_TelaCriarTG, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
@@ -185,16 +222,16 @@ public class painelCriarTGAluno implements ActionListener{
                                 .addComponent(jLabel7)
                                 .addComponent(scrollReferenciasTG_TelaCriarTG)
                                 .addComponent(scrollTbIntegranteTG_TelaCriarTG, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
-                                .addComponent(btnConvidarAluno_TelaCriarTG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btnConvidarAluno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(painelFormCriarTGAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel8)
                                 .addComponent(scrollTbOrientadorTG_TelaCriarTG, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addComponent(btnAdicionarOrientador_TelaCriarTG, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnAdicionarOrientador, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(21, 21, 21))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelFormCriarTGAlunoLayout.createSequentialGroup()
-                        .addComponent(btnConfirmarTG_TelaCriarTG)
+                        .addComponent(btnConfirmar)
                         .addGap(18, 18, 18)
-                        .addComponent(btnCancelarTG_TelaCriarTG)
+                        .addComponent(btnCancelar)
                         .addGap(25, 25, 25))))
         );
         painelFormCriarTGAlunoLayout.setVerticalGroup(
@@ -208,11 +245,11 @@ public class painelCriarTGAluno implements ActionListener{
                             .addGroup(painelFormCriarTGAlunoLayout.createSequentialGroup()
                                 .addGroup(painelFormCriarTGAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel2)
-                                    .addComponent(cmbTipoTG_TelaCriarTG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(painelFormCriarTGAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
-                                    .addComponent(cmbTemaTG_TelaCriarTG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(painelFormCriarTGAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
@@ -230,17 +267,17 @@ public class painelCriarTGAluno implements ActionListener{
                                 .addGap(1, 1, 1)
                                 .addComponent(scrollTbIntegranteTG_TelaCriarTG, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(4, 4, 4)
-                                .addComponent(btnConvidarAluno_TelaCriarTG)
+                                .addComponent(btnConvidarAluno)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel8)
                                 .addGap(1, 1, 1)
                                 .addComponent(scrollTbOrientadorTG_TelaCriarTG, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAdicionarOrientador_TelaCriarTG)
+                                .addComponent(btnAdicionarOrientador)
                                 .addGap(10, 10, 10)
                                 .addGroup(painelFormCriarTGAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnConfirmarTG_TelaCriarTG)
-                                    .addComponent(btnCancelarTG_TelaCriarTG))))
+                                    .addComponent(btnConfirmar)
+                                    .addComponent(btnCancelar))))
                         .addGap(0, 3, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -289,33 +326,6 @@ public class painelCriarTGAluno implements ActionListener{
 				new String[] {"Convidar", "Cancelar"},
 				"Cancel");
     }
-    
-    private javax.swing.JButton btnAdicionarOrientador_TelaCriarTG;
-    private javax.swing.JButton btnCancelarTG_TelaCriarTG;
-    private javax.swing.JButton btnConfirmarTG_TelaCriarTG;
-    private javax.swing.JButton btnConvidarAluno_TelaCriarTG;
-    private javax.swing.JComboBox<String> cmbTemaTG_TelaCriarTG;
-    private javax.swing.JComboBox<String> cmbTipoTG_TelaCriarTG;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel painelFormCriarTGAluno;
-    public javax.swing.JPanel painelCriarTGAluno;
-    private javax.swing.JScrollPane scrollObjetivoTG_TelaCriarTG;
-    private javax.swing.JScrollPane scrollReferenciasTG_TelaCriarTG;
-    private javax.swing.JScrollPane scrollTbIntegranteTG_TelaCriarTG;
-    private javax.swing.JScrollPane scrollTbOrientadorTG_TelaCriarTG;
-    private javax.swing.JTable tbIntegranteTG_TelaCriarTG;
-    private javax.swing.JTable tbOrientadorTG_TelaCriarTG;
-    private javax.swing.JTextArea txtObjetivoTG_TelaCriarTG;
-    private javax.swing.JTextArea txtReferenciasTG_TelaCriarTG;
-    private javax.swing.JTextField txtTituloTG_TelaCriarTG;
               
     @Override
     public void actionPerformed(ActionEvent e) {
