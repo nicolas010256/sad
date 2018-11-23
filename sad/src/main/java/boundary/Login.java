@@ -5,9 +5,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import controller.AlunoController;
+import controller.OrientadorController;
 import entity.Aluno;
 import entity.Banca;
 import entity.Curso;
+import entity.Orientador;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -145,8 +148,14 @@ public class Login extends javax.swing.JFrame implements ActionListener {
                 }
             }
             else if ("Orientador".equals(jcmbTipoUsuarioLogin.getSelectedItem())){
-                new MenuOrientador().setVisible(true);
-                this.setVisible(false);
+                OrientadorController oController = new OrientadorController();
+                Orientador orientador = oController.getByEmailAndSenha(txtEmail.getText(), txtSenha.getText());
+                if (orientador != null) {
+                    new MenuOrientador(orientador).setVisible(true);
+                    this.setVisible(false); 
+                } else {
+                    JOptionPane.showMessageDialog(this, "Email ou Senha inválidos");
+                }
             }
             else 
                 JOptionPane.showMessageDialog(null, "Selecione Aluno ou Orientador");
