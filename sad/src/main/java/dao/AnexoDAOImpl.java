@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,6 +8,9 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.sql.rowset.serial.SerialBlob;
+
 import dao.exceptions.AnexoDAOException;
 import entity.Anexo;
 import entity.Mensagem;
@@ -19,9 +23,9 @@ public class AnexoDAOImpl implements AnexoDAO {
         Connection con = null;
         try {
             con = JDBCUtil.getConnection();
-            String sql = "INSERT INTO Anexo (Local,Tipo,idMensagem) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO Anexo (Arquivo,Tipo,idMensagem) VALUES (?, ?, ?)";
             PreparedStatement st = con.prepareStatement(sql);
-            st.setString(1,anexo.getLocal());
+            st.setBlob(1, new SerialBlob(anexo.getArquivo()));
             st.setString(2,anexo.getTipo());
             if (anexo.getMensagem() != null){
                 st.setLong(3, anexo.getMensagem().getId());
@@ -47,15 +51,17 @@ public class AnexoDAOImpl implements AnexoDAO {
 
         try {
             con = JDBCUtil.getConnection();
-            String sql = "SELECT idAnexo, Local, Tipo, idMensagem FROM Anexo WHERE idAnexo = ?";
+            String sql = "SELECT idAnexo, Arquivo, Tipo, idMensagem FROM Anexo WHERE idAnexo = ?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setLong(1, id);
             ResultSet rs = st.executeQuery();
             if (rs.first()) {
                 long idAnexo = rs.getLong("idAnexo");
-                String local = rs.getString("Local");
+                Blob a = rs.getBlob("Arquivo");
+                byte[] arquivo = a.getBytes(1, (int) a.length());
+                a.free();
                 String tipo = rs.getString("Tipo");
-                anexo = new Anexo(idAnexo, local, tipo);
+                anexo = new Anexo(idAnexo, arquivo, tipo);
             }
             st.close();
         } catch (SQLException e) {
@@ -74,7 +80,7 @@ public class AnexoDAOImpl implements AnexoDAO {
         try {
             con = JDBCUtil.getConnection();
 
-            String sql = "SELECT idAnexo, Local, Tipo, idMensagem FROM Anexo WHERE idMensagem = ?";
+            String sql = "SELECT idAnexo, Arquivo, Tipo, idMensagem FROM Anexo WHERE idMensagem = ?";
 
             PreparedStatement st = con.prepareStatement(sql);
             st.setLong(1, mensagem.getId());
@@ -83,9 +89,11 @@ public class AnexoDAOImpl implements AnexoDAO {
 
             while (rs.next()) {
                 long idAnexo = rs.getLong("idAnexo");
-                String local = rs.getString("Local");
+                Blob a = rs.getBlob("Arquivo");
+                byte[] arquivo = a.getBytes(1, (int) a.length());
+                a.free();
                 String tipo = rs.getString("Tipo");
-                Anexo anexo = new Anexo(idAnexo, local, tipo);
+                Anexo anexo = new Anexo(idAnexo, arquivo, tipo);
 
                 anexos.add(anexo);
             }

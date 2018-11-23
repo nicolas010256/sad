@@ -4,20 +4,20 @@ public class Anexo {
 
 	private long id;
 
-	private String local;
+	private byte[] arquivo;
 
 	private String tipo;
 
 	private Mensagem mensagem;
 
-	public Anexo(long id, String local, String tipo) {
+	public Anexo(long id, byte[] arquivo, String tipo) {
 		this.id = id;
-		this.local = local;
+		this.arquivo = arquivo;
 		this.tipo = tipo;
 	}
 
-	public Anexo(String local, String tipo) {
-		this.local = local;
+	public Anexo(byte[] arquivo, String tipo) {
+		this.arquivo = arquivo;
 		this.tipo = tipo;
 	} 
 
@@ -25,12 +25,12 @@ public class Anexo {
 		return id;
 	}
 
-	public String getLocal() {
-		return local;
+	public byte[] getArquivo() {
+		return arquivo;
 	}
 
-	public void setLocal(String local) {
-		this.local = local;
+	public void setArquivo(byte[] arquivo) {
+		this.arquivo = arquivo;
 	}
 
 	public String getTipo() {
