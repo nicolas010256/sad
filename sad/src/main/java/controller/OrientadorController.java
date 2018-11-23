@@ -40,6 +40,16 @@ public class OrientadorController {
         return orientador;
     }
 
+    public Orientador getByEmailAndSenha(String email, String senha) {
+        Orientador orientador = null;
+        try {
+            orientador = dao.getByEmailAndSenha(email, senha);
+        } catch (OrientadorDAOException e) {
+            e.printStackTrace();
+        }
+        return orientador;
+    }
+
     public List<Orientador> getByArea(Area area) {
         List<Orientador> orientadores = null;
         try {
