@@ -42,10 +42,6 @@ public class Atividade {
 		this.trabalho = trabalho;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public String getTitulo() {
 		return titulo;
 	}
@@ -72,6 +68,10 @@ public class Atividade {
 
 	public List<Mensagem> getMensagens() {
 		return mensagens;
+	}
+
+	public void setMensagens(List<Mensagem> mensagens) {
+		this.mensagens = mensagens;
 	}
 
 }

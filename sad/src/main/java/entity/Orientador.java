@@ -72,8 +72,8 @@ public class Orientador {
 		return areasAtuacao;
 	}
 
-	public void setAreasAtuacao(List<AreaAtuacao> areaAtuacaos) {
-		this.areasAtuacao = areaAtuacaos;
+	public void setAreasAtuacao(List<AreaAtuacao> areaAtuacao) {
+		this.areasAtuacao = areaAtuacao;
 	}
 
 	public List<Trabalho> getTrabalhos() {

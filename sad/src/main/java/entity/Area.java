@@ -14,21 +14,18 @@ public class Area {
 		this.setDescricao(descricao);
 	}
 
+	public Area(String nome, String descricao) {
+		this.nome = nome;
+		this.setDescricao(descricao);
+	}
+
+
 	public String getDescricao() {
 		return descricao;
 	}
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public Area(String nome, String descricao) {
-		this.nome = nome;
-		this.setDescricao(descricao);
-	}
-
-	public Area(String nome) {
-		this.nome = nome;
 	}
 
 	public long getId() {

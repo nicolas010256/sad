@@ -53,10 +53,6 @@ public class Trabalho {
 		return id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public String getTema() {
 		return tema;
 	}
@@ -109,6 +105,10 @@ public class Trabalho {
 		return alunos;
 	}
 
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
+	}
+
 	public Orientador getOrientador() {
 		return orientador;
 	}
@@ -131,6 +131,10 @@ public class Trabalho {
 	
 	public List<Atividade> getAtividades() {
 		return atividades;
+	}
+
+	public void setAtividades(List<Atividade> atividades) {
+		this.atividades = atividades;
 	}
 
 	public void setBanca(Banca banca){

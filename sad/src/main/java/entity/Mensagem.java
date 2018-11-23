@@ -34,10 +34,6 @@ public class Mensagem {
 		this.atividade = atividade;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public String getConteudo() {
 		return conteudo;
 	}
@@ -48,6 +44,10 @@ public class Mensagem {
 
 	public List<Anexo> getAnexos() {
 		return anexos;
+	}
+
+	public void setAnexos(List<Anexo> anexos) {
+		this.anexos = anexos;
 	}
 
 }
