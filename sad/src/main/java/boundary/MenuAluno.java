@@ -191,7 +191,7 @@ public class MenuAluno extends javax.swing.JFrame implements ActionListener {
     
     public void telaCriarPerfilAluno(){
         painelPrincipalAluno.removeAll();
-        painelCriarPerfilAluno criarPerfilAluno =  new painelCriarPerfilAluno();
+        painelCriarPerfilAluno criarPerfilAluno =  new painelCriarPerfilAluno(aluno);
         painelPrincipalAluno.setLayout(new BorderLayout());
         painelPrincipalAluno.add(criarPerfilAluno.painelCriarPerfilAluno, BorderLayout.CENTER);
         painelPrincipalAluno.validate();
