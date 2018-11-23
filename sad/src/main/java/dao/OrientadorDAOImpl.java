@@ -74,7 +74,7 @@ public class OrientadorDAOImpl implements OrientadorDAO {
         try {
             con  = JDBCUtil.getConnection();
 
-            String sql = "SELECT idOrientador, Nome, FROM Aluno WHERE Email like ? and Senha like ?";
+            String sql = "SELECT idOrientador, Nome, FROM Orientador WHERE Email like ? and Senha like ?";
 
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, email);
