@@ -17,14 +17,13 @@ public class BancaDAOImpl implements BancaDAO{
 		
 		try {
 			con = JDBCUtil.getConnection();
-			String sql = "INSERT INTO BANCA (idBanca, Data_Hora, Local, Nota) VALUES (?, ?, ?, ?)";
+			String sql = "INSERT INTO BANCA (Data_Hora, Local, Nota) VALUES (?, ?, ?)";
 			PreparedStatement statement = con.prepareStatement(sql);
-			statement.setLong(1,banca.getId());
 			java.util.Date data = banca.getDataHorario();
 			java.sql.Date datasql = new java.sql.Date(data.getTime());
-			statement.setDate(2,datasql);
-			statement.setString(3,banca.getLocal());
-			statement.setFloat(4,banca.getNota());
+			statement.setDate(1,datasql);
+			statement.setString(2,banca.getLocal());
+			statement.setFloat(3,banca.getNota());
 			statement.executeUpdate();
 			statement.close();
 			
@@ -49,7 +48,7 @@ public class BancaDAOImpl implements BancaDAO{
 			statement.setLong(1,id);
 			ResultSet rs = statement.executeQuery();
 			if(rs.first()){
-				Date data_hora = rs.getDate("Data-Hora");
+				Date data_hora = rs.getDate("Data_Hora");
 				String local = rs.getString("Local");
 				float nota = rs.getFloat("Nota");
 				
@@ -77,8 +76,8 @@ public class BancaDAOImpl implements BancaDAO{
 			statement.setLong(1,trabalho.getId());
 			ResultSet rs = statement.executeQuery();
 			if(rs.first()){
-				long idBanca = rs.getLong("idBanca");
-				Date data_hora = rs.getDate("Data-Hora");
+				long idBanca = rs.getLong("b.idBanca");
+				Date data_hora = rs.getDate("Data_Hora");
 				String local = rs.getString("Local");
 				float nota = rs.getFloat("Nota");
 				

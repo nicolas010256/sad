@@ -97,7 +97,7 @@ public class CursoDAOImpl implements CursoDAO {
 
         try {
             con = JDBCUtil.getConnection();
-            String sql = "SELECT c.idCurso, c.Nome FROM Curso c INNER JOIN Aluno a ON c.idCurso = a.idCurso WHERE idAluno = ?";
+            String sql = "SELECT c.idCurso, c.Nome FROM Curso c INNER JOIN Aluno a ON (c.idCurso = a.idCurso) WHERE idAluno = ?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setLong(1, aluno.getId());
 

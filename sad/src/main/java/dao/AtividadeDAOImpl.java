@@ -56,7 +56,7 @@ public class AtividadeDAOImpl implements AtividadeDAO {
                 String descricao = rs.getString("Descricao");
                 String status = rs.getString("Status");
 
-                atividade = new Atividade(nome, descricao,status);
+                atividade = new Atividade(id, nome, descricao,status);
             }
             st.close();
         } catch (SQLException e) {
@@ -75,7 +75,7 @@ public class AtividadeDAOImpl implements AtividadeDAO {
         try {
             con = JDBCUtil.getConnection();
 
-            String sql = "SELECT Titulo, Descricao, Status, idTrabalho FROM Atividade a INNER JOIN Trabalho t ON (a.idTrabalho = t.idTrabalho) WHERE idTrabalho = ?";
+            String sql = "SELECT a.idAtividade, a.Titulo, a.Descricao, a.Status, a.idTrabalho FROM Atividade a INNER JOIN Trabalho t ON (a.idTrabalho = t.idTrabalho) WHERE a.idTrabalho = ?";
 
             PreparedStatement st = con.prepareStatement(sql);
             st.setLong(1, trabalho.getId());
@@ -83,10 +83,11 @@ public class AtividadeDAOImpl implements AtividadeDAO {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                String nome = rs.getString("Nome");
-                String descricao = rs.getString("Descricao");
-                String status = rs.getString("Status");
-                Atividade atividade = new Atividade(nome, descricao,status);
+                long id = rs.getLong("a.idAtividade");
+                String nome = rs.getString("a.Nome");
+                String descricao = rs.getString("a.Descricao");
+                String status = rs.getString("a.Status");
+                Atividade atividade = new Atividade(id, nome, descricao,status);
                 atividades.add(atividade);
             }
             st.close();

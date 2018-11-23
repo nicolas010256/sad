@@ -46,7 +46,7 @@ public class AreaDAOImpl implements AreaDAO {
             if (rs.first()) {
                 String nome = rs.getString("Nome");
                 String descricao = rs.getString("Descricao");
-                area = new Area(nome, descricao);
+                area = new Area(id, nome, descricao);
             }
             st.close();
         } catch (SQLException e) {
@@ -65,7 +65,7 @@ public class AreaDAOImpl implements AreaDAO {
         try {
             con = JDBCUtil.getConnection();
 
-            String sql = "SELECT Nome, Descricao FROM Area a INNER JOIN AreaAtuacao o ON (a.idArea = o.idArea) WHERE idOrientador = ?";
+            String sql = "SELECT a.idArea, a.Nome, a.Descricao FROM Area a INNER JOIN AreaAtuacao o ON (a.idArea = o.idArea) WHERE idOrientador = ?";
 
             PreparedStatement st = con.prepareStatement(sql);
             st.setLong(1, orientador.getId());
@@ -73,9 +73,10 @@ public class AreaDAOImpl implements AreaDAO {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                String nome = rs.getString("Nome");
-                String descricao = rs.getString("Descricao");
-                Area area = new Area(nome, descricao);
+                long id = rs.getLong("a.idArea");
+                String nome = rs.getString("a.Nome");
+                String descricao = rs.getString("a.Descricao");
+                Area area = new Area(id, nome, descricao);
                 areas.add(area);
             }
             st.close();
@@ -133,7 +134,7 @@ public class AreaDAOImpl implements AreaDAO {
             st.close();
 
         } catch (Exception e) {
-            throw new AreaDAOException("Erro ao excluir aluno");
+            throw new AreaDAOException("Erro ao excluir area");
         } finally {
             JDBCUtil.close(con);
         }
