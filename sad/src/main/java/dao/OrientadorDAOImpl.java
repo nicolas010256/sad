@@ -67,6 +67,38 @@ public class OrientadorDAOImpl implements OrientadorDAO {
     }
 
     @Override
+    public Orientador getByEmailAndSenha(String email, String senha) throws OrientadorDAOException {
+        Orientador orientador = null;
+        Connection con = null;
+
+        try {
+            con  = JDBCUtil.getConnection();
+
+            String sql = "SELECT idOrientador, Nome, FROM Aluno WHERE Email like ? and Senha like ?";
+
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, email);
+            st.setString(2, senha);
+
+            ResultSet rs = st.executeQuery();
+
+            if (rs.first()) {
+                long id = rs.getLong("idOrientador");
+                String nome = rs.getString("Nome");
+
+                orientador = new Orientador(id, email, senha, nome);
+
+            }
+            st.close();
+        } catch (SQLException e) {
+            throw new OrientadorDAOException("Erro ao pesquisar orientador");
+        } finally {
+            JDBCUtil.close(con);
+        }
+        return orientador;
+    }
+
+    @Override
     public Orientador getByTrabalho(Trabalho trabalho) throws OrientadorDAOException {
         Orientador orientador = null;
         Connection con = null;

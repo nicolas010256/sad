@@ -13,6 +13,8 @@ public interface OrientadorDAO {
 
     Orientador get(long id) throws OrientadorDAOException;
 
+    Orientador getByEmailAndSenha(String email, String senha) throws OrientadorDAOException;
+
     Orientador getByTrabalho(Trabalho trabalho) throws OrientadorDAOException;
 
     List<Orientador> getByArea(Area area) throws OrientadorDAOException;
