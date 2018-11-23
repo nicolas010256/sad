@@ -5,10 +5,42 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-public class painelCriarPerfilAluno implements ActionListener{
+import controller.CursoController;
+import entity.Aluno;
+import entity.Curso;
 
-    public painelCriarPerfilAluno() {
+public class painelCriarPerfilAluno implements ActionListener {
+    private javax.swing.JButton btnEditarEmailAluno_TelaCriarPerfilAluno;
+    private javax.swing.JButton btnEditarSenhaAluno_TelaCriarPerfilAluno;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel painelFormCriarPerfilAluno;
+    public javax.swing.JPanel painelCriarPerfilAluno;
+    private javax.swing.JTextField txtCursoAluno;
+    private javax.swing.JTextField txtEmailAluno;
+    private javax.swing.JTextField txtNomeAluno;
+    private javax.swing.JTextField txtRAAluno_TelaCriarPerfilAluno;
+    private javax.swing.JTextField txtSenhaAluno_TelaCriarPerfilAluno;      
+
+    private Aluno aluno;
+
+    public painelCriarPerfilAluno(Aluno aluno) {
+        this.aluno = aluno;
         initComponents();
+
+        txtNomeAluno.setText(aluno.getNome());
+        txtEmailAluno.setText(aluno.getEmail());
+
+        CursoController cursoController = new CursoController();
+        Curso c = cursoController.getByAluno(aluno);
+        aluno.setCurso(c);
+
+        txtCursoAluno.setText(c != null ? c.getNome() : "");
     }
                        
     private void initComponents() {
@@ -19,16 +51,17 @@ public class painelCriarPerfilAluno implements ActionListener{
         jLabel2 = new javax.swing.JLabel();
         btnEditarEmailAluno_TelaCriarPerfilAluno = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        txtNomeAluno_TelaCriarPerfilAluno = new javax.swing.JTextField();
+        txtNomeAluno = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtRAAluno_TelaCriarPerfilAluno = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtCursoAluno_TelaCriarPerfilAluno = new javax.swing.JTextField();
+        txtCursoAluno = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtEmailAluno_TelaCriarPerfilAluno = new javax.swing.JTextField();
+        txtEmailAluno = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtSenhaAluno_TelaCriarPerfilAluno = new javax.swing.JTextField();
         btnEditarSenhaAluno_TelaCriarPerfilAluno = new javax.swing.JButton();
+
 
         painelCriarPerfilAluno.setBackground(new java.awt.Color(255, 255, 255));
         painelCriarPerfilAluno.setMinimumSize(new java.awt.Dimension(100, 100));
@@ -51,8 +84,8 @@ public class painelCriarPerfilAluno implements ActionListener{
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14));
         jLabel3.setText("Nome:");
 
-        txtNomeAluno_TelaCriarPerfilAluno.setFont(new java.awt.Font("Arial", 0, 14));
-        txtNomeAluno_TelaCriarPerfilAluno.setText("Nome do aluno");
+        txtNomeAluno.setFont(new java.awt.Font("Arial", 0, 14));
+        txtNomeAluno.setText("Nome do aluno");
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14));
         jLabel4.setText("R.A.:");
@@ -63,14 +96,14 @@ public class painelCriarPerfilAluno implements ActionListener{
         jLabel5.setFont(new java.awt.Font("Arial", 0, 14));
         jLabel5.setText("Curso:");
 
-        txtCursoAluno_TelaCriarPerfilAluno.setFont(new java.awt.Font("Arial", 0, 14));
-        txtCursoAluno_TelaCriarPerfilAluno.setText("Nome do Curso");
+        txtCursoAluno.setFont(new java.awt.Font("Arial", 0, 14));
+        txtCursoAluno.setText("Nome do Curso");
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14));
         jLabel6.setText("E-mail:");
 
-        txtEmailAluno_TelaCriarPerfilAluno.setFont(new java.awt.Font("Arial", 0, 14));
-        txtEmailAluno_TelaCriarPerfilAluno.setText("email_do_aluno@email.com");
+        txtEmailAluno.setFont(new java.awt.Font("Arial", 0, 14));
+        txtEmailAluno.setText("email_do_aluno@email.com");
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 14));
         jLabel7.setText("Senha:");
@@ -103,13 +136,13 @@ public class painelCriarPerfilAluno implements ActionListener{
                             .addGroup(painelFormCriarPerfilAlunoLayout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                                .addComponent(txtEmailAluno_TelaCriarPerfilAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtEmailAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
                                 .addComponent(btnEditarEmailAluno_TelaCriarPerfilAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(painelFormCriarPerfilAlunoLayout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(7, 7, 7)
-                                .addComponent(txtCursoAluno_TelaCriarPerfilAluno))
+                                .addComponent(txtCursoAluno))
                             .addGroup(painelFormCriarPerfilAlunoLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
@@ -117,7 +150,7 @@ public class painelCriarPerfilAluno implements ActionListener{
                             .addGroup(painelFormCriarPerfilAlunoLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNomeAluno_TelaCriarPerfilAluno))
+                                .addComponent(txtNomeAluno))
                             .addGroup(painelFormCriarPerfilAlunoLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
@@ -131,7 +164,7 @@ public class painelCriarPerfilAluno implements ActionListener{
                 .addGap(25, 25, 25)
                 .addGroup(painelFormCriarPerfilAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtNomeAluno_TelaCriarPerfilAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNomeAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(painelFormCriarPerfilAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -139,11 +172,11 @@ public class painelCriarPerfilAluno implements ActionListener{
                 .addGap(18, 18, 18)
                 .addGroup(painelFormCriarPerfilAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtCursoAluno_TelaCriarPerfilAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCursoAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(painelFormCriarPerfilAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtEmailAluno_TelaCriarPerfilAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmailAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditarEmailAluno_TelaCriarPerfilAluno))
                 .addGap(18, 18, 18)
                 .addGroup(painelFormCriarPerfilAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -174,9 +207,9 @@ public class painelCriarPerfilAluno implements ActionListener{
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        txtCursoAluno_TelaCriarPerfilAluno.setEditable(false);
-        txtEmailAluno_TelaCriarPerfilAluno.setEditable(false);
-        txtNomeAluno_TelaCriarPerfilAluno.setEditable(false);
+        txtCursoAluno.setEditable(false);
+        txtEmailAluno.setEditable(false);
+        txtNomeAluno.setEditable(false);
         txtRAAluno_TelaCriarPerfilAluno.setEditable(false);
         txtSenhaAluno_TelaCriarPerfilAluno.setEditable(false);
     }                     
@@ -201,24 +234,7 @@ public class painelCriarPerfilAluno implements ActionListener{
 				new ImageIcon(),
 				new String[] {"Confirmar", "Cancelar"},
 				"Cancel");
-    }
-
-    private javax.swing.JButton btnEditarEmailAluno_TelaCriarPerfilAluno;
-    private javax.swing.JButton btnEditarSenhaAluno_TelaCriarPerfilAluno;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel painelFormCriarPerfilAluno;
-    public javax.swing.JPanel painelCriarPerfilAluno;
-    private javax.swing.JTextField txtCursoAluno_TelaCriarPerfilAluno;
-    private javax.swing.JTextField txtEmailAluno_TelaCriarPerfilAluno;
-    private javax.swing.JTextField txtNomeAluno_TelaCriarPerfilAluno;
-    private javax.swing.JTextField txtRAAluno_TelaCriarPerfilAluno;
-    private javax.swing.JTextField txtSenhaAluno_TelaCriarPerfilAluno;                 
+    }           
 
     @Override
     public void actionPerformed(ActionEvent e) {
