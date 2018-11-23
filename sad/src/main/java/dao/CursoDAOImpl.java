@@ -49,7 +49,7 @@ public class CursoDAOImpl implements CursoDAO {
             if(rs.first()){
                 String nome = rs.getString("Nome");
 
-                curso = new Curso(nome);
+                curso = new Curso(id, nome);
             }
 
             st.close();
@@ -75,9 +75,10 @@ public class CursoDAOImpl implements CursoDAO {
             ResultSet rs = st.executeQuery();
 
             while(rs.next()){
+                long id = rs.getLong("idCurso");
                 String nome = rs.getString("Nome");
 
-                Curso curso = new Curso(nome);
+                Curso curso = new Curso(id, nome);
                 cursos.add(curso);
             }
 
@@ -96,16 +97,17 @@ public class CursoDAOImpl implements CursoDAO {
 
         try {
             con = JDBCUtil.getConnection();
-            String sql = "SELECT Nome FROM Curso c INNER JOIN Aluno a ON (c.idCurso = a.idCurso) WHERE idAluno = ?";
+            String sql = "SELECT c.idCurso, c.Nome FROM Curso c INNER JOIN Aluno a ON c.idCurso = a.idCurso WHERE idAluno = ?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setLong(1, aluno.getId());
 
             ResultSet rs = st.executeQuery();
 
             if(rs.first()){
-                String nome = rs.getString("Nome");
+                long id = rs.getLong("c.idCurso");
+                String nome = rs.getString("c.Nome");
 
-                curso = new Curso(nome);
+                curso = new Curso(id, nome);
             }
 
             st.close();
@@ -125,7 +127,7 @@ public class CursoDAOImpl implements CursoDAO {
             con = JDBCUtil.getConnection();
 
             String sql =    "UPDATE Curso " +
-                            "SET Nome " +
+                            "SET Nome=?" +
                             "WHERE idCurso=?";
             
             PreparedStatement st = con.prepareStatement(sql);
