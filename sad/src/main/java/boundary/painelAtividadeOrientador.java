@@ -31,7 +31,6 @@ public class painelAtividadeOrientador {
         txtAtividadeOrientador_TelaAtividadeOrientador.setRows(5);
         txtAtividadeOrientador_TelaAtividadeOrientador.setText("Título - Descrição xxxxxx");
         scrollAtividadeOrientador_TelaAtividadeOrientador.setViewportView(txtAtividadeOrientador_TelaAtividadeOrientador);
-        txtAtividadeOrientador_TelaAtividadeOrientador.getAccessibleContext().setAccessibleName("txtAtividadeOrientador_TelaAtividadeOrientador");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(painelAtividadeOrientador);
         painelAtividadeOrientador.setLayout(layout);
@@ -59,11 +58,7 @@ public class painelAtividadeOrientador {
                 .addContainerGap())
         );
 
-        jLabel1.getAccessibleContext().setAccessibleName("lblCriarTG");
-        lblDataAtividadeOrientador_TelaAtividadeOrientador.getAccessibleContext().setAccessibleName("lblDataAtividadeOrientador_TelaAtividadeOrientador");
-
         painelAtividadeOrientador.setBackground(new Color(215, 215, 250));
-        painelAtividadeOrientador.getAccessibleContext().setAccessibleName("painelAtividadeOrientador");
     }             
 
     private javax.swing.JLabel jLabel1;

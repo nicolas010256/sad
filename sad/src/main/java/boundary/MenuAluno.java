@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
+import entity.Aluno;
+
 
 public class MenuAluno extends javax.swing.JFrame implements ActionListener {
     
@@ -17,9 +19,14 @@ public class MenuAluno extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JLabel lblPerfilAlunoMenu;
     private javax.swing.JPanel painelAlunoMenu;
     public javax.swing.JPanel painelPrincipalAluno;
+
+    private Aluno aluno;
   
-    public MenuAluno() {
+    public MenuAluno(Aluno aluno) {
+        this.aluno = aluno;
+        
         initComponents();
+        lblNomeAlunoMenu.setText(aluno.getNome());
         this.setLocationRelativeTo(null);
     }
                     
@@ -128,14 +135,6 @@ public class MenuAluno extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap())
         );
 
-        lblFotoAlunoMenu.getAccessibleContext().setAccessibleName("lblFotoAlunoMenu");
-        lblPerfilAlunoMenu.getAccessibleContext().setAccessibleName("lblAlunoMenu");
-        lblNomeAlunoMenu.getAccessibleContext().setAccessibleName("lblNomeAlunoMenu");
-        btnPerfilMenuAluno.getAccessibleContext().setAccessibleName("btnPerfilMenuAluno");
-        btnNotificacoesMenuAluno.getAccessibleContext().setAccessibleName("btnNotificaçõesMenuAluno");
-        btnTGMenuAluno.getAccessibleContext().setAccessibleName("btnTGMenuAluno");
-        btnSairMenuAluno.getAccessibleContext().setAccessibleName("btnSairMenuAluno");
-
         painelPrincipalAluno.setBackground(new java.awt.Color(255, 255, 255));
         painelPrincipalAluno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 2));
         painelPrincipalAluno.setPreferredSize(new java.awt.Dimension(14, 14));
@@ -173,33 +172,6 @@ public class MenuAluno extends javax.swing.JFrame implements ActionListener {
         pack();
     }             
 
-    public static void main(String args[]) {
-        
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuOrientador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuOrientador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuOrientador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuOrientador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuAluno().setVisible(true);
-            }
-        });        
-        
-    }
     
     public void telaCriarTGAluno(){
         painelPrincipalAluno.removeAll();
@@ -236,8 +208,8 @@ public class MenuAluno extends javax.swing.JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if ("Trabalho de Graduação".equals(e.getActionCommand()))
-            //telaCriarTGAluno();       //Sem TG cadastrado
-            telaVisualizarTGAluno();    //Com TG cadastrado
+            telaCriarTGAluno();       //Sem TG cadastrado
+            //telaVisualizarTGAluno();    //Com TG cadastrado
         else if ("Perfil".equals(e.getActionCommand()))
             telaCriarPerfilAluno();
         else if ("Notificações".equals(e.getActionCommand()))

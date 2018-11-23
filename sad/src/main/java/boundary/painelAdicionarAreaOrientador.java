@@ -44,11 +44,7 @@ public class painelAdicionarAreaOrientador {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        lblAreaOrientador_TelaAdicionarAreaOrientador.getAccessibleContext().setAccessibleName("lblAreaOrientador_TelaAdicionarAreaOrientador");
-        txtAreaOrientador_TelaAdicionarAreaOrientador.getAccessibleContext().setAccessibleName("txtAreaOrientador_TelaAdicionarAreaOrientador");
-
         painelAdicionarAreaOrientador.setBackground(new Color(215, 215, 250));
-        painelAdicionarAreaOrientador.getAccessibleContext().setAccessibleName("painelAdicionarAreaOrientador");
     }                      
 
                  

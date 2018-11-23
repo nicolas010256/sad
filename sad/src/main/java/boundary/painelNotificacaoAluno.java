@@ -5,8 +5,7 @@ public class painelNotificacaoAluno {
     public painelNotificacaoAluno() {
         initComponents();
     }
-
-                     
+                   
     private void initComponents() {
 
         painelNotificacaoAluno = new javax.swing.JPanel();
@@ -21,7 +20,7 @@ public class painelNotificacaoAluno {
         painelNotificacaoAluno.setBackground(new java.awt.Color(255, 255, 255));
         painelNotificacaoAluno.setMinimumSize(new java.awt.Dimension(100, 100));
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 18));
         jLabel1.setText("NOTIFICAÇÕES");
 
         painelFormNotificacaoAluno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 2));
@@ -30,17 +29,17 @@ public class painelNotificacaoAluno {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         btnConfirmar_TelaNotificacaoAluno.setBackground(new java.awt.Color(102, 102, 102));
-        btnConfirmar_TelaNotificacaoAluno.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnConfirmar_TelaNotificacaoAluno.setFont(new java.awt.Font("Arial", 0, 14));
         btnConfirmar_TelaNotificacaoAluno.setForeground(new java.awt.Color(255, 255, 255));
         btnConfirmar_TelaNotificacaoAluno.setText("Confirmar");
 
-        lblMensagem.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblMensagem.setFont(new java.awt.Font("Arial", 0, 14));
         lblMensagem.setText("Mensagem...");
 
-        lblRemet.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblRemet.setFont(new java.awt.Font("Arial", 0, 14));
         lblRemet.setText("Remetente:");
 
-        lblRemetente.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblRemetente.setFont(new java.awt.Font("Arial", 0, 14));
         lblRemetente.setText("Nome remetente");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -71,10 +70,6 @@ public class painelNotificacaoAluno {
                 .addComponent(btnConfirmar_TelaNotificacaoAluno)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        btnConfirmar_TelaNotificacaoAluno.getAccessibleContext().setAccessibleName("btnEditarEmailAluno_TelaCriarPerfilAluno");
-        btnConfirmar_TelaNotificacaoAluno.getAccessibleContext().setAccessibleDescription("");
-        lblMensagem.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout painelFormNotificacaoAlunoLayout = new javax.swing.GroupLayout(painelFormNotificacaoAluno);
         painelFormNotificacaoAluno.setLayout(painelFormNotificacaoAlunoLayout);
@@ -113,13 +108,7 @@ public class painelNotificacaoAluno {
                 .addComponent(painelFormNotificacaoAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jLabel1.getAccessibleContext().setAccessibleName("lblCriarTG");
-        painelFormNotificacaoAluno.getAccessibleContext().setAccessibleName("painelFormCriarPerfilAluno");
-        painelFormNotificacaoAluno.getAccessibleContext().setAccessibleDescription("");
-
     }
-
 
     public javax.swing.JPanel painelNotificacaoAluno;
     private javax.swing.JButton btnConfirmar_TelaNotificacaoAluno;
@@ -128,6 +117,5 @@ public class painelNotificacaoAluno {
     private javax.swing.JLabel lblMensagem;
     private javax.swing.JLabel lblRemet;
     private javax.swing.JLabel lblRemetente;
-    private javax.swing.JPanel painelFormNotificacaoAluno;
-        
+    private javax.swing.JPanel painelFormNotificacaoAluno;        
 }

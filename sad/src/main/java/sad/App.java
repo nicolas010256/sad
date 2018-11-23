@@ -3,10 +3,13 @@ package sad;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import boundary.Login;
+import controller.CursoController;
+import entity.Curso;
 
 public class App {
     
     public static void main(String[] args) {
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

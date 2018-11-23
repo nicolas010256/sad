@@ -4,9 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
+import controller.AlunoController;
+import entity.Aluno;
+import entity.Banca;
+import entity.Curso;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Login extends javax.swing.JFrame implements ActionListener {
 
-    private javax.swing.JButton bntEntrar;
+    private javax.swing.JButton btnEntrar;
     private javax.swing.JButton btnSair;
     private javax.swing.JComboBox<String> jcmbTipoUsuarioLogin;
     private javax.swing.JLabel jLabel1;
@@ -32,34 +42,34 @@ public class Login extends javax.swing.JFrame implements ActionListener {
         txtEmail = new javax.swing.JTextField();
         txtSenha = new javax.swing.JTextField();
         jcmbTipoUsuarioLogin = new javax.swing.JComboBox<>();
-        bntEntrar = new javax.swing.JButton();
+        btnEntrar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 18));
         jLabel1.setText("Bem-vindo");
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 14));
         jLabel2.setText("E-mail:");
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 14));
         jLabel3.setText("Senha:");
 
-        txtEmail.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("Arial", 0, 14));
         txtEmail.setText("email@email.com");
 
-        txtSenha.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtSenha.setFont(new java.awt.Font("Arial", 0, 14));
         txtSenha.setText("************");
 
-        jcmbTipoUsuarioLogin.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jcmbTipoUsuarioLogin.setFont(new java.awt.Font("Arial", 0, 14));
         jcmbTipoUsuarioLogin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo de Usuário", "Aluno", "Orientador" }));
 
-        bntEntrar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        bntEntrar.setText("Entrar");
-        bntEntrar.addActionListener(this);
+        btnEntrar.setFont(new java.awt.Font("Arial", 0, 14));
+        btnEntrar.setText("Entrar");
+        btnEntrar.addActionListener(this);
 
-        btnSair.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnSair.setFont(new java.awt.Font("Arial", 0, 14));
         btnSair.setText("Sair");
         btnSair.addActionListener(this);
 
@@ -86,7 +96,7 @@ public class Login extends javax.swing.JFrame implements ActionListener {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
-                        .addComponent(bntEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(72, 72, 72)
                         .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -113,7 +123,7 @@ public class Login extends javax.swing.JFrame implements ActionListener {
                 .addComponent(jcmbTipoUsuarioLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bntEntrar)
+                    .addComponent(btnEntrar)
                     .addComponent(btnSair))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -121,14 +131,18 @@ public class Login extends javax.swing.JFrame implements ActionListener {
         pack();
     }                     
 
- 
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if ("Entrar".equals(e.getActionCommand())){
             if ("Aluno".equals(jcmbTipoUsuarioLogin.getSelectedItem())){
-                new MenuAluno().setVisible(true);
-                this.setVisible(false);
+                AlunoController aController = new AlunoController();
+                Aluno aluno = aController.getByEmailAndSenha(txtEmail.getText(), txtSenha.getText());
+                if (aluno != null) {
+                    new MenuAluno(aluno).setVisible(true);
+                    this.setVisible(false); 
+                } else {
+                    JOptionPane.showMessageDialog(this, "Email ou Senha inválidos");
+                }
             }
             else if ("Orientador".equals(jcmbTipoUsuarioLogin.getSelectedItem())){
                 new MenuOrientador().setVisible(true);
@@ -143,5 +157,33 @@ public class Login extends javax.swing.JFrame implements ActionListener {
             }
         }
     }
-                  
+          
+    public void criarTeste(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date d;
+        try {
+            d = sdf.parse("05/12/2018");
+            Banca banca = new Banca(d,"Sala 211");
+        } catch (ParseException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        /*
+        Area;
+        AreaAtuacao;
+        Atividade;  
+        Mensagem;
+        Orientador;
+        Referencia;
+        TipoTrabalho;
+        Trabalho;
+        */
+        Curso curso = new Curso("ADS");
+        
+        Aluno aluno = new Aluno("gustavo@gmail.com","123456","Gustavo Alves");
+        aluno.setCurso(curso);
+        // aluno.setEmail("");
+        // aluno.setNome("");
+        // aluno.setSenha("");
+        //aluno.setTrabalho(trabalho);
+    }
 }

@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import com.mysql.cj.jdbc.MysqlDataSource;
 
 public class JDBCUtil {
-    private static final String SERVER = "192.168.1.10";
-    private static final String DATABASE = "SAD";
-    private static final String USER = "usuario";
-    private static final String PASSWORD = "123456@Usuario";
+    private static final String SERVER = "localhost";
+    private static final String DATABASE = "sad";
+    private static final String USER = "root";
+    private static final String PASSWORD = "";
     private static MysqlDataSource ds = null;
 
     public static synchronized Connection getConnection() throws SQLException {

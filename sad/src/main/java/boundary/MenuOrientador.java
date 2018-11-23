@@ -10,6 +10,23 @@ public class MenuOrientador extends javax.swing.JFrame implements ActionListener
 
    
     public MenuOrientador() {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MenuOrientador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MenuOrientador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MenuOrientador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MenuOrientador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -119,14 +136,6 @@ public class MenuOrientador extends javax.swing.JFrame implements ActionListener
                 .addContainerGap())
         );
 
-        lblFotoOrientadorMenu.getAccessibleContext().setAccessibleName("lblFotoOrientadorMenu");
-        lblPerfilOrientadorMenu.getAccessibleContext().setAccessibleName("lblOrientadorMenu");
-        lblNomeOrientadorMenu.getAccessibleContext().setAccessibleName("lblNomeOrientadorMenu");
-        btnPerfilMenuOrientador.getAccessibleContext().setAccessibleName("btnPerfilMenuOrientador");
-        btnNotificacoesMenuOrientador.getAccessibleContext().setAccessibleName("btnNotificaçõesMenuOrientador");
-        btnTGMenuOrientador.getAccessibleContext().setAccessibleName("btnTGMenuOrientador");
-        btnSairMenuOrientador.getAccessibleContext().setAccessibleName("btnSairMenuOrientador");
-
         painelPrincipalOrientador.setBackground(new java.awt.Color(255, 255, 255));
         painelPrincipalOrientador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 2));
         painelPrincipalOrientador.setPreferredSize(new java.awt.Dimension(14, 14));
@@ -164,35 +173,7 @@ public class MenuOrientador extends javax.swing.JFrame implements ActionListener
         pack();
     }               
 
-   
-    public static void main(String args[]) {
-        
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuOrientador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuOrientador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuOrientador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuOrientador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuOrientador().setVisible(true);
-            }
-        });        
-        
-    }
-    
+      
     public void telaVisualizarTGOrientador(){
         painelPrincipalOrientador.removeAll();
         painelVisualizarTGOrientador visualizarTGOrientador =  new painelVisualizarTGOrientador();

@@ -38,14 +38,9 @@ public class painelConsultarBancaAluno {
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
-        txtDataBanca_TelaConsultarBancaAluno.getAccessibleContext().setAccessibleName("txtDataBanca_TelaConsultarBancaAluno");
-
         painelConsultarBancaAluno.setBackground(new Color(215, 215, 250));
-        painelConsultarBancaAluno.getAccessibleContext().setAccessibleName("painelConsultarBancaAluno");
     }                    
 
-
-          
     private javax.swing.JTextField txtDataBanca_TelaConsultarBancaAluno;
     public javax.swing.JPanel painelConsultarBancaAluno;
                 
