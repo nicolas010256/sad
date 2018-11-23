@@ -5,30 +5,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
+import entity.Orientador;
+
 
 public class MenuOrientador extends javax.swing.JFrame implements ActionListener {
+    private javax.swing.JButton btnNotificacoesMenuOrientador;
+    private javax.swing.JButton btnPerfilMenuOrientador;
+    private javax.swing.JButton btnSairMenuOrientador;
+    private javax.swing.JButton btnTGMenuOrientador;
+    private javax.swing.JLabel lblFotoOrientadorMenu;
+    private javax.swing.JLabel lblNomeOrientadorMenu;
+    private javax.swing.JLabel lblPerfilOrientadorMenu;
+    private javax.swing.JPanel painelOrientadorMenu;
+    public javax.swing.JPanel painelPrincipalOrientador;
+
+    private Orientador orientador;
 
    
-    public MenuOrientador() {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuOrientador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuOrientador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuOrientador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuOrientador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        
+    public MenuOrientador(Orientador orientador) {
+        this.orientador = orientador;       
         initComponents();
         this.setLocationRelativeTo(null);
+        lblNomeOrientadorMenu.setText(orientador.getNome());
     }
                          
     private void initComponents() {
@@ -184,7 +182,7 @@ public class MenuOrientador extends javax.swing.JFrame implements ActionListener
     
     public void telaCriarPerfilOrientador(){
         painelPrincipalOrientador.removeAll();
-        painelCriarPerfilOrientador criarPerfilOrientador =  new painelCriarPerfilOrientador();
+        painelCriarPerfilOrientador criarPerfilOrientador =  new painelCriarPerfilOrientador(orientador);
         painelPrincipalOrientador.setLayout(new BorderLayout());
         painelPrincipalOrientador.add(criarPerfilOrientador.painelCriarPerfilOrientador, BorderLayout.CENTER);
         painelPrincipalOrientador.validate();
@@ -197,18 +195,7 @@ public class MenuOrientador extends javax.swing.JFrame implements ActionListener
         painelPrincipalOrientador.add(notificacaoAluno.painelNotificacaoAluno, BorderLayout.CENTER);
         painelPrincipalOrientador.validate();
     }
-    
-                  
-    private javax.swing.JButton btnNotificacoesMenuOrientador;
-    private javax.swing.JButton btnPerfilMenuOrientador;
-    private javax.swing.JButton btnSairMenuOrientador;
-    private javax.swing.JButton btnTGMenuOrientador;
-    private javax.swing.JLabel lblFotoOrientadorMenu;
-    private javax.swing.JLabel lblNomeOrientadorMenu;
-    private javax.swing.JLabel lblPerfilOrientadorMenu;
-    private javax.swing.JPanel painelOrientadorMenu;
-    public javax.swing.JPanel painelPrincipalOrientador;
-                 
+                     
 
     @Override
     public void actionPerformed(ActionEvent e) {
