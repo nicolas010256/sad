@@ -19,15 +19,14 @@ public class AnexoDAOImpl implements AnexoDAO {
         Connection con = null;
         try {
             con = JDBCUtil.getConnection();
-            String sql = "INSERT INTO Anexo (idAnexo,Local,Tipo,idMensagem) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO Anexo (Local,Tipo,idMensagem) VALUES (?, ?, ?)";
             PreparedStatement st = con.prepareStatement(sql);
-            st.setLong(1, anexo.getId());
-            st.setString(2,anexo.getLocal());
-            st.setString(3,anexo.getTipo());
+            st.setString(1,anexo.getLocal());
+            st.setString(2,anexo.getTipo());
             if (anexo.getMensagem() != null){
-                st.setLong(4, anexo.getMensagem().getId());
+                st.setLong(3, anexo.getMensagem().getId());
             } else {
-                st.setNull(4, Types.INTEGER);
+                st.setNull(3, Types.INTEGER);
             }
             st.executeUpdate();
             st.close();

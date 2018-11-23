@@ -19,7 +19,7 @@ public class TipoTrabalhoDAOImpl implements TipoTrabalhoDAO {
         try {
             con = JDBCUtil.getConnection();
             String sql = "INSERT INTO TipoTrabalho (Nome, Descricao) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                    "VALUES (?, ?)";
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, tipoTrabalho.getNome());
             statement.setString(2, tipoTrabalho.getDescricao());
