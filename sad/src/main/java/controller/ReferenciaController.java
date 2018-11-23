@@ -36,6 +36,7 @@ public class ReferenciaController {
         } catch (ReferenciaDAOException e) {
             e.printStackTrace();
         }
+        return referencias;
     }
 
     public void update(Referencia referencia) {
