@@ -2,8 +2,6 @@ package boundary;
 
 import java.io.IOException;
 
-import javax.management.RuntimeErrorException;
-
 import entity.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
