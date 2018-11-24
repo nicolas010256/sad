@@ -3,8 +3,6 @@ package sad;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import boundary.Login;
-import controller.CursoController;
-import entity.Curso;
 
 public class App {
     
