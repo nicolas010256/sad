@@ -132,13 +132,13 @@ public class TrabalhoDAOImpl implements TrabalhoDAO {
 
         try {
             con = JDBCUtil.getConnection();
-            String sql = "SELECT idTrabalho,Tema,Titulo,Metodologia,Relevancia,Data_Criacao FROM Trabalho t INNER JOIN Aluno a ON (t.idTrabalho = a.idTrabalho) WHERE idAluno = ?";
+            String sql = "SELECT a.idTrabalho,Tema,Titulo,Metodologia,Relevancia,Data_Criacao FROM Trabalho t INNER JOIN Aluno a ON (t.idTrabalho = a.idTrabalho) WHERE idAluno = ?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setLong(1, aluno.getId());
             ResultSet rs = st.executeQuery();
             if (rs.first()) {
                 
-                long id = rs.getLong("idTrabalho");
+                long id = rs.getLong("a.idTrabalho");
                 String tema = rs.getString("Tema");
                 String titulo = rs.getString("Titulo");
                 String metodologia = rs.getString("Metodologia");
