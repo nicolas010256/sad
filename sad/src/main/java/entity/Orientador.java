@@ -3,7 +3,7 @@ package entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Orientador {
+public class Orientador implements Usuario{
 
 	private long id;
 
