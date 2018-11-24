@@ -2,8 +2,6 @@ package sad;
 
 import javax.swing.UnsupportedLookAndFeelException;
 
-import boundary.Login;
-
 public class App {
     
     public static void main(String[] args) {
@@ -18,6 +16,5 @@ public class App {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        new Login();
     }
 }
