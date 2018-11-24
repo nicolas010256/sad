@@ -30,7 +30,7 @@ public class Login {
     private PasswordField pwdSenha;
 
     @FXML
-    private ComboBox cbTipoUsuario;
+    private ComboBox<String> cbTipoUsuario;
 
     public Login() {
         try {
@@ -59,12 +59,15 @@ public class Login {
                 AlunoController aController = new AlunoController();
                 Aluno aluno = aController.getByEmailAndSenha(email, senha);
                 if (aluno != null) {
-                    System.out.println(aluno.getNome());
+                    new boundary.aluno.Home(aluno);
+                    stage.close();
                 }
             } else {
                 OrientadorController cController = new OrientadorController();
                 Orientador orientador = cController.getByEmailAndSenha(email, senha);
-                System.out.println(orientador.getNome());
+                if (orientador != null) {
+                    System.out.println(orientador.getNome());
+                }
             }
         } else {
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -73,4 +76,5 @@ public class Login {
             alert.showAndWait();
         }
     }
+    
 }

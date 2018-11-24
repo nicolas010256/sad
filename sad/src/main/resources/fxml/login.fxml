@@ -27,7 +27,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <TextField fx:id="txtEmail" layoutX="54.0" layoutY="175.0" prefHeight="25.0" prefWidth="635.0" promptText="Digite seu email aqui">
+      <TextField fx:id="txtEmail" layoutX="54.0" layoutY="175.0" prefHeight="30.0" prefWidth="621.0" promptText="Digite seu email aqui">
          <font>
             <Font size="14.0" />
          </font>
@@ -37,12 +37,12 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <PasswordField fx:id="pwdSenha" layoutX="54.0" layoutY="285.0" prefHeight="25.0" prefWidth="635.0" promptText="Digite sua senha aqui">
+      <PasswordField fx:id="pwdSenha" layoutX="54.0" layoutY="285.0" prefHeight="30.0" prefWidth="621.0" promptText="Digite sua senha aqui">
          <font>
             <Font size="14.0" />
          </font>
       </PasswordField>
-      <ComboBox fx:id="cbTipoUsuario" layoutX="489.0" layoutY="353.0" prefHeight="25.0" prefWidth="200.0" promptText="Tipo de usuário"> 
+      <ComboBox fx:id="cbTipoUsuario" layoutX="475.0" layoutY="353.0" prefHeight="25.0" prefWidth="200.0" promptText="Tipo de usuário"> 
          <items>
             <FXCollections fx:factory="observableArrayList">
                <String fx:value="Aluno" />
@@ -50,7 +50,7 @@
             </FXCollections>
          </items>
       </ComboBox>
-      <Button layoutX="489.0" layoutY="413.0" mnemonicParsing="false" onAction="#clickEntrar" prefHeight="37.0" prefWidth="200.0" style="-fx-background-color: #4D70FF; -fx-padding: 0; -fx-border-radius: 6; -fx-background-radius: 6;" text="Entrar" textFill="WHITE">
+      <Button layoutX="475.0" layoutY="414.0" mnemonicParsing="false" onAction="#clickEntrar" prefHeight="37.0" prefWidth="200.0" style="-fx-background-color: #4D70FF; -fx-padding: 0; -fx-border-radius: 6; -fx-background-radius: 6;" text="Entrar" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="20.0" />
          </font>
