@@ -166,33 +166,5 @@ public class Login extends javax.swing.JFrame implements ActionListener {
             }
         }
     }
-          
-    // public void criarTeste(){
-    //     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    //     Date d;
-    //     try {
-    //         d = sdf.parse("05/12/2018");
-    //         Banca banca = new Banca(d,"Sala 211");
-    //     } catch (ParseException ex) {
-    //         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-    //     }
-    //     /*
-    //     Area;
-    //     AreaAtuacao;
-    //     Atividade;  
-    //     Mensagem;
-    //     Orientador;
-    //     Referencia;
-    //     TipoTrabalho;
-    //     Trabalho;
-    //     */
-    //     Curso curso = new Curso("ADS");
         
-    //     Aluno aluno = new Aluno("gustavo@gmail.com","123456","Gustavo Alves");
-    //     aluno.setCurso(curso);
-    //     // aluno.setEmail("");
-    //     // aluno.setNome("");
-    //     // aluno.setSenha("");
-    //     //aluno.setTrabalho(trabalho);
-    // }
 }
