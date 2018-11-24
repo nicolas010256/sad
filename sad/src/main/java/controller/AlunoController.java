@@ -67,6 +67,14 @@ public class AlunoController {
         }
     }
 
+    public void update(Aluno aluno) {
+        try {
+            dao.update(aluno);
+        } catch (AlunoDAOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void updateFoto(Aluno aluno) {
         try {
             dao.updateFoto(aluno);
@@ -85,7 +93,7 @@ public class AlunoController {
 
     public void updateTrabalho(Aluno aluno) {
         try {
-            dao.update(aluno);
+            dao.updateTrabalho(aluno);
         } catch (AlunoDAOException e) {
             e.printStackTrace();
         }
