@@ -1,6 +1,6 @@
 package entity;
 
-public class Aluno {
+public class Aluno  implements Usuario{
 
 	private long id;
 
