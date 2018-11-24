@@ -2,6 +2,8 @@ package boundary.aluno;
 
 import java.io.IOException;
 
+import boundary.AlterarSenha;
+import controller.AlunoController;
 import controller.CursoController;
 import controller.OrientadorController;
 import controller.TipoTrabalhoController;
@@ -18,6 +20,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Window;
 
 public class Perfil extends BorderPane {
     private Aluno aluno;
@@ -107,9 +110,11 @@ public class Perfil extends BorderPane {
 
     @FXML
     protected void clickAlterarSenha(MouseEvent e) {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        alert.setContentText("Alterar Senha");
-        alert.showAndWait();
+        AlterarSenha altSenha = new AlterarSenha(getScene().getWindow(), aluno);
+        if (altSenha.getStatus()) {
+            AlunoController aController = new AlunoController();
+            aController.update(aluno);
+        }
+        altSenha = null;
     }
 }
