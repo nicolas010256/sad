@@ -3,13 +3,55 @@ package boundary;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import controller.AreaController;
+import entity.Area;
+import entity.Orientador;
 
 public class painelCriarPerfilOrientador implements ActionListener{
+    private javax.swing.JButton btnAdicionarAreaAtuacao;
+    private javax.swing.JButton btnCriarAreaAtuacaoOrientador_TelaCriarPerfilOrientador;
+    private javax.swing.JButton btnEditarEmailOrientador_TelaCriarPerfilOrientador;
+    private javax.swing.JButton btnEditarSenhaOrientador_TelaCriarPerfilOrientador;
+    private javax.swing.JButton btnExcluirAreaAtuacaoOrientador_TelaCriarPerfilOrientador;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane scrollAreaAtuacaoOrientador_TelaCriarPerfilOrientador;
+    private javax.swing.JPanel painelFormCriarPerfilOrientador;
+    public javax.swing.JPanel painelCriarPerfilOrientador;
+    private javax.swing.JTable tbAreaAtuacaoOrientador_TelaCriarPerfilOrientador;
+    private javax.swing.JTextField txtCPFOrientador_TelaCriarPerfilOrientador;
+    private javax.swing.JTextField txtEmailOrientador_TelaCriarPerfilOrientador;
+    private javax.swing.JTextField txtNomeOrientador_TelaCriarPerfilOrientador;
+    private javax.swing.JTextField txtSenhaOrientador_TelaCriarPerfilOrientador;
 
-    public painelCriarPerfilOrientador() {
+    private Orientador orientador;
+
+    public painelCriarPerfilOrientador(Orientador orientador) {
+        this.orientador = orientador;
         initComponents();
+        txtEmailOrientador_TelaCriarPerfilOrientador.setText(orientador.getEmail());
+        txtNomeOrientador_TelaCriarPerfilOrientador.setText(orientador.getNome());
+
+        AreaController aController = new AreaController();
+        List<Area> areas = aController.getByOrientador(orientador);
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Área");
+        for (Area area : areas) {
+            Object[] row = {area.getNome()};
+            model.addRow(row);
+        }
+        tbAreaAtuacaoOrientador_TelaCriarPerfilOrientador.setModel(model);
+
     }
                         
     private void initComponents() {
@@ -31,7 +73,7 @@ public class painelCriarPerfilOrientador implements ActionListener{
         scrollAreaAtuacaoOrientador_TelaCriarPerfilOrientador = new javax.swing.JScrollPane();
         tbAreaAtuacaoOrientador_TelaCriarPerfilOrientador = new javax.swing.JTable();
         btnExcluirAreaAtuacaoOrientador_TelaCriarPerfilOrientador = new javax.swing.JButton();
-        btnAdicionarAreaAtuacaoOrientador_TelaCriarPerfilOrientador = new javax.swing.JButton();
+        btnAdicionarAreaAtuacao = new javax.swing.JButton();
         btnCriarAreaAtuacaoOrientador_TelaCriarPerfilOrientador = new javax.swing.JButton();
 
         painelCriarPerfilOrientador.setBackground(new java.awt.Color(255, 255, 255));
@@ -82,17 +124,6 @@ public class painelCriarPerfilOrientador implements ActionListener{
         btnEditarSenhaOrientador_TelaCriarPerfilOrientador.setText("Editar Senha");
         btnEditarSenhaOrientador_TelaCriarPerfilOrientador.addActionListener(this);
 
-        tbAreaAtuacaoOrientador_TelaCriarPerfilOrientador.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Área de Atuação 01"},
-                {"Área de Atuação 02"},
-                {"Área de Atuação 03"},
-                {"Área de Atuação 04"}
-            },
-            new String [] {
-                "Área de Atuação"
-            }
-        ));
         tbAreaAtuacaoOrientador_TelaCriarPerfilOrientador.setFont(new java.awt.Font("Arial", 0, 14));
         tbAreaAtuacaoOrientador_TelaCriarPerfilOrientador.setRowHeight(25);
         scrollAreaAtuacaoOrientador_TelaCriarPerfilOrientador.setViewportView(tbAreaAtuacaoOrientador_TelaCriarPerfilOrientador);
@@ -102,10 +133,10 @@ public class painelCriarPerfilOrientador implements ActionListener{
         btnExcluirAreaAtuacaoOrientador_TelaCriarPerfilOrientador.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluirAreaAtuacaoOrientador_TelaCriarPerfilOrientador.setText("Excluir");
 
-        btnAdicionarAreaAtuacaoOrientador_TelaCriarPerfilOrientador.setBackground(new java.awt.Color(102, 102, 102));
-        btnAdicionarAreaAtuacaoOrientador_TelaCriarPerfilOrientador.setFont(new java.awt.Font("Arial", 0, 14));
-        btnAdicionarAreaAtuacaoOrientador_TelaCriarPerfilOrientador.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdicionarAreaAtuacaoOrientador_TelaCriarPerfilOrientador.setText("Adicionar");
+        btnAdicionarAreaAtuacao.setBackground(new java.awt.Color(102, 102, 102));
+        btnAdicionarAreaAtuacao.setFont(new java.awt.Font("Arial", 0, 14));
+        btnAdicionarAreaAtuacao.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdicionarAreaAtuacao.setText("Adicionar");
 
         btnCriarAreaAtuacaoOrientador_TelaCriarPerfilOrientador.setBackground(new java.awt.Color(102, 102, 102));
         btnCriarAreaAtuacaoOrientador_TelaCriarPerfilOrientador.setFont(new java.awt.Font("Arial", 0, 14));
@@ -152,7 +183,7 @@ public class painelCriarPerfilOrientador implements ActionListener{
                             .addGroup(painelFormCriarPerfilOrientadorLayout.createSequentialGroup()
                                 .addComponent(btnExcluirAreaAtuacaoOrientador_TelaCriarPerfilOrientador, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAdicionarAreaAtuacaoOrientador_TelaCriarPerfilOrientador, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAdicionarAreaAtuacao, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnCriarAreaAtuacaoOrientador_TelaCriarPerfilOrientador, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(1, 1, 1)))
@@ -186,7 +217,7 @@ public class painelCriarPerfilOrientador implements ActionListener{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelFormCriarPerfilOrientadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExcluirAreaAtuacaoOrientador_TelaCriarPerfilOrientador)
-                    .addComponent(btnAdicionarAreaAtuacaoOrientador_TelaCriarPerfilOrientador)
+                    .addComponent(btnAdicionarAreaAtuacao)
                     .addComponent(btnCriarAreaAtuacaoOrientador_TelaCriarPerfilOrientador))
                 .addGap(34, 34, 34))
         );
@@ -259,25 +290,7 @@ public class painelCriarPerfilOrientador implements ActionListener{
 				"Cancel");
     }
                  
-    private javax.swing.JButton btnAdicionarAreaAtuacaoOrientador_TelaCriarPerfilOrientador;
-    private javax.swing.JButton btnCriarAreaAtuacaoOrientador_TelaCriarPerfilOrientador;
-    private javax.swing.JButton btnEditarEmailOrientador_TelaCriarPerfilOrientador;
-    private javax.swing.JButton btnEditarSenhaOrientador_TelaCriarPerfilOrientador;
-    private javax.swing.JButton btnExcluirAreaAtuacaoOrientador_TelaCriarPerfilOrientador;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JScrollPane scrollAreaAtuacaoOrientador_TelaCriarPerfilOrientador;
-    private javax.swing.JPanel painelFormCriarPerfilOrientador;
-    public javax.swing.JPanel painelCriarPerfilOrientador;
-    private javax.swing.JTable tbAreaAtuacaoOrientador_TelaCriarPerfilOrientador;
-    private javax.swing.JTextField txtCPFOrientador_TelaCriarPerfilOrientador;
-    private javax.swing.JTextField txtEmailOrientador_TelaCriarPerfilOrientador;
-    private javax.swing.JTextField txtNomeOrientador_TelaCriarPerfilOrientador;
-    private javax.swing.JTextField txtSenhaOrientador_TelaCriarPerfilOrientador;               
+                   
 
     @Override
     public void actionPerformed(ActionEvent e) {
