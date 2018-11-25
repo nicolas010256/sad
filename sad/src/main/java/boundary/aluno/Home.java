@@ -3,7 +3,9 @@ package boundary.aluno;
 import java.io.IOException;
 
 import boundary.Login;
+import controller.TrabalhoController;
 import entity.Aluno;
+import entity.Trabalho;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -56,7 +58,14 @@ public class Home {
 
     @FXML
     protected void clickTrabalho(MouseEvent e) {
-
+        Trabalho trabalho = aluno.getTrabalho();
+        if (trabalho == null) {
+            trabalho = new TrabalhoController().getByAluno(aluno);
+            aluno.setTrabalho(trabalho);
+        }
+        if (trabalho == null) {
+            setContent((Parent) new CriarTrabalho(aluno)); 
+        }
     }
 
     @FXML
