@@ -13,9 +13,9 @@ import entity.Trabalho;
 public class TrabalhoController {
     private TrabalhoDAO dao = new TrabalhoDAOImpl();
 
-    public void add(Trabalho trabalho) {
+    public void add(Trabalho trabalho, Aluno aluno) {
         try {
-            dao.add(trabalho);
+            dao.add(trabalho, aluno);
         } catch (TrabalhoDAOException e) {
             e.printStackTrace();
         }

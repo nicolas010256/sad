@@ -18,44 +18,62 @@ import entity.Trabalho;
 public class TrabalhoDAOImpl implements TrabalhoDAO {
 
     @Override
-    public void add(Trabalho trabalho) throws TrabalhoDAOException {
+    public void add(Trabalho trabalho, Aluno aluno) throws TrabalhoDAOException {
         Connection con = null;
 
         try {
             con = JDBCUtil.getConnection();
-            String sql = "INSERT INTO Trabalho (idTrabalho,Tema,Titulo,Metodologia,Relevancia,Arquivo,Data_Criacao,idBanca,idTipoTrabalho,idOrientador) VALUES (?,?,?,?,?,?,?,?,?,?)";
-            PreparedStatement st = con.prepareStatement(sql);
-            st.setLong(1, trabalho.getId());
-            st.setString(2, trabalho.getTema());
-            st.setString(3, trabalho.getTitulo());
-            st.setString(4, trabalho.getMetodologia());
-            st.setString(5, trabalho.getRelevancia());
-            st.setBlob(6, trabalho.getArquivo() != null ? new SerialBlob(trabalho.getArquivo()) : null);
+            con.setAutoCommit(false);
+
+            String insert = "INSERT INTO Trabalho (Tema,Titulo,Metodologia,Relevancia,Arquivo,Data_Criacao,idTipoTrabalho,idOrientador) VALUES (?,?,?,?,?,?,?,?)";
+            String select = "SELECT @idTrabalho:=LAST_INSERT_ID();";
+            String update = "UPDATE Aluno SET idTrabalho=@idTrabalho WHERE idAluno=?;";
+
+            PreparedStatement insertTrabalho = con.prepareStatement(insert);
+            PreparedStatement selectKey = con.prepareStatement(select);
+            PreparedStatement updateAluno = con.prepareStatement(update);
+
+            insertTrabalho.setString(1, trabalho.getTema());
+            insertTrabalho.setString(2, trabalho.getTitulo());
+            insertTrabalho.setString(3, trabalho.getMetodologia());
+            insertTrabalho.setString(4, trabalho.getRelevancia());
+            insertTrabalho.setBlob(5, trabalho.getArquivo() != null ? new SerialBlob(trabalho.getArquivo()) : null);
             java.util.Date data = trabalho.getData_criacao();
             java.sql.Date datasql = new java.sql.Date(data.getTime());
-            st.setDate(7,datasql);
-            if (trabalho.getBanca() != null){
-                st.setLong(8, trabalho.getBanca().getId());
-            } else {
-                st.setNull(8, Types.INTEGER);
-            }
+            insertTrabalho.setDate(6,datasql);
             if (trabalho.getTipoTrabalho() != null){
-                st.setLong(9, trabalho.getTipoTrabalho().getId());
+                insertTrabalho.setLong(7, trabalho.getTipoTrabalho().getId());
             } else {
-                st.setNull(9, Types.INTEGER);
+                insertTrabalho.setNull(7, Types.INTEGER);
             }
             if (trabalho.getOrientador() != null){
-                st.setLong(10, trabalho.getOrientador().getId());
+                insertTrabalho.setLong(8, trabalho.getOrientador().getId());
             } else {
-                st.setNull(10, Types.INTEGER);
+                insertTrabalho.setNull(8, Types.INTEGER);
             }
 
-            st.executeUpdate();
-            st.close();
+            updateAluno.setLong(1, aluno.getId());
+
+            insertTrabalho.executeUpdate();
+            selectKey.executeQuery();
+            updateAluno.executeUpdate();
+
+            con.commit();
+
+            insertTrabalho.close();
+            selectKey.close();
+            updateAluno.close();
 
         } catch (SQLException e) {
+            try {
+                con.rollback();
+            }  catch (SQLException e2) {
+                throw new TrabalhoDAOException("Erro ao fazer rollback");
+            }
             throw new TrabalhoDAOException("Erro ao inserir trabalho");
-		} finally {
+		} catch (Exception e) {
+
+        }finally {
             JDBCUtil.close(con);
         }
     }

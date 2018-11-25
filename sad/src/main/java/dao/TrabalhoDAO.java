@@ -9,7 +9,7 @@ import entity.Trabalho;
 
 public interface TrabalhoDAO {
 
-    void add(Trabalho trabalho) throws TrabalhoDAOException;
+    void add(Trabalho trabalho, Aluno aluno) throws TrabalhoDAOException;
 
     Trabalho get(long id) throws TrabalhoDAOException;
 
