@@ -182,6 +182,8 @@ public class AlunoDAOImpl implements AlunoDAO {
                 long notaTG2 = rs.getLong("NotaTG2");
 
                 Aluno aluno = new Aluno(id, email, senha, nomeAluno);
+                aluno.setNotaTG1(notaTG1);
+                aluno.setNotaTG2(notaTG2);
 
                 alunos.add(aluno);
             }
