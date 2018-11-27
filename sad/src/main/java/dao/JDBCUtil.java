@@ -6,10 +6,11 @@ import java.sql.SQLException;
 import com.mysql.cj.jdbc.MysqlDataSource;
 
 public class JDBCUtil {
-    private static final String SERVER = "localhost";
-    private static final String DATABASE = "sad";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
+    private static final String SERVER = "nicolas010256.000webhostapp.com";
+    private static final String DATABASE = "id5238415_sad";
+    private static final String USER = "id5238415_usuario";
+    private static final String PASSWORD = "12345678";
+    private static final String TIMEZONE = "UTC";
     private static MysqlDataSource ds = null;
 
     public static synchronized Connection getConnection() throws SQLException {
@@ -18,6 +19,7 @@ public class JDBCUtil {
                 ds = new MysqlDataSource();
                 ds.setServerName(SERVER);
                 ds.setDatabaseName(DATABASE);
+                ds.setServerTimezone(TIMEZONE);
             } catch (Exception e) {
                 e.printStackTrace();
             } 
