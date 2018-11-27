@@ -11,6 +11,7 @@ import java.util.List;
 import javax.sql.rowset.serial.SerialBlob;
 import dao.exceptions.AlunoDAOException;
 import entity.Aluno;
+import entity.Curso;
 import entity.Trabalho;
 
 public class AlunoDAOImpl implements AlunoDAO {
@@ -140,6 +141,48 @@ public class AlunoDAOImpl implements AlunoDAO {
                 Aluno aluno = new Aluno(id, email, senha, nome);
                 aluno.setNotaTG1(notaTG1);
                 aluno.setNotaTG2(notaTG2);
+                alunos.add(aluno);
+            }
+            st.close();
+
+        } catch (SQLException e) {
+            throw new AlunoDAOException("Erro ao pesquisar alunos");
+        } finally {
+            JDBCUtil.close(con);
+        }
+        return alunos;
+    }
+
+    @Override
+    public List<Aluno> getByCursoAndNome(Curso curso, String nome) throws AlunoDAOException {
+        List<Aluno> alunos = new ArrayList<Aluno>();
+        Connection con = null;
+        try {
+            con = JDBCUtil.getConnection();
+
+            String sql = "SELECT idAluno, Email, Senha, Nome, NotaTG1, NotaTG2 FROM Aluno WHERE idTrabalho IS NULL AND idCuso like ? AND Nome like ?";
+
+            PreparedStatement st = con.prepareStatement(sql);
+
+            if (curso != null) {
+                st.setString(1, curso.getNome());
+            } else {
+                st.setString(1, "%");
+            }
+            st.setString(2, nome + "%");
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                long id = rs.getLong("idAluno");
+                String email = rs.getString("Email");
+                String senha = rs.getString("Senha");
+                String nomeAluno = rs.getString("Nome");
+                long notaTG1 = rs.getLong("NotaTG1");
+                long notaTG2 = rs.getLong("NotaTG2");
+
+                Aluno aluno = new Aluno(id, email, senha, nomeAluno);
+
                 alunos.add(aluno);
             }
             st.close();

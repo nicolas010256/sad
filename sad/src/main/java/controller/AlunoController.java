@@ -6,6 +6,7 @@ import dao.AlunoDAO;
 import dao.exceptions.AlunoDAOException;
 import dao.AlunoDAOImpl;
 import entity.Aluno;
+import entity.Curso;
 import entity.Trabalho;
 
 public class AlunoController {
@@ -47,6 +48,15 @@ public class AlunoController {
             e.printStackTrace();
         }
         return alunos;
+    }
+
+    public List<Aluno> getByCursoAndNome(Curso curso, String nome) {
+        List<Aluno> alunos = null;
+        try {
+            alunos = dao.getByCursoAndNome(curso, nome);
+        } catch (AlunoDAOException e) {
+            e.printStackTrace();
+        } return alunos;
     }
 
     public List<Aluno> getAll() {

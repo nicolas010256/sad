@@ -4,6 +4,7 @@ import java.util.List;
 
 import dao.exceptions.AlunoDAOException;
 import entity.Aluno;
+import entity.Curso;
 import entity.Trabalho;
 
 public interface AlunoDAO {
@@ -15,6 +16,8 @@ public interface AlunoDAO {
     Aluno getByEmailAndSenha(String email, String senha) throws AlunoDAOException;
 
     List<Aluno> getByTrabalho(Trabalho trabalho) throws AlunoDAOException;
+    
+    List<Aluno> getByCursoAndNome(Curso curso, String nome) throws AlunoDAOException;
 
     List<Aluno> getAll() throws AlunoDAOException;
 
