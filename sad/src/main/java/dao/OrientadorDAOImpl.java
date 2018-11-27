@@ -156,6 +156,40 @@ public class OrientadorDAOImpl implements OrientadorDAO {
     }
 
     @Override
+    public List<Orientador> getByAreaAndNome(Area area, String nome) throws OrientadorDAOException {
+        List<Orientador> orientadores = new ArrayList<Orientador>();
+        Connection con = null;
+
+        try {
+            con = JDBCUtil.getConnection();
+            String sql = "SELECT DISTINCT o.idOrientador, o.Nome, o.Email, o.Senha FROM Orientador o INNER JOIN AreaAtuacao a ON (o.idOrientador = a.idOrientador) WHERE a.idArea like ? AND o.Nome like ?";
+            PreparedStatement st = con.prepareStatement(sql);
+            
+           
+            st.setString(1, area != null ? String.valueOf(area.getId()) : "%");
+            st.setString(2, nome + "%");
+            
+
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                long id = rs.getLong("o.idOrientador");
+                String nomeOrientador = rs.getString("o.Nome");
+                String email = rs.getString("o.Email");
+                String senha = rs.getString("o.Senha");
+                
+                Orientador orientador = new Orientador(id, email, senha, nomeOrientador);
+                orientadores.add(orientador);
+            }
+            st.close();
+        } catch (SQLException e) {
+            throw new OrientadorDAOException("Erro ao pesquisar orientador");
+        } finally {
+            JDBCUtil.close(con);
+        }
+        return orientadores;
+    }
+
+    @Override
     public void getFoto(Orientador orientador) throws OrientadorDAOException {
 
         Connection con = null;

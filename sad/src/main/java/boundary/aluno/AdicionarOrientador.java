@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.util.List;
 
 import controller.AlunoController;
-import controller.CursoController;
+import controller.AreaController;
+import controller.OrientadorController;
 import entity.Aluno;
-import entity.Curso;
+import entity.Area;
+import entity.Orientador;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
@@ -16,7 +18,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 
-public class AdicionarIntegrante extends BorderPane {
+public class AdicionarOrientador extends BorderPane {
     @FXML
     private Text lblTitulo;
     @FXML
@@ -28,24 +30,24 @@ public class AdicionarIntegrante extends BorderPane {
     @FXML
     private VBox box;
 
-    private List<Curso> cursos;
+    private List<Area> areas;
 
-    public AdicionarIntegrante() {
+    public AdicionarOrientador() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/aluno/adicionar.fxml"));
             loader.setRoot(this);
             loader.setController(this);
             loader.load();
 
-            lblTitulo.setText("Adicionar Integrante");
-            comboBox.setPromptText("Selecione um curso");
-            txtNome.setPromptText("Digite o nome do aluno aqui...");
+            lblTitulo.setText("Adicionar Orientador");
+            comboBox.setPromptText("Selecione uma área de atuação");
+            txtNome.setPromptText("Digite o nome do orientador aqui...");
 
-            cursos = new CursoController().getAll();
-            comboBox.getItems().add("Todos");
+            areas = new AreaController().getAll();
+            comboBox.getItems().add("Todas");
 
-            for (Curso curso : cursos) {
-                comboBox.getItems().add(curso.getNome());
+            for (Area area : areas) {
+                comboBox.getItems().add(area.getNome());
             }
             
         } catch (IOException e) {
@@ -58,17 +60,18 @@ public class AdicionarIntegrante extends BorderPane {
         box.getChildren().clear();
         String nome = txtNome.getText();
         int index = comboBox.getSelectionModel().getSelectedIndex();
-        List<Aluno> alunos = null;
-        if (index == -1)
-            return ;
+        if (index == -1) return;
+
+        List<Orientador> orientadores = null;
+
         if (index == 0) {
-            alunos = new AlunoController().getByCursoAndNome(null, nome);
+            orientadores = new OrientadorController().getByAreaAndNome(null, nome);
         } else {
-            alunos = new AlunoController().getByCursoAndNome(cursos.get(index -1 ), nome);
+            orientadores = new OrientadorController().getByAreaAndNome(areas.get(index - 1), nome);
         }
 
-        for (Aluno aluno : alunos) {
-            box.getChildren().add(new CardAdicionarIntegrante(aluno));
+        for (Orientador orientador : orientadores) {
+            box.getChildren().add(new CardAdicionarOrientador(orientador));
         }
     }
 }

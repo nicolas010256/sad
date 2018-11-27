@@ -160,12 +160,12 @@ public class AlunoDAOImpl implements AlunoDAO {
         try {
             con = JDBCUtil.getConnection();
 
-            String sql = "SELECT idAluno, Email, Senha, Nome, NotaTG1, NotaTG2 FROM Aluno WHERE idTrabalho IS NULL AND idCuso like ? AND Nome like ?";
+            String sql = "SELECT idAluno, Email, Senha, Nome, NotaTG1, NotaTG2 FROM Aluno WHERE idTrabalho IS NULL AND idCurso like ? AND Nome like ?";
 
             PreparedStatement st = con.prepareStatement(sql);
 
             if (curso != null) {
-                st.setString(1, curso.getNome());
+                st.setString(1, String.valueOf(curso.getId()));
             } else {
                 st.setString(1, "%");
             }

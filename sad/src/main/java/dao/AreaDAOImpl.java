@@ -90,6 +90,36 @@ public class AreaDAOImpl implements AreaDAO {
     }
 
     @Override
+    public List<Area> getAll() throws AreaDAOException {
+        List<Area> areas = new ArrayList<Area>();
+        Connection con = null;
+
+        try {
+            con = JDBCUtil.getConnection();
+
+            String sql = "SELECT idArea, Nome, Descricao FROM Area";
+
+            PreparedStatement st = con.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                long id = rs.getLong("idArea");
+                String nome = rs.getString("Nome");
+                String descricao = rs.getString("Descricao");
+                Area area = new Area(id, nome, descricao);
+                areas.add(area);
+            }
+            st.close();
+
+        } catch (SQLException e) {
+            throw new AreaDAOException("Erro ao pesquisar areas");
+        } finally {
+            JDBCUtil.close(con);
+        }
+        return areas;
+    }
+
+    @Override
     public void update(Area area) throws AreaDAOException {
         Connection con = null;
 

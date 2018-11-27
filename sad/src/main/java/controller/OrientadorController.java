@@ -60,6 +60,16 @@ public class OrientadorController {
         return orientadores;
     }
 
+    public List<Orientador> getByAreaAndNome(Area area, String nome) {
+        List<Orientador> orientadores = null;
+        try {
+            orientadores = dao.getByAreaAndNome(area, nome);
+        } catch (OrientadorDAOException e) {
+            e.printStackTrace();
+        }
+        return orientadores;
+	}
+
     public void getFoto(Orientador orientador) {
         try {
             dao.getFoto(orientador);

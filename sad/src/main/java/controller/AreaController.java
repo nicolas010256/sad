@@ -39,6 +39,16 @@ public class AreaController {
         return areas;
     }
 
+    public List<Area> getAll() {
+        List<Area> areas = null;
+        try {
+            areas = dao.getAll();
+        } catch (AreaDAOException e) {
+            e.printStackTrace();
+        }
+        return areas;
+    }
+
     public void update(Area area) {
         try {
             dao.update(area);

@@ -133,6 +133,6 @@ public class TrabalhoGraduacao extends BorderPane {
 
     @FXML
     protected void clickAdicionarOrientador(ActionEvent e) {
-
+        ((BorderPane) getScene().getRoot()).setCenter(new AdicionarOrientador());
     }
 }

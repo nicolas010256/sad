@@ -8,7 +8,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="900.0" style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-background-color: white;" type="AnchorPane" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane prefHeight="130.0" prefWidth="137.0" style="-fx-background-color: #4D70FF;">
@@ -16,17 +15,17 @@
             <Circle fill="WHITE" radius="58.0" stroke="BLACK" strokeMiterLimit="2.0" strokeType="INSIDE" />
          </children>
       </StackPane>
-      <Text fx:id="lblNome" layoutX="150.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome">
+      <Text layoutX="150.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fx:id="lblEmail" layoutX="151.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+      <Text layoutX="151.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fx:id="lblCurso" layoutX="150.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Curso">
+      <Text layoutX="150.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Curso">
          <font>
             <Font size="18.0" />
          </font>
@@ -39,6 +38,21 @@
             <DropShadow color="#0000004e" height="10.0" offsetY="1.0" radius="4.5" width="10.0" />
          </effect>
       </Button>
+      <Text fx:id="lblNome" layoutX="230.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="lblEmail" layoutX="230.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="lblCurso" layoutX="230.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Curso">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
    </children>
    <effect>
       <DropShadow color="#0000004d" height="10.0" offsetY="1.0" radius="4.5" width="10.0" />

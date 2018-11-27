@@ -14,6 +14,8 @@ public interface AreaDAO {
 
     List<Area> getByOrientador(Orientador orientador) throws AreaDAOException;
 
+    List<Area> getAll() throws AreaDAOException;
+
     void update(Area area) throws AreaDAOException;
 
     void remove(Area area) throws AreaDAOException;
