@@ -66,7 +66,7 @@ public class Home {
         if (trabalho == null) {
             setContent((Parent) new CriarTrabalho(aluno)); 
         } else {
-            setContent((Parent) new TrabalhoGraduacao(trabalho));
+            setContent((Parent) new TrabalhoGraduacao(aluno));
         }
     }
 

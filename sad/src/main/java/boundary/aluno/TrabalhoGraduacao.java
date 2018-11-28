@@ -61,10 +61,13 @@ public class TrabalhoGraduacao extends BorderPane {
     @FXML
     private Text lblNota;
 
+    private Aluno aluno;
+
     private Trabalho trabalho;
 
-    public TrabalhoGraduacao(Trabalho trabalho) {
-        this.trabalho = trabalho;
+    public TrabalhoGraduacao(Aluno aluno) {
+        this.aluno = aluno;
+        this.trabalho = aluno.getTrabalho();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/aluno/trabalho_graduacao.fxml"));
             loader.setRoot(this);
@@ -128,7 +131,7 @@ public class TrabalhoGraduacao extends BorderPane {
 
     @FXML
     protected void clickAdicionarIntegrante(ActionEvent e) {
-        ((BorderPane) getScene().getRoot()).setCenter(new AdicionarIntegrante());
+        ((BorderPane) getScene().getRoot()).setCenter(new AdicionarIntegrante(aluno));
     }
 
     @FXML
