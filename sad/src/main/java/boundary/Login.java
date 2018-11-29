@@ -66,7 +66,8 @@ public class Login {
                 OrientadorController cController = new OrientadorController();
                 Orientador orientador = cController.getByEmailAndSenha(email, senha);
                 if (orientador != null) {
-                    System.out.println(orientador.getNome());
+                    new boundary.orientador.Home(orientador);
+                    stage.close();
                 }
             }
         } else {

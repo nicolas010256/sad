@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="220.0" style="-fx-background-color: #4D70FF;" BorderPane.alignment="CENTER">
+         <children>
+            <Circle fill="WHITE" layoutX="110.0" layoutY="95.0" radius="83.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" />
+            <Text fill="WHITE" layoutX="74.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orientador">
+               <font>
+                  <Font name="Segoe UI" size="15.0" />
+               </font>
+            </Text>
+            <StackPane layoutY="216.0" prefHeight="35.0" prefWidth="220.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Text fx:id="lblNome" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do Orientador">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </StackPane>
+            <StackPane layoutY="280.0" onMouseClicked="#clickPerfil" prefHeight="42.0" prefWidth="220.0" style="-fx-border-color: #8AA1FF; -fx-border-width: 1 0 1 0;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Perfil">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </StackPane>
+            <StackPane layoutY="321.0" onMouseClicked="#clickTrabalho" prefHeight="42.0" prefWidth="220.0" style="-fx-border-color: #8AA1FF; -fx-border-width: 1 0 1 0;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Trabalhos de Graduação">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </StackPane>
+            <StackPane layoutY="362.0" onMouseClicked="#clickNotificacao" prefHeight="42.0" prefWidth="220.0" style="-fx-border-color: #8AA1FF; -fx-border-width: 1 0 1 0;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Notificações">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </StackPane>
+            <StackPane layoutY="671.0" onMouseClicked="#clickSair" prefHeight="42.0" prefWidth="220.0" style="-fx-border-color: #8AA1FF; -fx-border-width: 1 0 0 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sair">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </StackPane>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

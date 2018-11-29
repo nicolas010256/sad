@@ -7,6 +7,7 @@ import dao.NotificacaoDAOImpl;
 import dao.exceptions.NotificacaoDAOException;
 import entity.Aluno;
 import entity.Notificacao;
+import entity.Orientador;
 
 public class NotificacaoController {
     private NotificacaoDAO dao = new NotificacaoDAOImpl();
@@ -35,5 +36,15 @@ public class NotificacaoController {
         } catch (NotificacaoDAOException e) {
             e.printStackTrace();
         }
+	}
+
+	public List<Notificacao> getByOrientador(Orientador orientador) {
+		List<Notificacao> notificacoes = null;
+        try {
+            notificacoes = dao.getByOrientador(orientador);
+        } catch (NotificacaoDAOException e) {
+            e.printStackTrace();
+        }
+        return notificacoes;
 	}
 }

@@ -1,4 +1,4 @@
-package boundary.aluno;
+package boundary.orientador;
 
 import java.io.IOException;
 
@@ -7,6 +7,7 @@ import controller.NotificacaoController;
 import controller.TrabalhoController;
 import entity.Aluno;
 import entity.Notificacao;
+import entity.Orientador;
 import entity.Trabalho;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,13 +48,15 @@ public class CardNotificacao extends AnchorPane{
     @FXML
     protected void clickAceitar(ActionEvent e) {
         long id = notificacao.getIdRemetente();
-        Aluno a = new AlunoController().get(id);
+        Aluno aluno = new AlunoController().get(id);
 
-        Trabalho t = new TrabalhoController().getByAluno(a);
+        TrabalhoController tController = new TrabalhoController();
 
-        Aluno aluno = Home.getAluno();
+        Trabalho trabalho = tController.getByAluno(aluno);
+
+        Orientador orientador = Home.getOrientador();
         
-        new AlunoController().updateTrabalho(aluno, t);
+        tController.updateOrientador(trabalho, orientador);
 
         notificacao.setStatus(Notificacao.READ);
 

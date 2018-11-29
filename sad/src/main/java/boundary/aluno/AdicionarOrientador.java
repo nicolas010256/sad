@@ -3,10 +3,8 @@ package boundary.aluno;
 import java.io.IOException;
 import java.util.List;
 
-import controller.AlunoController;
 import controller.AreaController;
 import controller.OrientadorController;
-import entity.Aluno;
 import entity.Area;
 import entity.Orientador;
 import javafx.fxml.FXML;

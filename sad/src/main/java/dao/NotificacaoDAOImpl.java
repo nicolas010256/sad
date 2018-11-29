@@ -10,6 +10,7 @@ import java.util.List;
 import dao.exceptions.NotificacaoDAOException;
 import entity.Aluno;
 import entity.Notificacao;
+import entity.Orientador;
 
 public class NotificacaoDAOImpl implements NotificacaoDAO {
 
@@ -112,5 +113,51 @@ public class NotificacaoDAOImpl implements NotificacaoDAO {
             JDBCUtil.close(con);
         }
     }
+
+    @Override
+    public List<Notificacao> getByOrientador(Orientador orientador) throws NotificacaoDAOException {
+        List<Notificacao> notificacoes = new ArrayList<Notificacao>();
+        Connection con = null;
+        try {
+
+            con = JDBCUtil.getConnection();
+
+            String sql = "SELECT * FROM Notificacao WHERE id_destinatario = ? AND tipo_destinatario = ? AND status = ?";
+
+            PreparedStatement st = con.prepareStatement(sql);
+
+            st.setLong(1, orientador.getId());
+            st.setInt(2, Notificacao.ORIENTADOR);
+            st.setInt(3, Notificacao.UNREAD);
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                long id = rs.getLong("id_notificacao");
+                long idRemetente = rs.getLong("id_remetente");
+                int tipoRemetente = rs.getInt("tipo_remetente");
+                long idDestinatario = rs.getLong("id_destinatario");
+                int tipoDestinatario = rs.getInt("tipo_destinatario");
+                String mensagem = rs.getString("mensagem");
+                int tipoNotificacao = rs.getInt("tipo_notificacao");
+                int status = rs.getInt("status");
+
+                Notificacao notificacao = new Notificacao(id, idRemetente, tipoRemetente, idDestinatario, tipoDestinatario);
+                notificacao.setMensagem(mensagem);
+                notificacao.setTipoNotificacao(tipoNotificacao);
+                notificacao.setStatus(status);
+
+                notificacoes.add(notificacao);
+            }
+
+            st.close();
+
+        } catch (SQLException e) {
+            throw new NotificacaoDAOException("Erro ao recuperar notificações");
+        } finally {
+            JDBCUtil.close(con);
+        }
+        return notificacoes;
+	}
 
 }
