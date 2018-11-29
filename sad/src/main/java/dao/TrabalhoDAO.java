@@ -4,12 +4,14 @@ import java.util.List;
 
 import dao.exceptions.TrabalhoDAOException;
 import entity.Aluno;
+import entity.Banca;
 import entity.Orientador;
+import entity.TipoTrabalho;
 import entity.Trabalho;
 
 public interface TrabalhoDAO {
 
-    void add(Trabalho trabalho, Aluno aluno) throws TrabalhoDAOException;
+    void add(Trabalho trabalho, Aluno aluno, TipoTrabalho tipoTrabalho) throws TrabalhoDAOException;
 
     Trabalho get(long id) throws TrabalhoDAOException;
 
@@ -23,11 +25,11 @@ public interface TrabalhoDAO {
 
     void update(Trabalho trabalho) throws TrabalhoDAOException;
 
-    void updateOrientador(Trabalho trabalho) throws TrabalhoDAOException;
+    void updateOrientador(Trabalho trabalho, Orientador orientador) throws TrabalhoDAOException;
 
-    void updateTipoTrabalho(Trabalho trabalho) throws TrabalhoDAOException;
+    void updateTipoTrabalho(Trabalho trabalho, TipoTrabalho tipoTrabalho) throws TrabalhoDAOException;
 
-    void updateBanca(Trabalho trabalho) throws TrabalhoDAOException;
+    void updateBanca(Trabalho trabalho, Banca banca) throws TrabalhoDAOException;
 
     void remove(Trabalho trabalho) throws TrabalhoDAOException;
 }

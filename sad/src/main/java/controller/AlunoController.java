@@ -93,17 +93,17 @@ public class AlunoController {
         }
     }
 
-    public void updateCurso(Aluno aluno) {
+    public void updateCurso(Aluno aluno, Curso curso) {
         try {
-            dao.updateCurso(aluno);
+            dao.updateCurso(aluno, curso);
         } catch (AlunoDAOException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateTrabalho(Aluno aluno) {
+    public void updateTrabalho(Aluno aluno, Trabalho trabalho) {
         try {
-            dao.updateTrabalho(aluno);
+            dao.updateTrabalho(aluno, trabalho);
         } catch (AlunoDAOException e) {
             e.printStackTrace();
         }

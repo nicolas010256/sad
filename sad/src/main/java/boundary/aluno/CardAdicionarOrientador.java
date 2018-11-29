@@ -4,13 +4,18 @@ import java.io.IOException;
 import java.util.List;
 
 import controller.AreaController;
-import controller.CursoController;
+import controller.NotificacaoController;
+import controller.TipoTrabalhoController;
+import controller.TrabalhoController;
 import entity.Aluno;
 import entity.Area;
-import entity.Curso;
+import entity.Notificacao;
 import entity.Orientador;
+import entity.TipoTrabalho;
+import entity.Trabalho;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.scene.layout.VBox;
@@ -53,6 +58,20 @@ public class CardAdicionarOrientador extends AnchorPane {
 
     @FXML
     protected void clickConvidar(ActionEvent e) {
+        Aluno usuario = Home.getAluno();
+        Trabalho trabalho = new TrabalhoController().getByAluno(usuario);
+        TipoTrabalho tipoTrabalho = new TipoTrabalhoController().getByTrabalho(trabalho);
 
+        Notificacao notificacao = new Notificacao(usuario.getId(), Notificacao.ALUNO, orientador.getId(), Notificacao.ORIENTADOR);
+
+        notificacao.setMensagem( usuario.getNome() + " o convidou para participar do Trabalho de Graduação:\n " +
+            "\nTítulo: " + trabalho.getTitulo() + 
+            "\nTema: " + trabalho.getTema() + 
+            "\nTipo de Trabalaho:" + tipoTrabalho.getNome());
+
+        notificacao.setTipoNotificacao(Notificacao.CONVITE);
+        
+        new NotificacaoController().add(notificacao);
+        Home.setContent((Parent) new TrabalhoGraduacao());
     }
 }

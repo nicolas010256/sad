@@ -14,7 +14,7 @@ import entity.Mensagem;
 public class MensagemDAOImpl implements MensagemDAO {
 
     @Override
-    public void add(Mensagem mensagem) throws MensagemDAOException {
+    public void add(Mensagem mensagem, Atividade atividade) throws MensagemDAOException {
         Connection con = null;
 
         try {
@@ -23,8 +23,8 @@ public class MensagemDAOImpl implements MensagemDAO {
                     "VALUES (?, ?)";
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, mensagem.getConteudo());
-            if (mensagem.getAtividade() != null) 
-                statement.setLong(7, mensagem.getAtividade().getId());
+            if (atividade != null) 
+                statement.setLong(7, atividade.getId());
             else
                 statement.setNull(7, Types.INTEGER);
             statement.executeUpdate();

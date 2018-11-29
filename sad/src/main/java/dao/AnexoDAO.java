@@ -8,7 +8,7 @@ import entity.Mensagem;
 
 public interface AnexoDAO {
 
-    void add(Anexo anexo) throws AnexoDAOException;
+    void add(Anexo anexo, Mensagem mensagem) throws AnexoDAOException;
 
     Anexo get(long id) throws AnexoDAOException;
 

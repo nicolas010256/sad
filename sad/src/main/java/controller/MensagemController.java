@@ -11,9 +11,9 @@ import entity.Mensagem;
 public class MensagemController {
     private MensagemDAO dao = new MensagemDAOImpl();
 
-    public void add(Mensagem mensagem) {
+    public void add(Mensagem mensagem, Atividade atividade) {
         try {
-            dao.add(mensagem);
+            dao.add(mensagem, atividade);
         } catch (MensagemDAOException e) {
             e.printStackTrace();
         }

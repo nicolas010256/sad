@@ -20,8 +20,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.input.MouseEvent;
 
 public class Perfil extends BorderPane {
-    private Aluno aluno;
-
     @FXML
     private Text lblNome;
 
@@ -49,46 +47,18 @@ public class Perfil extends BorderPane {
     @FXML
     private Text lblOrientador;
 
-    public Perfil(Aluno aluno) {
-        this.aluno = aluno;
+    public Perfil() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/aluno/perfil.fxml"));
             loader.setController(this);
             loader.setRoot(this);
             loader.load();
 
-            Curso curso = aluno.getCurso();
-            Trabalho trabalho = aluno.getTrabalho();
-            TipoTrabalho tipoTrabalho = null;
-            Orientador orientador = null;
-
-            if (curso == null) {
-                CursoController cController = new CursoController();
-                curso = cController.getByAluno(aluno);
-                aluno.setCurso(curso);
-            }
-
-            if (trabalho == null) {
-                TrabalhoController tController = new TrabalhoController();
-                trabalho = tController.getByAluno(aluno);
-                aluno.setTrabalho(trabalho);
-            }
-
-            if (trabalho != null) {
-                orientador = trabalho.getOrientador();
-                tipoTrabalho = trabalho.getTipoTrabalho();
-                if (orientador == null) {
-                    OrientadorController oController = new OrientadorController();
-                    orientador = oController.getByTrabalho(trabalho);
-                    trabalho.setOrientador(orientador);
-                }
-                if (aluno.getTrabalho().getTipoTrabalho() == null) {
-                    TipoTrabalhoController ttController = new TipoTrabalhoController();
-                    tipoTrabalho = ttController.getByTrabalho(trabalho);
-
-                }
-            }
-            
+            Aluno aluno = Home.getAluno();
+            Curso curso = new CursoController().getByAluno(aluno);
+            Trabalho trabalho = new TrabalhoController().getByAluno(aluno);
+            TipoTrabalho tipoTrabalho = new TipoTrabalhoController().getByTrabalho(trabalho);
+            Orientador orientador = new OrientadorController().getByTrabalho(trabalho);            
 
             lblNome.setText(aluno.getNome());
             lblCurso.setText(curso != null ? curso.getNome() : "–");
@@ -107,6 +77,8 @@ public class Perfil extends BorderPane {
 
     @FXML
     protected void clickAlterarSenha(MouseEvent e) {
+        Aluno aluno = Home.getAluno();
+
         AlterarSenha altSenha = new AlterarSenha(getScene().getWindow(), aluno);
         if (altSenha.getStatus()) {
             AlunoController aController = new AlunoController();

@@ -1,6 +1,7 @@
 package entity;
 
 public class Notificacao {
+    private long id;
     private long idRemetente;
     private int tipoRemetente;
     private long idDestinatario;
@@ -17,12 +18,24 @@ public class Notificacao {
 
     public static final int UNREAD = 0;
     public static final int READ = 1;
+    
+    public Notificacao(long id, long idRemetente, int tipoRemetente, long idDestinatario, int tipoDestinatario) {
+        this.id = id;
+        this.idRemetente = idRemetente;
+        this.tipoRemetente = tipoRemetente;
+        this.idDestinatario = idDestinatario;
+        this.tipoDestinatario = tipoDestinatario;
+    }
 
     public Notificacao(long idRemetente, int tipoRemetente, long idDestinatario, int tipoDestinatario) {
         this.idRemetente = idRemetente;
         this.tipoRemetente = tipoRemetente;
         this.idDestinatario = idDestinatario;
         this.tipoDestinatario = tipoDestinatario;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public long getIdRemetente() {

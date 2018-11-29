@@ -27,9 +27,9 @@ public interface AlunoDAO {
 
     void updateFoto(Aluno aluno) throws AlunoDAOException;
 
-    void updateCurso(Aluno aluno) throws AlunoDAOException;
+    void updateCurso(Aluno aluno, Curso curso) throws AlunoDAOException;
 
-    void updateTrabalho(Aluno aluno) throws AlunoDAOException;
+    void updateTrabalho(Aluno aluno, Trabalho trabalho) throws AlunoDAOException;
 
     void remove(Aluno aluno) throws AlunoDAOException;
 }

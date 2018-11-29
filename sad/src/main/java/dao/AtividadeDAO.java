@@ -8,7 +8,7 @@ import entity.Trabalho;
 
 public interface AtividadeDAO {
 
-    void add(Atividade atividade) throws AtividadeDAOException;
+    void add(Atividade atividade, Trabalho trabalho) throws AtividadeDAOException;
 
     Atividade get(long id) throws AtividadeDAOException;
 

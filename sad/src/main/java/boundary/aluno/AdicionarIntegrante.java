@@ -30,10 +30,8 @@ public class AdicionarIntegrante extends BorderPane {
 
     private List<Curso> cursos;
 
-    private Aluno aluno;
 
-    public AdicionarIntegrante(Aluno aluno) {
-        this.aluno = aluno;
+    public AdicionarIntegrante() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/aluno/adicionar.fxml"));
             loader.setRoot(this);
@@ -71,7 +69,7 @@ public class AdicionarIntegrante extends BorderPane {
         }
 
         for (Aluno aluno : alunos) {
-            box.getChildren().add(new CardAdicionarIntegrante(this.aluno, aluno));
+            box.getChildren().add(new CardAdicionarIntegrante(aluno));
         }
     }
 }

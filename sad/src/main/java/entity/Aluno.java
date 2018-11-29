@@ -16,10 +16,6 @@ public class Aluno  implements Usuario{
 
 	private float notaTG2;
 
-	private Trabalho trabalho;
-
-	private Curso curso;
-
 	public Aluno(String email, String senha, String nome) {
 		this.email = email;
 		this.senha = senha;
@@ -84,21 +80,4 @@ public class Aluno  implements Usuario{
 	public void setNotaTG2(float notaTG2) {
 		this.notaTG2 = notaTG2;
 	}
-
-	public Trabalho getTrabalho() {
-		return trabalho;
-	}
-
-	public void setTrabalho(Trabalho trabalho) {
-		this.trabalho = trabalho;
-	}
-
-	public Curso getCurso() {
-		return curso;
-	}
-
-	public void setCurso(Curso curso) {
-		this.curso = curso;
-	}
-
 }

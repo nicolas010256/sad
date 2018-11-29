@@ -12,20 +12,22 @@ import java.util.List;
 import javax.sql.rowset.serial.SerialBlob;
 import dao.exceptions.TrabalhoDAOException;
 import entity.Aluno;
+import entity.Banca;
 import entity.Orientador;
+import entity.TipoTrabalho;
 import entity.Trabalho;
 
 public class TrabalhoDAOImpl implements TrabalhoDAO {
 
     @Override
-    public void add(Trabalho trabalho, Aluno aluno) throws TrabalhoDAOException {
+    public void add(Trabalho trabalho, Aluno aluno, TipoTrabalho tipoTrabalho) throws TrabalhoDAOException {
         Connection con = null;
 
         try {
             con = JDBCUtil.getConnection();
             con.setAutoCommit(false);
 
-            String insert = "INSERT INTO Trabalho (Tema,Titulo,Metodologia,Relevancia,Arquivo,Data_Criacao,idTipoTrabalho,idOrientador) VALUES (?,?,?,?,?,?,?,?)";
+            String insert = "INSERT INTO Trabalho (Tema,Titulo,Metodologia,Relevancia,Arquivo,Data_Criacao,idTipoTrabalho) VALUES (?,?,?,?,?,?,?)";
             String select = "SELECT @idTrabalho:=LAST_INSERT_ID();";
             String update = "UPDATE Aluno SET idTrabalho=@idTrabalho WHERE idAluno=?;";
 
@@ -41,15 +43,10 @@ public class TrabalhoDAOImpl implements TrabalhoDAO {
             java.util.Date data = trabalho.getData_criacao();
             java.sql.Date datasql = new java.sql.Date(data.getTime());
             insertTrabalho.setDate(6,datasql);
-            if (trabalho.getTipoTrabalho() != null){
-                insertTrabalho.setLong(7, trabalho.getTipoTrabalho().getId());
+            if (tipoTrabalho != null){
+                insertTrabalho.setLong(7, tipoTrabalho.getId());
             } else {
                 insertTrabalho.setNull(7, Types.INTEGER);
-            }
-            if (trabalho.getOrientador() != null){
-                insertTrabalho.setLong(8, trabalho.getOrientador().getId());
-            } else {
-                insertTrabalho.setNull(8, Types.INTEGER);
             }
 
             updateAluno.setLong(1, aluno.getId());
@@ -239,15 +236,15 @@ public class TrabalhoDAOImpl implements TrabalhoDAO {
     }
 
     @Override
-    public void updateOrientador(Trabalho trabalho) throws TrabalhoDAOException {
+    public void updateOrientador(Trabalho trabalho, Orientador orientador) throws TrabalhoDAOException {
         Connection con = null;
 
         try {
             con = JDBCUtil.getConnection();
             String sql = "UPDATE Trabalho SET idOrientador = ? WHERE idTrabalho = ?";
             PreparedStatement st = con.prepareStatement(sql);
-            if (trabalho.getOrientador() != null){
-                st.setLong(1, trabalho.getOrientador().getId());
+            if (orientador != null){
+                st.setLong(1, orientador.getId());
             } else {
                 st.setNull(1, Types.INTEGER);
             }
@@ -266,15 +263,15 @@ public class TrabalhoDAOImpl implements TrabalhoDAO {
     }
 
     @Override
-    public void updateTipoTrabalho(Trabalho trabalho) throws TrabalhoDAOException {
+    public void updateTipoTrabalho(Trabalho trabalho, TipoTrabalho tipoTrabalho) throws TrabalhoDAOException {
         Connection con = null;
 
         try {
             con = JDBCUtil.getConnection();
             String sql = "UPDATE Trabalho SET idTipoTrabalho = ? WHERE idTrabalho = ?";
             PreparedStatement st = con.prepareStatement(sql);
-            if (trabalho.getTipoTrabalho() != null){
-                st.setLong(1, trabalho.getTipoTrabalho().getId());
+            if (tipoTrabalho != null){
+                st.setLong(1, tipoTrabalho.getId());
             } else {
                 st.setNull(1, Types.INTEGER);
             }
@@ -293,15 +290,15 @@ public class TrabalhoDAOImpl implements TrabalhoDAO {
     }
 
     @Override
-    public void updateBanca(Trabalho trabalho) throws TrabalhoDAOException {
+    public void updateBanca(Trabalho trabalho, Banca banca) throws TrabalhoDAOException {
 		Connection con = null;
 
         try {
             con = JDBCUtil.getConnection();
             String sql = "UPDATE Trabalho SET idBanca = ? WHERE idTrabalho = ?";
             PreparedStatement st = con.prepareStatement(sql);
-            if (trabalho.getBanca() != null){
-                st.setLong(1, trabalho.getBanca().getId());
+            if (banca != null){
+                st.setLong(1, banca.getId());
             } else {
                 st.setNull(1, Types.INTEGER);
             }
@@ -373,5 +370,4 @@ public class TrabalhoDAOImpl implements TrabalhoDAO {
             JDBCUtil.close(con);
         }
     }
-
 }

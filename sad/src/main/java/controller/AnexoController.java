@@ -11,9 +11,9 @@ import entity.Mensagem;
 public class AnexoController {
     AnexoDAO dao = new AnexoDAOImpl();
 
-    public void add(Anexo anexo) {
+    public void add(Anexo anexo, Mensagem mensagem) {
         try {
-            dao.add(anexo);
+            dao.add(anexo, mensagem);
         } catch (AnexoDAOException e) {
             e.printStackTrace();
         }

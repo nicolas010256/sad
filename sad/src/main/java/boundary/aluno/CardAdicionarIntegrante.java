@@ -4,11 +4,16 @@ import java.io.IOException;
 
 import controller.CursoController;
 import controller.NotificacaoController;
+import controller.TipoTrabalhoController;
+import controller.TrabalhoController;
 import entity.Aluno;
 import entity.Curso;
 import entity.Notificacao;
+import entity.TipoTrabalho;
+import entity.Trabalho;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.event.ActionEvent;
@@ -23,11 +28,9 @@ public class CardAdicionarIntegrante extends AnchorPane {
     @FXML
     private Text lblCurso;
 
-    private Aluno usuario;
     private Aluno aluno;
 
-    public CardAdicionarIntegrante(Aluno usuario, Aluno aluno) {
-        this.usuario = usuario;
+    public CardAdicionarIntegrante(Aluno aluno) {
         this.aluno = aluno;
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/aluno/card_adicionar_integrante.fxml"));
@@ -49,12 +52,21 @@ public class CardAdicionarIntegrante extends AnchorPane {
 
     @FXML
     protected void clickConvidar(ActionEvent e) {
+        Aluno usuario = Home.getAluno();
+        Trabalho trabalho = new TrabalhoController().getByAluno(usuario);
+        TipoTrabalho tipoTrabalho = new TipoTrabalhoController().getByTrabalho(trabalho);
+
         Notificacao notificacao = new Notificacao(usuario.getId(), Notificacao.ALUNO, aluno.getId(), Notificacao.ALUNO);
+
         notificacao.setMensagem( usuario.getNome() + " o convidou para participar do Trabalho de Graduação:\n " +
-            "\nTítulo: " + usuario.getTrabalho().getTitulo() + 
-            "\nTema: " + usuario.getTrabalho().getTema() + 
-            "\nTipo de Trabalaho:" + usuario.getTrabalho().getTipoTrabalho().getNome());
+            "\nTítulo: " + trabalho.getTitulo() + 
+            "\nTema: " + trabalho.getTema() + 
+            "\nTipo de Trabalaho:" + tipoTrabalho.getNome());
+
         notificacao.setTipoNotificacao(Notificacao.CONVITE);
+        
         new NotificacaoController().add(notificacao);
+
+        Home.setContent((Parent) new TrabalhoGraduacao());
     }
 }

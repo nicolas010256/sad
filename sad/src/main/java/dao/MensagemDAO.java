@@ -8,7 +8,7 @@ import entity.Mensagem;
 
 public interface MensagemDAO {
 
-    void add(Mensagem mensagem) throws MensagemDAOException;
+    void add(Mensagem mensagem, Atividade atividade) throws MensagemDAOException;
 
     Mensagem get(long id) throws MensagemDAOException;
 

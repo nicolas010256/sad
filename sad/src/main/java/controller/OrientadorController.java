@@ -32,6 +32,7 @@ public class OrientadorController {
 
     public Orientador getByTrabalho(Trabalho trabalho) {
         Orientador orientador = null;
+        if (trabalho == null) return null;
         try {
             orientador = dao.getByTrabalho(trabalho);
         } catch (OrientadorDAOException e) {

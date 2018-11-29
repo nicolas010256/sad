@@ -91,7 +91,7 @@
                               <Font size="16.0" />
                            </font>
                         </Text>
-                        <Button layoutX="250.0" layoutY="110.0" mnemonicParsing="false" onAction="#clickAdicionarIntegrante" prefWidth="120.0" style="-fx-padding: 0; -fx-background-color: #4D70FF; -fx-border-color: white; -fx-background-radius: 4; -fx-border-radius: 4;" text="Adicionar" textFill="WHITE">
+                        <Button fx:id="btnAdicionarIntegrante" layoutX="250.0" layoutY="110.0" mnemonicParsing="false" onAction="#clickAdicionarIntegrante" prefWidth="120.0" style="-fx-padding: 0; -fx-background-color: #4D70FF; -fx-border-color: white; -fx-background-radius: 4; -fx-border-radius: 4;" text="Adicionar" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -129,7 +129,7 @@
                               <Font size="16.0" />
                            </font>
                         </Text>
-                        <Button layoutX="250.0" layoutY="41.0" mnemonicParsing="false" onAction="#clickAdicionarOrientador" prefWidth="120.0" style="-fx-padding: 0; -fx-background-color: #4D70FF; -fx-border-color: white; -fx-background-radius: 4; -fx-border-radius: 4;" text="Adicionar" textFill="WHITE">
+                        <Button fx:id="btnAdicionarOrientador" layoutX="250.0" layoutY="41.0" mnemonicParsing="false" onAction="#clickAdicionarOrientador" prefWidth="120.0" style="-fx-padding: 0; -fx-background-color: #4D70FF; -fx-border-color: white; -fx-background-radius: 4; -fx-border-radius: 4;" text="Adicionar" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>

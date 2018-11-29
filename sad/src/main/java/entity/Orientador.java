@@ -1,8 +1,5 @@
 package entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Orientador implements Usuario{
 
 	private long id;
@@ -15,9 +12,6 @@ public class Orientador implements Usuario{
 
 	private byte[] foto;
 
-	private List<Trabalho> trabalhos = new ArrayList<Trabalho>();
-	
-	private List<AreaAtuacao> areasAtuacao =  new ArrayList<AreaAtuacao>();
 
 	public Orientador(long id, String email, String senha, String nome) {
 		this.id = id;
@@ -67,21 +61,4 @@ public class Orientador implements Usuario{
 	public void setFoto(byte[] foto) {
 		this.foto = foto;
 	}
-
-	public List<AreaAtuacao> getAreasAtuacao() {
-		return areasAtuacao;
-	}
-
-	public void setAreasAtuacao(List<AreaAtuacao> areaAtuacao) {
-		this.areasAtuacao = areaAtuacao;
-	}
-
-	public List<Trabalho> getTrabalhos() {
-		return trabalhos;
-	}
-
-	public void setTrabalhos(List<Trabalho> trabalhos) {
-		this.trabalhos = trabalhos;
-	}
-
 }

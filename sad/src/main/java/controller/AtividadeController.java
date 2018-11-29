@@ -11,9 +11,9 @@ import entity.Trabalho;
 public class AtividadeController {
     private AtividadeDAO dao = new AtividadeDAOImpl();
 
-    public void add(Atividade atividade) {
+    public void add(Atividade atividade, Trabalho trabalho) {
         try {
-            dao.add(atividade);
+            dao.add(atividade, trabalho);
         } catch (AtividadeDAOException e) {
             e.printStackTrace();
         }
@@ -41,7 +41,7 @@ public class AtividadeController {
 
     public void update(Atividade atividade) {
         try {
-            dao.add(atividade);
+            dao.update(atividade);
         } catch(AtividadeDAOException e) {
             e.printStackTrace();
         }
@@ -49,7 +49,7 @@ public class AtividadeController {
 
     public void remove(Atividade atividade) {
         try {
-            dao.add(atividade);
+            dao.remove(atividade);
         } catch(AtividadeDAOException e) {
             e.printStackTrace();
         }

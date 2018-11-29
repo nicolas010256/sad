@@ -41,6 +41,7 @@ public class TipoTrabalhoController {
 
     public TipoTrabalho getByTrabalho(Trabalho trabalho) {
         TipoTrabalho tipoTrabalho = null;
+        if (trabalho == null) return null;
         try {
             tipoTrabalho = dao.getByTrabalho(trabalho);
         } catch (TipoTrabalhoDAOException e) {

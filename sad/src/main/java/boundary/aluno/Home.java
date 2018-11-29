@@ -18,15 +18,15 @@ import javafx.scene.layout.BorderPane;
 public class Home {
     private Stage stage;
     private Scene scene;
-    private Parent root;
+    private static Parent root;
 
-    private Aluno aluno;
+    private static Aluno aluno;
 
     @FXML
     private Text lblNome;
 
     public Home(Aluno aluno) {
-        this.aluno = aluno;
+        Home.aluno = aluno;
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/aluno/home.fxml"));
@@ -47,37 +47,39 @@ public class Home {
         }
     }
 
-    private void setContent(Parent node) {
+    public static void setContent(Parent node) {
         ((BorderPane) root).setCenter(node);
     }
 
     @FXML
     protected void clickPerfil(MouseEvent e) {
-        setContent((Parent) new Perfil(aluno));
+        setContent((Parent) new Perfil());
     }
 
     @FXML
     protected void clickTrabalho(MouseEvent e) {
-        Trabalho trabalho = aluno.getTrabalho();
+        Trabalho trabalho = new TrabalhoController().getByAluno(aluno);
+
         if (trabalho == null) {
-            trabalho = new TrabalhoController().getByAluno(aluno);
-            aluno.setTrabalho(trabalho);
-        }
-        if (trabalho == null) {
-            setContent((Parent) new CriarTrabalho(aluno)); 
+            setContent((Parent) new CriarTrabalho()); 
         } else {
-            setContent((Parent) new TrabalhoGraduacao(aluno));
+            setContent((Parent) new TrabalhoGraduacao());
         }
     }
 
     @FXML
     protected void clickNotificacao(MouseEvent e) {
-
+        setContent((Parent) new Notificacoes());
     }
 
     @FXML
     protected void clickSair(MouseEvent e) {
+        Home.aluno = null;
         stage.close();
         new Login();
+    }
+
+    public static Aluno getAluno() {
+        return aluno;
     }
 }

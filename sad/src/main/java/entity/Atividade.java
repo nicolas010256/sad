@@ -1,8 +1,5 @@
 package entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Atividade {
 
 	private long id;
@@ -12,10 +9,6 @@ public class Atividade {
 	private String descricao;
 
 	private String status;
-
-	private Trabalho trabalho;
-
-	private List<Mensagem> mensagens = new ArrayList<Mensagem>();
 
 	public Atividade(long id, String titulo, String descricao, String status) {
 		this.id = id;
@@ -32,14 +25,6 @@ public class Atividade {
 
 	public long getId() {
 		return id;
-	}
-
-	public Trabalho getTrabalho() {
-		return trabalho;
-	}
-
-	public void setTrabalho(Trabalho trabalho) {
-		this.trabalho = trabalho;
 	}
 
 	public String getTitulo() {
@@ -65,13 +50,4 @@ public class Atividade {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-	public List<Mensagem> getMensagens() {
-		return mensagens;
-	}
-
-	public void setMensagens(List<Mensagem> mensagens) {
-		this.mensagens = mensagens;
-	}
-
 }

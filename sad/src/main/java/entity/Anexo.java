@@ -8,8 +8,6 @@ public class Anexo {
 
 	private String tipo;
 
-	private Mensagem mensagem;
-
 	public Anexo(long id, byte[] arquivo, String tipo) {
 		this.id = id;
 		this.arquivo = arquivo;
@@ -39,13 +37,5 @@ public class Anexo {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
-	}
-
-	public void setMensagem(Mensagem mensagem){
-		this.mensagem = mensagem;
-	}
-
-	public Mensagem getMensagem(){
-		return mensagem;
 	}
 }

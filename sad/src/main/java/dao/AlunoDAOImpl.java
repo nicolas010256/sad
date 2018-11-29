@@ -22,7 +22,7 @@ public class AlunoDAOImpl implements AlunoDAO {
 
         try {
             con = JDBCUtil.getConnection();
-            String sql = "INSERT INTO Aluno (Nome, Email, Senha, Foto, NotaTG1, NotaTG2, idCurso, idTrabalho) " +
+            String sql = "INSERT INTO Aluno (Nome, Email, Senha, Foto, NotaTG1, NotaTG2) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, aluno.getNome());
@@ -31,14 +31,7 @@ public class AlunoDAOImpl implements AlunoDAO {
             statement.setBlob(4, aluno.getFoto() != null ? new SerialBlob(aluno.getFoto()) : null);
             statement.setFloat(5, aluno.getNotaTG1());
             statement.setFloat(6, aluno.getNotaTG2());
-            if (aluno.getCurso() != null) 
-                statement.setLong(7, aluno.getCurso().getId());
-            else
-                statement.setNull(7, Types.INTEGER);
-            if (aluno.getTrabalho() != null)
-                statement.setLong(8, aluno.getTrabalho().getId());
-            else
-                statement.setNull(8, Types.INTEGER);
+
             statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {
@@ -344,7 +337,7 @@ public class AlunoDAOImpl implements AlunoDAO {
     }
 
     @Override
-    public void updateCurso(Aluno aluno) throws AlunoDAOException {
+    public void updateCurso(Aluno aluno, Curso curso) throws AlunoDAOException {
         Connection con = null;
 
         try {
@@ -353,10 +346,13 @@ public class AlunoDAOImpl implements AlunoDAO {
             String sql = "UPDATE Aluno SET idCurso=? WHERER idAluno=?";
 
             PreparedStatement st = con.prepareStatement(sql);
-            if (aluno.getCurso() != null)
-                st.setLong(1, aluno.getCurso().getId());
-            else
+
+            if (curso != null) {
+                st.setLong(1, curso.getId());
+            } else {
                 st.setNull(1, Types.INTEGER);
+            }
+
             st.setLong(2, aluno.getId());
 
             st.executeUpdate();
@@ -371,7 +367,7 @@ public class AlunoDAOImpl implements AlunoDAO {
     }
 
     @Override
-    public void updateTrabalho(Aluno aluno) throws AlunoDAOException {
+    public void updateTrabalho(Aluno aluno, Trabalho trabalho) throws AlunoDAOException {
         Connection con = null;
 
         try {
@@ -380,11 +376,14 @@ public class AlunoDAOImpl implements AlunoDAO {
             String sql = "UPDATE Aluno SET idTrabalho=? WHERE idAluno=?";
 
             PreparedStatement st = con.prepareStatement(sql);
-            if (aluno.getCurso() != null)
-                st.setLong(1, aluno.getCurso().getId());
-            else
+            
+            if (trabalho != null) {
+                st.setLong(1, trabalho.getId());
+            } else {
                 st.setNull(1, Types.INTEGER);
-            st.setLong(1, aluno.getId());
+            }
+
+            st.setLong(2, aluno.getId());
 
             st.executeUpdate();
             st.close();

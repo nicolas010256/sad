@@ -1,10 +1,12 @@
 package controller;
 
+import java.util.List;
+
 import dao.NotificacaoDAO;
 import dao.NotificacaoDAOImpl;
 import dao.exceptions.NotificacaoDAOException;
+import entity.Aluno;
 import entity.Notificacao;
-import entity.Usuario;
 
 public class NotificacaoController {
     private NotificacaoDAO dao = new NotificacaoDAOImpl();
@@ -16,4 +18,22 @@ public class NotificacaoController {
             e.printStackTrace();
         }
     }
+
+	public List<Notificacao> getByAluno(Aluno aluno) {
+        List<Notificacao> notificacoes = null;
+        try {
+            notificacoes = dao.getByAluno(aluno);
+        } catch (NotificacaoDAOException e) {
+            e.printStackTrace();
+        }
+        return notificacoes;
+	}
+
+	public void update(Notificacao notificacao) {
+        try {
+            dao.update(notificacao);
+        } catch (NotificacaoDAOException e) {
+            e.printStackTrace();
+        }
+	}
 }

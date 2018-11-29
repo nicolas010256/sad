@@ -15,7 +15,7 @@ import entity.Trabalho;
 public class AtividadeDAOImpl implements AtividadeDAO {
 
     @Override
-    public void add(Atividade atividade) throws AtividadeDAOException {
+    public void add(Atividade atividade, Trabalho trabalho) throws AtividadeDAOException {
         Connection con = null;
 
         try {
@@ -25,8 +25,8 @@ public class AtividadeDAOImpl implements AtividadeDAO {
             st.setString(1, atividade.getTitulo());
             st.setString(2, atividade.getDescricao());
             st.setString(3, atividade.getStatus());
-            if (atividade.getTrabalho() != null){
-                st.setLong(4, atividade.getTrabalho().getId());
+            if (trabalho != null){
+                st.setLong(4, trabalho.getId());
             } else {
                 st.setNull(4, Types.INTEGER);
             }

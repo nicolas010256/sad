@@ -6,16 +6,18 @@ import dao.TrabalhoDAO;
 import dao.TrabalhoDAOImpl;
 import dao.exceptions.TrabalhoDAOException;
 import entity.Aluno;
+import entity.Banca;
 import entity.Orientador;
+import entity.TipoTrabalho;
 import entity.Trabalho;
 
 
 public class TrabalhoController {
     private TrabalhoDAO dao = new TrabalhoDAOImpl();
 
-    public void add(Trabalho trabalho, Aluno aluno) {
+    public void add(Trabalho trabalho, Aluno aluno, TipoTrabalho tipoTrabalho) {
         try {
-            dao.add(trabalho, aluno);
+            dao.add(trabalho, aluno, tipoTrabalho);
         } catch (TrabalhoDAOException e) {
             e.printStackTrace();
         }
@@ -70,25 +72,25 @@ public class TrabalhoController {
         }
     }
 
-    public void updateOrientador(Trabalho trabalho) {
+    public void updateOrientador(Trabalho trabalho, Orientador orientador) {
         try {
-            dao.updateOrientador(trabalho);
+            dao.updateOrientador(trabalho, orientador);
         } catch (TrabalhoDAOException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateTipoTrabalho(Trabalho trabalho) {
+    public void updateTipoTrabalho(Trabalho trabalho, TipoTrabalho tipoTrabalho) {
         try {
-            dao.updateTipoTrabalho(trabalho);
+            dao.updateTipoTrabalho(trabalho, tipoTrabalho);
         } catch (TrabalhoDAOException e) {
             e.printStackTrace();
         }
     } 
 
-    public void updateBanca(Trabalho trabalho) {
+    public void updateBanca(Trabalho trabalho, Banca banca) {
         try {
-            dao.updateTipoTrabalho(trabalho);
+            dao.updateBanca(trabalho, banca);
         } catch (TrabalhoDAOException e) {
             e.printStackTrace();
         }

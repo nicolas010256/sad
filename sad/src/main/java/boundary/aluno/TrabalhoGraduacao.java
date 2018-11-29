@@ -10,6 +10,7 @@ import controller.AlunoController;
 import controller.BancaController;
 import controller.OrientadorController;
 import controller.TipoTrabalhoController;
+import controller.TrabalhoController;
 import entity.Aluno;
 import entity.Banca;
 import entity.Orientador;
@@ -19,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 
 public class TrabalhoGraduacao extends BorderPane {
@@ -61,25 +63,23 @@ public class TrabalhoGraduacao extends BorderPane {
     @FXML
     private Text lblNota;
 
-    private Aluno aluno;
+    @FXML
+    private Button btnAdicionarIntegrante;
 
-    private Trabalho trabalho;
+    @FXML
+    private Button btnAdicionarOrientador;
 
-    public TrabalhoGraduacao(Aluno aluno) {
-        this.aluno = aluno;
-        this.trabalho = aluno.getTrabalho();
+    public TrabalhoGraduacao() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/aluno/trabalho_graduacao.fxml"));
             loader.setRoot(this);
             loader.setController(this);
             loader.load();
 
-            TipoTrabalho tipoTrabalho = trabalho.getTipoTrabalho();
+            Aluno aluno = Home.getAluno();
+            Trabalho trabalho = new TrabalhoController().getByAluno(aluno);
 
-            if (tipoTrabalho == null) {
-                tipoTrabalho = new TipoTrabalhoController().getByTrabalho(trabalho);
-                trabalho.setTipoTrabalho(tipoTrabalho);
-            }
+            TipoTrabalho tipoTrabalho = new TipoTrabalhoController().getByTrabalho(trabalho);
 
             List<Text> t = new ArrayList<Text>();
             t.add(lblIntegrante1);
@@ -90,6 +90,10 @@ public class TrabalhoGraduacao extends BorderPane {
                 t.get(i).setText(integrantes.get(i).getNome());
             }
 
+            if (integrantes.size() == 3)
+                btnAdicionarIntegrante.setVisible(false);
+
+
 
             lblTitulo.setText(trabalho.getTitulo());
             lblTema.setText(trabalho.getTema());
@@ -97,22 +101,15 @@ public class TrabalhoGraduacao extends BorderPane {
             lblMetodologia.setText(trabalho.getMetodologia());
             lblRelevancia.setText(trabalho.getRelevancia());
 
-            Orientador orientador = trabalho.getOrientador();
+            Orientador orientador = new OrientadorController().getByTrabalho(trabalho);
 
-            if (orientador == null) {
-                orientador = new OrientadorController().getByTrabalho(trabalho);
-                trabalho.setOrientador(orientador);
-            }
+            if (orientador != null)
+                btnAdicionarOrientador.setVisible(false);
 
             lblOrientador.setText(orientador != null ? orientador.getNome() : "–");
 
-            Banca banca = trabalho.getBanca();
+            Banca banca = new BancaController().getByTrabalho(trabalho);
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-            if (banca == null) {
-                banca = new BancaController().getByTrabalho(trabalho);
-                trabalho.setBanca(banca);
-            }
 
             lblLocal.setText(banca != null ? banca.getLocal() : "–");
             lblData.setText(banca != null ? dateFormat.format(banca.getDataHorario()) : "–");
@@ -131,7 +128,7 @@ public class TrabalhoGraduacao extends BorderPane {
 
     @FXML
     protected void clickAdicionarIntegrante(ActionEvent e) {
-        ((BorderPane) getScene().getRoot()).setCenter(new AdicionarIntegrante(aluno));
+        ((BorderPane) getScene().getRoot()).setCenter(new AdicionarIntegrante());
     }
 
     @FXML

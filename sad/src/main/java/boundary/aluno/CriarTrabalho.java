@@ -12,6 +12,7 @@ import entity.TipoTrabalho;
 import entity.Trabalho;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -39,10 +40,7 @@ public class CriarTrabalho extends BorderPane {
     @FXML
     private List<TipoTrabalho> tipos;
 
-    private Aluno aluno;
-
-    public CriarTrabalho(Aluno aluno) {
-        this.aluno = aluno;
+    public CriarTrabalho() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/aluno/criar_trabalho.fxml"));
             loader.setRoot(this);
@@ -83,10 +81,15 @@ public class CriarTrabalho extends BorderPane {
 
             Date hoje = Calendar.getInstance().getTime();
             Trabalho trabalho = new Trabalho(tema, titulo, metodologia, relevancia, hoje);
-            trabalho.setTipoTrabalho(tipos.get(indexTipo));
+            TipoTrabalho tipoTrabalho = tipos.get(indexTipo);
+
+            Aluno aluno = Home.getAluno();
+
             TrabalhoController tController = new TrabalhoController();
-            tController.add(trabalho, aluno);
-            aluno.setTrabalho(tController.getByAluno(aluno));
+            tController.add(trabalho, aluno, tipoTrabalho);
+
+            Home.setContent((Parent) new TrabalhoGraduacao());
+
         } catch (RuntimeException err) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setHeaderText(null);

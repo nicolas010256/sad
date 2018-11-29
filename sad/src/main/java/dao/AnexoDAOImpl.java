@@ -18,7 +18,7 @@ import entity.Mensagem;
 public class AnexoDAOImpl implements AnexoDAO {
 
     @Override
-    public void add(Anexo anexo) throws AnexoDAOException {
+    public void add(Anexo anexo, Mensagem mensagem) throws AnexoDAOException {
 
         Connection con = null;
         try {
@@ -27,11 +27,13 @@ public class AnexoDAOImpl implements AnexoDAO {
             PreparedStatement st = con.prepareStatement(sql);
             st.setBlob(1, new SerialBlob(anexo.getArquivo()));
             st.setString(2,anexo.getTipo());
-            if (anexo.getMensagem() != null){
-                st.setLong(3, anexo.getMensagem().getId());
+
+            if (mensagem != null){
+                st.setLong(3, mensagem.getId());
             } else {
                 st.setNull(3, Types.INTEGER);
             }
+            
             st.executeUpdate();
             st.close();
 

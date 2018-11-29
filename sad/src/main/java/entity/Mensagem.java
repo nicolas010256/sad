@@ -1,17 +1,11 @@
 package entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Mensagem {
 
 	private long id;
 
 	private String conteudo;
 
-	private List<Anexo> anexos = new ArrayList<Anexo>();
-
-	private Atividade atividade;
 
 	public Mensagem (long id, String conteudo){
 		this.id = id;
@@ -26,14 +20,6 @@ public class Mensagem {
 		return id;
 	}
 
-	public Atividade getAtividade() {
-		return atividade;
-	}
-
-	public void setAtividade(Atividade atividade) {
-		this.atividade = atividade;
-	}
-
 	public String getConteudo() {
 		return conteudo;
 	}
@@ -42,12 +28,5 @@ public class Mensagem {
 		this.conteudo = conteudo;
 	}
 
-	public List<Anexo> getAnexos() {
-		return anexos;
-	}
-
-	public void setAnexos(List<Anexo> anexos) {
-		this.anexos = anexos;
-	}
 
 }
