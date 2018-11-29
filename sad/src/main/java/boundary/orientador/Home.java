@@ -56,7 +56,7 @@ public class Home {
 
     @FXML
     protected void clickTrabalho(MouseEvent e) {
-
+        setContent((Parent) new TrabalhosGraduacao());
     }
 
     @FXML

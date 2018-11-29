@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" onMouseClicked="#clickAbrirTrabalho" prefHeight="240.0" prefWidth="900.0" style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-background-color: white;" type="AnchorPane" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <effect>
+      <DropShadow color="#0000004d" height="10.0" offsetY="1.0" radius="4.5" width="10.0" />
+   </effect>
+   <children>
+      <Text layoutX="35.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Título">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tema">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de Trabalho">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Integrantes">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="lblTitulo" layoutX="220.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Título" wrappingWidth="650.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="lblTema" layoutX="220.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tema" wrappingWidth="650.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="lblTipo" layoutX="220.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de Trabalho" wrappingWidth="650.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <VBox fx:id="box" layoutX="35.0" layoutY="200.0" spacing="20.0" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="240.0" />
+   </children>
+</fx:root>

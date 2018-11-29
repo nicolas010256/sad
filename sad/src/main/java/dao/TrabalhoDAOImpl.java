@@ -178,7 +178,7 @@ public class TrabalhoDAOImpl implements TrabalhoDAO {
 
         try {
             con = JDBCUtil.getConnection();
-            String sql = "SELECT idTrabalho,Tema,Titulo,Metodologia,Relevancia,Data_Criacao FROM Trabalho t INNER JOIN Orientador o ON (t.idOrientador = o.idOrientador) WHERE idOrientador = ?";
+            String sql = "SELECT idTrabalho,Tema,Titulo,Metodologia,Relevancia,Data_Criacao FROM Trabalho t INNER JOIN Orientador o ON (t.idOrientador = o.idOrientador) WHERE o.idOrientador = ?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setLong(1, orientador.getId());
             ResultSet rs = st.executeQuery();
