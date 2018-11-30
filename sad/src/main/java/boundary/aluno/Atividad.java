@@ -1,9 +1,16 @@
 package boundary.aluno;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.codehaus.plexus.util.FileUtils;
+
+import controller.AnexoController;
 import controller.MensagemController;
+import entity.Anexo;
 import entity.Atividade;
 import entity.Mensagem;
 import javafx.event.ActionEvent;
@@ -11,9 +18,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 
 public class Atividad extends BorderPane {
     @FXML
@@ -29,6 +38,8 @@ public class Atividad extends BorderPane {
     private VBox box;
 
     private Atividade atividade;
+
+    private List<Anexo> anexos = new ArrayList<Anexo>();
 
     public Atividad(Atividade atividade) {
 
@@ -60,9 +71,33 @@ public class Atividad extends BorderPane {
         String conteudo = txtMensagem.getText();
         Mensagem mensagem = new Mensagem(conteudo);
 
-        new MensagemController().add(mensagem, atividade);
+        long id = new MensagemController().add(mensagem, atividade);
+
+        mensagem = new MensagemController().get(id);
+        AnexoController aController = new AnexoController();
+        for (Anexo anexo : anexos) {
+            aController.add(anexo, mensagem);
+        }
 
         Home.setContent((Parent) new Atividad(atividade));
+    }
+
+    @FXML
+    protected void clickAdicionarAnexo(MouseEvent e) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Selecione um Arquivo");
+        File arquivo = fileChooser.showOpenDialog(getScene().getWindow());
+        try {
+            
+            String nome = FileUtils.basename(arquivo.getPath());
+            String tipo = FileUtils.extension(arquivo.getPath());
+
+            Anexo anexo = new Anexo(nome, tipo, Files.readAllBytes(arquivo.toPath()));
+            anexos.add(anexo);
+
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
     }
 
 }

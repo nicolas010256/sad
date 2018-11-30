@@ -6,16 +6,19 @@ public class Anexo {
 
 	private byte[] arquivo;
 
+	private String nome;
+
 	private String tipo;
 
-	public Anexo(long id, byte[] arquivo, String tipo) {
+	public Anexo(long id, String nome, String tipo) {
 		this.id = id;
-		this.arquivo = arquivo;
+		this.nome = nome;
 		this.tipo = tipo;
 	}
 
-	public Anexo(byte[] arquivo, String tipo) {
+	public Anexo(String nome, String tipo, byte[] arquivo) {
 		this.arquivo = arquivo;
+		this.nome = nome;
 		this.tipo = tipo;
 	} 
 
@@ -37,5 +40,13 @@ public class Anexo {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 }

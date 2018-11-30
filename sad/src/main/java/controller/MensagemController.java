@@ -11,12 +11,14 @@ import entity.Mensagem;
 public class MensagemController {
     private MensagemDAO dao = new MensagemDAOImpl();
 
-    public void add(Mensagem mensagem, Atividade atividade) {
+    public long add(Mensagem mensagem, Atividade atividade) {
+        long id = 0;
         try {
-            dao.add(mensagem, atividade);
+            id = dao.add(mensagem, atividade);
         } catch (MensagemDAOException e) {
             e.printStackTrace();
         }
+        return id;
     }
 
     public Mensagem get(long id) {

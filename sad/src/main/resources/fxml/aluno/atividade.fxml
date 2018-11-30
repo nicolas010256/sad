@@ -75,6 +75,11 @@
                                     <DropShadow color="#0000004e" height="10.0" offsetY="1.0" radius="4.5" width="10.0" />
                                  </effect>
                               </Button>
+                              <Text fill="GREY" layoutX="702.0" layoutY="209.0" onMouseClicked="#clickAdicionarAnexo" strokeType="OUTSIDE" strokeWidth="0.0" text="Adicionar anexo" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="188.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
                      </children>

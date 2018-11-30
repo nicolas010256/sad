@@ -14,26 +14,44 @@ import entity.Mensagem;
 public class MensagemDAOImpl implements MensagemDAO {
 
     @Override
-    public void add(Mensagem mensagem, Atividade atividade) throws MensagemDAOException {
+    public long add(Mensagem mensagem, Atividade atividade) throws MensagemDAOException {
         Connection con = null;
+        long id = 0;
 
         try {
             con = JDBCUtil.getConnection();
+
+            con.setAutoCommit(false);
             String sql = "INSERT INTO Mensagem (Conteudo, idAtividade) " +
                     "VALUES (?, ?)";
+
+            String select = "SELECT LAST_INSERT_ID() ID";
+
             PreparedStatement statement = con.prepareStatement(sql);
+            PreparedStatement statement2 = con.prepareStatement(select);
             statement.setString(1, mensagem.getConteudo());
             if (atividade != null) 
                 statement.setLong(2, atividade.getId());
             else
                 statement.setNull(2, Types.INTEGER);
+
             statement.executeUpdate();
+            ResultSet rs = statement2.executeQuery();
+
+            con.commit();
+
+            if (rs.first()) {
+                id = rs.getLong("ID");
+            }
+
             statement.close();
+            statement2.close();
         } catch (SQLException e) {
             throw new MensagemDAOException("Erro ao inserir mensagem");
         } finally {
             JDBCUtil.close(con);
-        }   
+        }
+        return id;
     }
 
     @Override
@@ -43,7 +61,7 @@ public class MensagemDAOImpl implements MensagemDAO {
 
         try {
             con = JDBCUtil.getConnection();
-            String sql = "SELECT Conteudo, idAtividade WHERE idMensagem = ?";
+            String sql = "SELECT Conteudo, idAtividade FROM Mensagem WHERE idMensagem = ?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setLong(1, id);
             ResultSet rs = st.executeQuery();
