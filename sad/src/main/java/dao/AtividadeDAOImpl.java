@@ -1,12 +1,12 @@
 package dao;
 
-import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.List;
 
 import dao.exceptions.AtividadeDAOException;
 import entity.Atividade;
@@ -84,7 +84,7 @@ public class AtividadeDAOImpl implements AtividadeDAO {
 
             while (rs.next()) {
                 long id = rs.getLong("a.idAtividade");
-                String nome = rs.getString("a.Nome");
+                String nome = rs.getString("a.Titulo");
                 String descricao = rs.getString("a.Descricao");
                 String status = rs.getString("a.Status");
                 Atividade atividade = new Atividade(id, nome, descricao,status);

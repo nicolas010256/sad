@@ -15,13 +15,14 @@ import entity.Aluno;
 import entity.Banca;
 import entity.TipoTrabalho;
 import entity.Trabalho;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-import javafx.scene.control.TextField;
-import javafx.event.ActionEvent;
-import javafx.scene.input.MouseEvent;
 
 public class TrabalhoGraduacao extends BorderPane {
     @FXML
@@ -215,6 +216,6 @@ public class TrabalhoGraduacao extends BorderPane {
 
     @FXML
     protected void clickAtividade(MouseEvent e) {
-
+        Home.setContent((Parent) new Atividades(trabalho));
     }
 }

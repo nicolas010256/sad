@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1060.0" type="BorderPane" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Pane prefHeight="83.0" prefWidth="200.0" style="-fx-background-color: #4D70FF;" BorderPane.alignment="CENTER">
+         <children>
+            <Text fill="WHITE" layoutX="40.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Atividades">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="54.0" layoutY="74.0" prefHeight="534.0" prefWidth="950.0" style="-fx-background-color: transparent;">
+               <content>
+                  <VBox fx:id="box" prefHeight="552.0" prefWidth="948.0" spacing="20.0" style="-fx-border-color: transparent;" />
+               </content>
+            </ScrollPane>
+            <Text fill="GREY" layoutX="54.0" layoutY="57.0" onMouseClicked="#clickNovaAtividade" strokeType="OUTSIDE" strokeWidth="0.0" text="Nova atividade">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </center>
+</fx:root>
