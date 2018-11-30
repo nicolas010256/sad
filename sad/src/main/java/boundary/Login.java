@@ -62,6 +62,11 @@ public class Login {
                 if (aluno != null) {
                     new boundary.aluno.Home(aluno);
                     stage.close();
+                } else {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setHeaderText(null);
+                    alert.setContentText("Email ou Senha inválidos");
+                    alert.showAndWait();
                 }
             } else {
                 OrientadorController cController = new OrientadorController();
@@ -69,13 +74,13 @@ public class Login {
                 if (orientador != null) {
                     new boundary.orientador.Home(orientador);
                     stage.close();
+                } else {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setHeaderText(null);
+                    alert.setContentText("Email ou Senha inválidos");
+                    alert.showAndWait();
                 }
             }
-
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("Email ou Senha inválidos");
-            alert.showAndWait();
         } else {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setHeaderText(null);
