@@ -16,6 +16,6 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <FlowPane fx:id="pane" layoutX="35.0" layoutY="80.0" prefWidth="830.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="80.0" />
+      <FlowPane fx:id="pane" hgap="15" layoutX="35.0" layoutY="80.0" prefWidth="830.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="80.0" />
    </children>
 </fx:root>
