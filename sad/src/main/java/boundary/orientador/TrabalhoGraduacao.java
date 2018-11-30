@@ -21,6 +21,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
+import javafx.scene.input.MouseEvent;
 
 public class TrabalhoGraduacao extends BorderPane {
     @FXML
@@ -210,5 +211,10 @@ public class TrabalhoGraduacao extends BorderPane {
             txtHora.setVisible(true);
             txtNota.setVisible(true);
         }
+    }
+
+    @FXML
+    protected void clickAtividade(MouseEvent e) {
+
     }
 }
