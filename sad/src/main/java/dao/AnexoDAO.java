@@ -13,6 +13,8 @@ public interface AnexoDAO {
     Anexo get(long id) throws AnexoDAOException;
 
     List<Anexo> getByMensagem(Mensagem mensagem) throws AnexoDAOException;
+    
+    byte[] getArquivo(Anexo anexo) throws AnexoDAOException;
 
     void remove(Anexo anexo) throws AnexoDAOException;
 }

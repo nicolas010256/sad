@@ -23,15 +23,16 @@ public class AnexoDAOImpl implements AnexoDAO {
         Connection con = null;
         try {
             con = JDBCUtil.getConnection();
-            String sql = "INSERT INTO Anexo (Arquivo,Tipo,idMensagem) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO Anexo (Arquivo, Nome, Tipo,idMensagem) VALUES (?, ?, ?, ?)";
             PreparedStatement st = con.prepareStatement(sql);
             st.setBlob(1, new SerialBlob(anexo.getArquivo()));
-            st.setString(2,anexo.getTipo());
+            st.setString(2,anexo.getNome());
+            st.setString(3,anexo.getTipo());
 
             if (mensagem != null){
-                st.setLong(3, mensagem.getId());
+                st.setLong(4, mensagem.getId());
             } else {
-                st.setNull(3, Types.INTEGER);
+                st.setNull(4, Types.INTEGER);
             }
             
             st.executeUpdate();
@@ -53,17 +54,15 @@ public class AnexoDAOImpl implements AnexoDAO {
 
         try {
             con = JDBCUtil.getConnection();
-            String sql = "SELECT idAnexo, Arquivo, Tipo, idMensagem FROM Anexo WHERE idAnexo = ?";
+            String sql = "SELECT idAnexo, Nome, Tipo, idMensagem FROM Anexo WHERE idAnexo = ?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setLong(1, id);
             ResultSet rs = st.executeQuery();
             if (rs.first()) {
                 long idAnexo = rs.getLong("idAnexo");
-                Blob a = rs.getBlob("Arquivo");
-                byte[] arquivo = a.getBytes(1, (int) a.length());
-                a.free();
+                String nome = rs.getString("Nome");
                 String tipo = rs.getString("Tipo");
-                anexo = new Anexo(idAnexo, arquivo, tipo);
+                anexo = new Anexo(idAnexo, nome, tipo);
             }
             st.close();
         } catch (SQLException e) {
@@ -82,7 +81,7 @@ public class AnexoDAOImpl implements AnexoDAO {
         try {
             con = JDBCUtil.getConnection();
 
-            String sql = "SELECT idAnexo, Arquivo, Tipo, idMensagem FROM Anexo WHERE idMensagem = ?";
+            String sql = "SELECT idAnexo, Nome, Tipo, idMensagem FROM Anexo WHERE idMensagem = ?";
 
             PreparedStatement st = con.prepareStatement(sql);
             st.setLong(1, mensagem.getId());
@@ -91,11 +90,9 @@ public class AnexoDAOImpl implements AnexoDAO {
 
             while (rs.next()) {
                 long idAnexo = rs.getLong("idAnexo");
-                Blob a = rs.getBlob("Arquivo");
-                byte[] arquivo = a.getBytes(1, (int) a.length());
-                a.free();
+                String nome = rs.getString("Nome");
                 String tipo = rs.getString("Tipo");
-                Anexo anexo = new Anexo(idAnexo, arquivo, tipo);
+                Anexo anexo = new Anexo(idAnexo, nome, tipo);
 
                 anexos.add(anexo);
             }
@@ -107,7 +104,38 @@ public class AnexoDAOImpl implements AnexoDAO {
             JDBCUtil.close(con);
         }
         return anexos;
-	}
+    }
+    
+    @Override
+    public byte[] getArquivo(Anexo anexo) throws AnexoDAOException {
+        Connection con = null;
+        byte[] arquivo = null;
+        try {
+            con = JDBCUtil.getConnection();
+
+            String sql = "SELECT Arquivo FROM Anexo WHERE idAnexo = ?";
+
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setLong(1, anexo.getId());
+
+            ResultSet rs = st.executeQuery();
+
+            if (rs.first()) {
+                Blob blob = rs.getBlob("Arquivo");
+                arquivo = blob.getBytes(1, (int) blob.length());
+
+                blob.free();
+            }
+
+            st.close();
+
+        } catch (SQLException e) {
+            throw new AnexoDAOException("Erro ao recuperar arquivo");
+        } finally {
+            JDBCUtil.close(con);
+        }
+        return arquivo;
+    }
 
 	@Override
 	public void remove(Anexo anexo) throws AnexoDAOException {

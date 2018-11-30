@@ -39,6 +39,16 @@ public class AnexoController {
         return anexos;
     }
 
+    public byte[] getArquivo(Anexo anexo) {
+        byte[] arquivo = null; 
+        try {
+            arquivo = dao.getArquivo(anexo);
+        } catch (AnexoDAOException e) {
+            e.printStackTrace();
+        }
+        return arquivo;
+    }
+
     public void remove(Anexo anexo) {
         try {
             dao.remove(anexo);
