@@ -11,6 +11,7 @@ import java.util.List;
 import controller.AlunoController;
 import controller.BancaController;
 import controller.TipoTrabalhoController;
+import dao.TrabalhoDAOImpl;
 import entity.Aluno;
 import entity.Banca;
 import entity.TipoTrabalho;
@@ -189,6 +190,8 @@ public class TrabalhoGraduacao extends BorderPane {
             if (banca == null){
                 banca = new Banca(data, local);
                 banca.setNota(nota);
+
+                new BancaController().add(banca, trabalho);
             } else {
                 banca.setDataHorario(data);
                 banca.setLocal(local);

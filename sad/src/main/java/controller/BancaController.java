@@ -9,9 +9,9 @@ import entity.Trabalho;
 public class BancaController {
     private BancaDAO dao = new BancaDAOImpl();
 
-    public void add(Banca banca) {
+    public void add(Banca banca, Trabalho trabalho) {
         try {
-            dao.add(banca);
+            dao.add(banca, trabalho);
         } catch (BancaDAOException e) {
             e.printStackTrace();
         }

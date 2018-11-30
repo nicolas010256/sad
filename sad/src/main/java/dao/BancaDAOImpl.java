@@ -12,18 +12,19 @@ import entity.Trabalho;
 public class BancaDAOImpl implements BancaDAO{
 
 	@Override
-	public void add(Banca banca) throws BancaDAOException {
+	public void add(Banca banca, Trabalho trabalho) throws BancaDAOException {
 		Connection con = null;
 		
 		try {
 			con = JDBCUtil.getConnection();
-			String sql = "INSERT INTO BANCA (Data_Hora, Local, Nota) VALUES (?, ?, ?)";
+			String sql = "INSERT INTO Banca (Data_Hora, Local, Nota, idTrabalho) VALUES (?, ?, ?, ?)";
 			PreparedStatement statement = con.prepareStatement(sql);
 			java.util.Date data = banca.getDataHorario();
 			java.sql.Date datasql = new java.sql.Date(data.getTime());
 			statement.setDate(1,datasql);
 			statement.setString(2,banca.getLocal());
 			statement.setFloat(3,banca.getNota());
+			statement.setLong(4, trabalho.getId());
 			statement.executeUpdate();
 			statement.close();
 			

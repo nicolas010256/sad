@@ -6,7 +6,7 @@ import entity.Trabalho;
 
 public interface BancaDAO {
 
-    void add(Banca banca) throws BancaDAOException;
+    void add(Banca banca, Trabalho trabalho) throws BancaDAOException;
 
     Banca get(long id) throws BancaDAOException;
 
