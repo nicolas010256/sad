@@ -40,6 +40,7 @@ public class Login {
             scene = new Scene(root);
             stage = new Stage();
             stage.setScene(scene);
+            stage.setTitle("Sistema Acadêmico de Desenvolvimento - Entrar");
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
@@ -70,6 +71,11 @@ public class Login {
                     stage.close();
                 }
             }
+
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Email ou Senha inválidos");
+            alert.showAndWait();
         } else {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setHeaderText(null);
