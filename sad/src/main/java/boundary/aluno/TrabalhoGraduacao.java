@@ -16,12 +16,14 @@ import entity.Banca;
 import entity.Orientador;
 import entity.TipoTrabalho;
 import entity.Trabalho;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
 
 public class TrabalhoGraduacao extends BorderPane {
     @FXML
@@ -69,6 +71,8 @@ public class TrabalhoGraduacao extends BorderPane {
     @FXML
     private Button btnAdicionarOrientador;
 
+    private Trabalho trabalho;
+
     public TrabalhoGraduacao() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/aluno/trabalho_graduacao.fxml"));
@@ -77,7 +81,7 @@ public class TrabalhoGraduacao extends BorderPane {
             loader.load();
 
             Aluno aluno = Home.getAluno();
-            Trabalho trabalho = new TrabalhoController().getByAluno(aluno);
+            trabalho = new TrabalhoController().getByAluno(aluno);
 
             TipoTrabalho tipoTrabalho = new TipoTrabalhoController().getByTrabalho(trabalho);
 
@@ -128,11 +132,16 @@ public class TrabalhoGraduacao extends BorderPane {
 
     @FXML
     protected void clickAdicionarIntegrante(ActionEvent e) {
-        ((BorderPane) getScene().getRoot()).setCenter(new AdicionarIntegrante());
+        Home.setContent((Parent) new AdicionarIntegrante());
     }
 
     @FXML
     protected void clickAdicionarOrientador(ActionEvent e) {
-        ((BorderPane) getScene().getRoot()).setCenter(new AdicionarOrientador());
+        Home.setContent((Parent) new AdicionarOrientador());
+    }
+
+    @FXML
+    protected void clickAtividade(MouseEvent e) {
+        Home.setContent((Parent) new Atividades(trabalho));
     }
 }
