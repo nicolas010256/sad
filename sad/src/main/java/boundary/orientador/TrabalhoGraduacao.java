@@ -2,8 +2,10 @@ package boundary.orientador;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import controller.AlunoController;
@@ -141,8 +143,24 @@ public class TrabalhoGraduacao extends BorderPane {
     @FXML
     protected void clickAlterarNota(ActionEvent e) {
         if (txtTG1.isVisible()) { 
+            float tg1 = Float.parseFloat(txtTG1.getText());
+            float tg2 = Float.parseFloat(txtTG2.getText());
+
+            AlunoController aController = new AlunoController();
+            List<Aluno> alunos = aController.getByTrabalho(trabalho);
+
+            for (Aluno aluno : alunos) {
+                aluno.setNotaTG1(tg1);
+                aluno.setNotaTG2(tg2);
+
+                aController.update(aluno);
+            }
+
+            lblNotaTG1.setText(String.valueOf(tg1));
+            lblNotaTG2.setText(String.valueOf(tg2));
+
             txtTG1.setVisible(false);
-            txtTG2.setVisible(false); 
+            txtTG2.setVisible(false);
         } else {
             txtTG1.setVisible(true);
             txtTG2.setVisible(true); 
@@ -152,6 +170,36 @@ public class TrabalhoGraduacao extends BorderPane {
     @FXML
     protected void clickAlterarBanca(ActionEvent e) {
         if (txtLocal.isVisible()) {
+
+            String local = txtLocal.getText();
+            String dataHorario = txtData.getText() + " " + txtHora.getText();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            float nota = Float.parseFloat(txtNota.getText());
+
+            Date data = null;
+            try {
+                data = dateFormat.parse(dataHorario);
+            } catch (ParseException e1) {
+                e1.printStackTrace();
+			}
+            
+            Banca banca = new BancaController().getByTrabalho(trabalho);
+            if (banca == null){
+                banca = new Banca(data, local);
+                banca.setNota(nota);
+            } else {
+                banca.setDataHorario(data);
+                banca.setLocal(local);
+                banca.setNota(nota);
+            }
+
+            new BancaController().update(banca);
+
+            lblLocal.setText(local);
+            lblData.setText(new SimpleDateFormat("dd/MM/yyyy").format(data));
+            lblHora.setText(new SimpleDateFormat("HH:mm").format(data));
+            lblNota.setText(String.valueOf(nota));
+
             txtLocal.setVisible(false);
             txtData.setVisible(false);
             txtHora.setVisible(false);
@@ -163,6 +211,4 @@ public class TrabalhoGraduacao extends BorderPane {
             txtNota.setVisible(true);
         }
     }
-
-    
 }
