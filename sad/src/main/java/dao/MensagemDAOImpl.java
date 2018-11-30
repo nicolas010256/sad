@@ -77,7 +77,7 @@ public class MensagemDAOImpl implements MensagemDAO {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                long id = rs.getLong("idAluno");
+                long id = rs.getLong("idMensagem");
                 String conteudo = rs.getString("Conteudo");
 
                 Mensagem mensagem = new Mensagem(id, conteudo);

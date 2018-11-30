@@ -32,12 +32,12 @@
                      <children>
                         <AnchorPane style="-fx-background-radius: 4; -fx-border-radius: 4; -fx-background-color: white;">
                            <children>
-                              <Text layoutX="30.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Título" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="15.0">
+                              <Text fx:id="lblTitulo" layoutX="30.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Título" wrappingWidth="880.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="15.0">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
                               </Text>
-                              <Text layoutX="30.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="85.0">
+                              <Text fx:id="lblDescricao" layoutX="30.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição" wrappingWidth="880.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="85.0">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -49,7 +49,7 @@
                         </AnchorPane>
                         <Label text="Mensagens">
                            <font>
-                              <Font size="22.0" />
+                              <Font size="18.0" />
                            </font>
                            <padding>
                               <Insets bottom="10.0" left="5.0" top="10.0" />

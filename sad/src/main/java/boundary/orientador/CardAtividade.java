@@ -5,6 +5,7 @@ import java.io.IOException;
 import entity.Atividade;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -34,6 +35,6 @@ public class CardAtividade extends AnchorPane{
 
     @FXML
     protected void clickAbrirAtividade(MouseEvent e) {
-       
+        Home.setContent((Parent) new Atividad(atividade));
     }
 }
