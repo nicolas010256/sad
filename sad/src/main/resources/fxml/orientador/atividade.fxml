@@ -21,6 +21,9 @@
                </font>
             </Text>
          </children>
+         <effect>
+            <DropShadow radius="4.75" width="0.0" />
+         </effect>
       </Pane>
    </top>
    <center>
