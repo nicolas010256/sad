@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.codehaus.plexus.util.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 
 import controller.AnexoController;
 import controller.MensagemController;
@@ -20,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -36,6 +37,9 @@ public class Atividad extends BorderPane {
 
     @FXML
     private VBox box;
+
+    @FXML
+    private HBox boxAnexo;
 
     private Atividade atividade;
 
@@ -89,15 +93,22 @@ public class Atividad extends BorderPane {
         File arquivo = fileChooser.showOpenDialog(getScene().getWindow());
         try {
             
-            String nome = FileUtils.basename(arquivo.getPath());
-            String tipo = FileUtils.extension(arquivo.getPath());
+            String nome = FilenameUtils.getBaseName(arquivo.getPath());
+            String tipo = FilenameUtils.getExtension(arquivo.getPath());
 
             Anexo anexo = new Anexo(nome, tipo, Files.readAllBytes(arquivo.toPath()));
             anexos.add(anexo);
+
+            TextoAnexo text = new TextoAnexo(anexo);
+            text.setOnMouseClicked((event) -> {
+                anexos.remove(text.getAnexo());
+                boxAnexo.getChildren().remove(text);
+            });
+
+            boxAnexo.getChildren().add(text);
 
         } catch (IOException e1) {
             e1.printStackTrace();
         }
     }
-
 }
