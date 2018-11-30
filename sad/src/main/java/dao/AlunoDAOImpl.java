@@ -228,9 +228,9 @@ public class AlunoDAOImpl implements AlunoDAO {
     }
 
     @Override
-    public void getFoto(Aluno aluno) throws AlunoDAOException {
+    public byte[] getFoto(Aluno aluno) throws AlunoDAOException {
         Connection con = null;
-
+        byte[] foto = null;
         try {
             con = JDBCUtil.getConnection();
 
@@ -244,11 +244,10 @@ public class AlunoDAOImpl implements AlunoDAO {
 
             if (rs.first()) {
                 Blob blob = rs.getBlob("Foto");
-                byte[] foto = blob.getBytes(1, (int) blob.length());
-                aluno.setFoto(foto);
-                blob.free();
-            } else {
-                aluno.setFoto(null);
+                if (blob != null) {
+                    foto = blob.getBytes(1, (int) blob.length()); 
+                    blob.free();
+                }
             }
 
         } catch (SQLException e) {
@@ -256,6 +255,7 @@ public class AlunoDAOImpl implements AlunoDAO {
         } finally {
             JDBCUtil.close(con);
         }
+        return foto;
     }
 
     @Override

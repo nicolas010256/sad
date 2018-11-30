@@ -11,7 +11,7 @@
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="220.0" style="-fx-background-color: #4D70FF;" BorderPane.alignment="CENTER">
          <children>
-            <Circle fill="WHITE" layoutX="110.0" layoutY="95.0" radius="83.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" />
+            <Circle fx:id="image" fill="WHITE" layoutX="110.0" layoutY="95.0" radius="83.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" />
             <Text fill="WHITE" layoutX="74.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orientador">
                <font>
                   <Font name="Segoe UI" size="15.0" />

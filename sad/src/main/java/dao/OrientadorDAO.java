@@ -21,7 +21,7 @@ public interface OrientadorDAO {
 
     List<Orientador> getByAreaAndNome(Area area, String nome) throws OrientadorDAOException;
 
-    void getFoto(Orientador orientador) throws OrientadorDAOException;
+    byte[] getFoto(Orientador orientador) throws OrientadorDAOException;
 
     void update(Orientador orientador) throws OrientadorDAOException;
 

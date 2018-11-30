@@ -71,12 +71,14 @@ public class OrientadorController {
         return orientadores;
 	}
 
-    public void getFoto(Orientador orientador) {
+    public byte[] getFoto(Orientador orientador) {
+        byte[] foto = null;
         try {
-            dao.getFoto(orientador);
+            foto = dao.getFoto(orientador);
         } catch (OrientadorDAOException e) {
             e.printStackTrace();
         }
+        return foto;
     }
 
     public void update(Orientador orientador) {

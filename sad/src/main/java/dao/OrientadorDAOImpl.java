@@ -190,8 +190,8 @@ public class OrientadorDAOImpl implements OrientadorDAO {
     }
 
     @Override
-    public void getFoto(Orientador orientador) throws OrientadorDAOException {
-
+    public byte[] getFoto(Orientador orientador) throws OrientadorDAOException {
+        byte[] foto = null;
         Connection con = null;
 
         try {
@@ -207,11 +207,10 @@ public class OrientadorDAOImpl implements OrientadorDAO {
 
             if (rs.first()) {
                 Blob blob = rs.getBlob("Foto");
-                byte[] foto = blob.getBytes(1, (int) blob.length());
-                orientador.setFoto(foto);
-                blob.free();
-            } else {
-                orientador.setFoto(null);
+                if (blob != null) {
+                    foto = blob.getBytes(1, (int) blob.length());
+                    blob.free();
+                }
             }
 
         } catch (SQLException e) {
@@ -219,6 +218,7 @@ public class OrientadorDAOImpl implements OrientadorDAO {
         } finally {
             JDBCUtil.close(con);
         }
+        return foto;
 
     }
 

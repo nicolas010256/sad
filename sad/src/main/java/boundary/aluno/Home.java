@@ -1,8 +1,11 @@
 package boundary.aluno;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
+
 import boundary.Login;
+import controller.AlunoController;
 import controller.TrabalhoController;
 import entity.Aluno;
 import entity.Trabalho;
@@ -14,6 +17,9 @@ import javafx.scene.Parent;
 import javafx.scene.text.Text;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.shape.Circle;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.image.Image;
 
 public class Home {
     private Stage stage;
@@ -25,6 +31,9 @@ public class Home {
     @FXML
     private Text lblNome;
 
+    @FXML
+    private Circle image;
+
     public Home(Aluno aluno) {
         Home.aluno = aluno;
 
@@ -35,6 +44,14 @@ public class Home {
             root = (Parent) loader.load();
 
             scene = new Scene(root, 1270, 710);
+
+            byte[] foto = new AlunoController().getFoto(aluno);
+
+            if (foto != null) {
+                image.setFill(new ImagePattern(new Image(new ByteArrayInputStream(foto))));
+            } else {
+                image.setFill(new ImagePattern(new Image(getClass().getResource("../../images/fotoAluno.png").toExternalForm())));
+            }
 
             lblNome.setText(aluno.getNome());
 

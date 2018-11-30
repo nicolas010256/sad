@@ -21,7 +21,7 @@ public interface AlunoDAO {
 
     List<Aluno> getAll() throws AlunoDAOException;
 
-    void getFoto(Aluno aluno) throws AlunoDAOException;
+    byte[] getFoto(Aluno aluno) throws AlunoDAOException;
 
     void update(Aluno aluno) throws AlunoDAOException;
 

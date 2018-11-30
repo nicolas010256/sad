@@ -69,12 +69,14 @@ public class AlunoController {
         return alunos;
     }
 
-    public void getFoto(Aluno aluno) {
+    public byte[] getFoto(Aluno aluno) {
+        byte[] foto = null;
         try {
-            dao.getFoto(aluno);
+            foto = dao.getFoto(aluno);
         } catch (AlunoDAOException e) {
             e.printStackTrace();
         }
+        return foto;
     }
 
     public void update(Aluno aluno) {
