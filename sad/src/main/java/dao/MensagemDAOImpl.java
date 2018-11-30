@@ -24,9 +24,9 @@ public class MensagemDAOImpl implements MensagemDAO {
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, mensagem.getConteudo());
             if (atividade != null) 
-                statement.setLong(7, atividade.getId());
+                statement.setLong(2, atividade.getId());
             else
-                statement.setNull(7, Types.INTEGER);
+                statement.setNull(2, Types.INTEGER);
             statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {

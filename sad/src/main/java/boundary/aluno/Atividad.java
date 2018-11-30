@@ -6,8 +6,11 @@ import java.util.List;
 import controller.MensagemController;
 import entity.Atividade;
 import entity.Mensagem;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -20,7 +23,12 @@ public class Atividad extends BorderPane {
     private Text lblDescricao;
 
     @FXML
+    private TextArea txtMensagem;
+
+    @FXML
     private VBox box;
+
+    private Atividade atividade;
 
     public Atividad(Atividade atividade) {
 
@@ -29,6 +37,8 @@ public class Atividad extends BorderPane {
             loader.setRoot(this);
             loader.setController(this);
             loader.load();
+
+            this.atividade = atividade;
 
             lblTitulo.setText(atividade.getTitulo());
             lblDescricao.setText(atividade.getDescricao());
@@ -44,4 +54,15 @@ public class Atividad extends BorderPane {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    protected void clickSalvar(ActionEvent e) {
+        String conteudo = txtMensagem.getText();
+        Mensagem mensagem = new Mensagem(conteudo);
+
+        new MensagemController().add(mensagem, atividade);
+
+        Home.setContent((Parent) new Atividad(atividade));
+    }
+
 }
