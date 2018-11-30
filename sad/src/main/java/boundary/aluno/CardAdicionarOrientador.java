@@ -88,7 +88,7 @@ public class CardAdicionarOrientador extends AnchorPane {
         notificacao.setMensagem( usuario.getNome() + " o convidou para participar do Trabalho de Graduação:\n " +
             "\nTítulo: " + trabalho.getTitulo() + 
             "\nTema: " + trabalho.getTema() + 
-            "\nTipo de Trabalaho:" + tipoTrabalho.getNome());
+            "\nTipo de Trabalho: " + tipoTrabalho.getNome());
 
         notificacao.setTipoNotificacao(Notificacao.CONVITE);
         

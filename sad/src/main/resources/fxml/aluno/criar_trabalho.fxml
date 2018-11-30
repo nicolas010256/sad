@@ -60,7 +60,7 @@
                   <Font size="14.0" />
                </font>
             </TextArea>
-            <Text layoutX="40.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Relevancia">
+            <Text layoutX="40.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Relevância">
                <font>
                   <Font size="18.0" />
                </font>
