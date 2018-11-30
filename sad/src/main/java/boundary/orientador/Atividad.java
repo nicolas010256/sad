@@ -3,6 +3,7 @@ package boundary.orientador;
 import java.io.IOException;
 import java.util.List;
 
+import boundary.CardMensagem;
 import controller.MensagemController;
 import entity.Atividade;
 import entity.Mensagem;

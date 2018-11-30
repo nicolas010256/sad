@@ -1,4 +1,4 @@
-package boundary.aluno;
+package boundary;
 
 
 import entity.Anexo;

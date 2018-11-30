@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
 
+import boundary.CardMensagem;
+import boundary.TextoAnexo;
 import controller.AnexoController;
 import controller.MensagemController;
 import entity.Anexo;

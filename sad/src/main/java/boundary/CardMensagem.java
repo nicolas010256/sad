@@ -1,4 +1,4 @@
-package boundary.aluno;
+package boundary;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class CardMensagem extends AnchorPane{
 
     public CardMensagem(Mensagem mensagem) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/aluno/card_mensagem.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/card_mensagem.fxml"));
             loader.setRoot(this);
             loader.setController(this);
             loader.load();
