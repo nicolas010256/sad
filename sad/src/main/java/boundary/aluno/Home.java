@@ -57,6 +57,7 @@ public class Home {
 
             stage = new Stage();
             stage.setScene(scene);
+            stage.setTitle("Sistema Acadêmico de Desenvolvimento - Aluno");
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
