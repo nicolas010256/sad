@@ -1,7 +1,9 @@
 package boundary.aluno;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
+import controller.AlunoController;
 import controller.CursoController;
 import controller.NotificacaoController;
 import controller.TipoTrabalhoController;
@@ -11,12 +13,16 @@ import entity.Curso;
 import entity.Notificacao;
 import entity.TipoTrabalho;
 import entity.Trabalho;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import javafx.event.ActionEvent;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 
 public class CardAdicionarIntegrante extends AnchorPane {
     @FXML
@@ -27,6 +33,9 @@ public class CardAdicionarIntegrante extends AnchorPane {
 
     @FXML
     private Text lblCurso;
+
+    @FXML
+    private Circle image;
 
     private Aluno aluno;
 
@@ -44,6 +53,17 @@ public class CardAdicionarIntegrante extends AnchorPane {
             Curso curso = new CursoController().getByAluno(aluno);
             
             lblCurso.setText(curso != null ? curso.getNome() : "–");
+
+            new Thread(() -> {
+                byte[] foto = new AlunoController().getFoto(aluno);
+                Platform.runLater(() -> {
+                    if (foto != null) {
+                        image.setFill(new ImagePattern(new Image(new ByteArrayInputStream(foto))));
+                    } else {
+                        image.setFill(new ImagePattern(new Image(getClass().getResource("../../images/fotoAluno.png").toExternalForm())));
+                    }
+                });
+            }).start();
 
         } catch (IOException e) {
             e.printStackTrace();

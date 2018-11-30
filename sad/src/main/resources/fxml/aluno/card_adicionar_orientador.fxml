@@ -14,7 +14,7 @@
    <children>
       <Pane layoutY="2.0" prefHeight="200.0" prefWidth="137.0" style="-fx-background-color: #4D70FF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Circle fill="WHITE" layoutX="69.0" layoutY="72.0" radius="58.0" stroke="BLACK" strokeMiterLimit="2.0" strokeType="INSIDE" />
+            <Circle fx:id="image" fill="WHITE" layoutX="69.0" layoutY="72.0" radius="58.0" stroke="BLACK" strokeMiterLimit="2.0" strokeType="INSIDE" />
          </children>
       </Pane>
       <Text layoutX="150.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome">
